@@ -1,4 +1,4 @@
-# TEMA 4
+# TEMA 5
 
 **IMPORTANTE**
 - Si tienes dudas con cualquier comando puedes ejecutar antes: ``comando --help``
@@ -10,8 +10,24 @@
 - ~: indica el home del usuario, es lo mismo que poner /home/nombreusuario
 - ./: el directorio en el que estás.
 - PWD: comando para comprobar en que directorio estoy
+- La ruta **/dev/sda/** siempre es la del disco donde está el sistema. NO TOCAR NADA
 
-## Instalación de aplicaciones
+## Gestión de discos duros
+
+- Path de los discos duros
+  - SATA: ``/dev/sda``
+  - NVME: ``/dev/nvme1``
+- Path de las particiones 
+  - SATA: ``/dev/sda1``
+  - NVME: ``/dev/nvme0p1``
+- Tablas de particiones:
+  - MBR: bastante obsoleta
+  - GPT: es la que se usa ahora, no tiene limitaciones
+- Pasos a la hora de montar y particionar un disco
+  - Introducir el disco 
+  - Establecer la tabla de particiones GPT: ``fdisk /dev/sdb``
+  - Particionar el disco
+Estos pasos los podemos realizar con la herramienta **gparted** o bien de forma independiente. 
 
 Todas las aplicaciones que puedes instalar en GNU/Linux están almacenadas en repositorios externos al Sistema Operativo. 
 Estos repositorios se pueden agregar para disponer de las distintas aplicaciones que contienen. 
