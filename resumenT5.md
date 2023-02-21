@@ -29,125 +29,171 @@
   - Particionar el disco
 Estos pasos los podemos realizar con la herramienta **gparted** o bien de forma independiente. 
 
-Todas las aplicaciones que puedes instalar en GNU/Linux están almacenadas en repositorios externos al Sistema Operativo. 
-Estos repositorios se pueden agregar para disponer de las distintas aplicaciones que contienen. 
+De forma independiente:
+- Crear tabla de particiones MBR: ``fdisk /dev/sdb``
+- Crear tabla de particiones GPT: ``gdisk /dev/sdb``
+- Particionar el disco:
+  - Archivos EXT4: ``mkfs.ext4 /dev/sdb1``
+  - Archivo NTFS: ``mkfs.ntfs /dev/sdb1``
 
-Una forma de instalar nuevos repositorios es: ``add-apt-repository urlrepo``
+**Montaje y desmontaje manual de una particiín**
+- Montaje: ``mount -t tipodearchivo pathorigen pathdestino``
+Ej: ``mount -t ext4 /dev/sdb1 /datos``
+- Desmontaje: ``umount pathdestino``
+Ej: ``umount /datos``
 
-Manejo de aplicaciones en Debian y derivados: 
-- Instalar: ``apt install nombrepaquete```
-- Actualizar o reinstalar: ``apt upgrade nombrepaquete``
-- Eliminar aplicacion **manteniendo archivos de configuracion y/o datos**: ``apt remove nombrepaquete``
-- Desinstalar por completo **se borran todos los datos de la aplicación**: ``apt purge nombrepequete``
+**Montaje automático de una partición**
+**¡RECUERDA! cuando montas una partición de forma manual, al reiniciar el servidor deberás volverla a montar**
+1. Editar fichero ``/etc/fstab``
+   Ej: ``sudo nano /etc/fstab``
+2. Añadir línea al final del fichero ``pathorigen pathdestino tipodearchivo defaults 0 0``
+   Ej: ``/dev/sdb1 /datos ext4 defaults 0 0``
 
-También existe la posibilidad de descargar los paquetes desde internet de igual forma que lo hacemos en Windows.
-- Instalar: ``dpkg -i nombrepaquete.deb``
-- Desinstalar: ``dpkg -P nombrepaquete.deb``
 
-## Comprimir y descomprimir ficheros y directorios
-**Importante**
-Usa el mismo orden que aparece aqui para establecer los parámetros. Esto es por que cada parámetro sirve para una función distinta. Por ejemplo: el parámetro **-f** se usa para específicar el directorio o la ubicación del archivo, por ese motivo tiene que ir delante de la ruta. 
+## Almacenamiento RAID
+### RAID 0
+El único que no duplica la información
+Mín 2 discos
+- Ventajas:
+  - Mayor velocidad
+  - No se desperdicia cap. de almacenamiento
+- Desventajas:
+  - Si falla un disco se pierde todo
+
+### RAID 1 (MIRRORING)
+Creación de discos espejo, almecena los datos por duplicado
+Mín 2 discos
+- Ventajas:
+  - Si falla un disco la info está en el otro disco
+  - Mejora de velocidad
+- Desventajas:
+  - Se pierde la mitad de cap. de almacenamiento
+
+### RAID 3 y RAID 4
+Se almacena por bloques de paridad. Raid 3 genera paridad bit a bit y RAID 4 genera paridad por bloques
+Mín 3 discos
+- Ventajas:
+  - Si falla un disco la info se puede recuperar después del proceso de cálculo
+  - Mejora de velocidad a nivel teórico
+- Desventajas:
+  - Se pierde un porcentaje de cap. de almacenamiento
+
+### RAID 5
+Se almacena por bloques de paridad rotatorios. Similar a RAID 4
+Mín 3 discos
+- Ventajas:
+  - Si falla un disco la info se puede recuperar después del proceso de cálculo
+  - Mejora de velocidad respecto a RAID 3 y RAID 4
+- Desventajas:
+  - Se pierde un porcentaje de cap. de almacenamiento
+
+### RAID 6
+Ofrece un esquema de paridad distribuido. Similar a RAID 5
+Mín 3 discos
+- Ventajas:
+  - Mayor tolerancia a fallos, se pueden reponer hasta dos discos duros a la vez
+  - Dispone de discos 'hot-spare', discos vacios pero esperando a entrar si uno falla.
+  - Mejora de velocidad respecto a RAID 3 y RAID 4
+- Desventajas:
+  - Se pierde cap. de almacenamiento
+
+### RAID 0+1
+El más importante, produce división y duplicación de datos
+Mín 4 discos
+- Ventajas:
+  - Máximo rendimiento y protección
+- Desventajas:
+  - Coste elevado
+  - Se pierde cap. de almacenamiento
+
+### RAID 1+0 (RAID 1O)
+Invertido a RAID 0+1, produce duplicación y división de datos. Elegido para bbdd de altas prestaciones
+Mín 4 discos
+- Ventajas:
+  - Mayor velocidad de escritura
+- Desventajas:
+  - Coste elevado
+  - Se pierde cap. de almacenamiento
+  
+### Crear RAID
+Programa necesario: ``mdadm``
+
+#### Crear RAID
 Parámetros:
-    - c: crea un archivo con el nombre que has establecido para el paquete
-    - z: representa la compresión **gzip**
-    - v: verbose. muestra todo el proceso
-    - f: ubicación del fichero
-    - 9: mejor compresion
-### .TAR.GZ
-- Comprimir: ``tar -czvf nombrepaquete.tar.gz pathficheroacomprimir``
-  - Ej: ``tar -czvf descargas_comprimido.tar.gz /home/usuario/Descargas``
-- Descomprimir ``tar -xzvf nombrepaquete.tar.gz``
-  - Ej: ``tar -xzvf descargas_comprimido.tar.gz``
-### .TAR
-- Comprimir: ``tar -cvf nombrepaquete.tar pathficheroacomprimir``
-  - Ej: ``tar -cvf descargas_comprimido.tar /home/usuario/Descargas``
-- Descomprimir ``tar -xvf nombrepaquete.tar``
-  - Ej: ``tar -xvf descargas_comprimido.tar``
-- Descomprimir en ruta específica: ``tar -xvf nombrepaquete.tar -C pathdestino``
-  - Ej: ``tar -xvf descargas_comprimido.tar -C /home/usuario/destino/``
-### .GZ
-- Comprimir: ``gzip -9 pathficheroacomprimir``
-  - Ej: ``gzip -9 /home/usuario/Descargas/ficherito``
-- Descomprimir ``gzip -d nombrepaquete.gz``
-  - Ej: ``gzip -d ficherito.gz``
-### .ZIP
-- Comprimir: ``zip nombrepaquete.zip pathficheroacomprimir``
-  - Ej: ``zip descargas_comprimido.zip /home/usuario/Descargas/``
-- Descomprimir ``unzip descargas_comprimido.zip``
-  - Ej: ``unzip descargas_comprimido.zip``
+- C: crear enlace
+- l: nivel del raid
+- n: número de discos
+``mdadm -C /dev/md/nombreraid -l nivelraid -n nºdiscos listadepathsdediscos``
+Ej: ``mdadm -C /dev/md/raidcillo0 -l 0 -n 2 /dev/sdb /dev/sdc``
 
-## Gestión de usuarios y grupos
+Ver información del raid creado ``sudo mdadm -D /dev/md/raidcillo0``
 
-- Crear usuarios
-  - **ADDUSER** Forma "sencilla"
-    Con este comando se ejecutará un script el cual te irá preguntando datos para crear el usuario. Establece parámetros por defecto pero puedes editarlo si se lo indicas con parámetros
-        - Creación simple: ``useradd usuariochuli``
-        - Creación modificando parámetros: ``useradd --shell '/usr/bin/python3' usuariochuli``
-        **RECUERDA** puedes consultar todos los parámetros que puedes modificar con: ``useradd --help``
-    Una vez que has creado el usuario debes copiar el contenido del directorio ``/etc/skel/`` en el directorio del usuario creado y cambiar el propietario para que sea el usuario creado:
-      - sudo cp /etc/skel/.bash* /home/usuariochuli/
-      - sudo chown -R usuariochuli:usuariochuli /etc/usuariochuli/
-  - **USERADD** Forma más compleja
-    Con este comando tienes que establecer, mediante parámetros, toda la información obligatoria del usuario, como el directorio home, el grupo primario, el interprete de comando que utilizará, etc.. 
-        ``useradd -d /home/usuariodos -m -g usuariodos -p contrasena123 -s '/bin/bash' ``
-- Modificar usuario
-    ``usermod -d '/home/nuevohome usuariochuli``
-- Eliminar usuario
-  De igual forma que para crear usuarios hay dos comandos similares, para eliminarlos también
-  - **USERDEL** 
-    Borra el usuario
-    ``userdel usuariochuli``
-  - **DELUSER**
-    Elimina el usuario pero no el directorio personal, ni otros directorios del usuario
-    ``deluser usuariochuli``
-- Añadir grupo
-    ``groupadd grupillo``
-- Modificar grupo
-  Puedes modificar las características como GID, password, nombre, etc. Recuerda mirar que parámetros puedes aplicar con **--help**
-  ```groupmod -g 15000 grupillo``
-- Eliminar grupo
-  No puedes borrar un grupo que sea el grupo principal de un usuario, primero tienes que eliminar el usuario o asociarle a otro grupo
-  ``groupdel grupillo``
-- Contraseñas
-  - Cambiar la contraseña de un usuario: ``passwd usuariodos``
-  - Forzar que el usuario cambie la contraseña cuando inicie sesión: ``passwd -e usuariodos``
-  - Desactivar la contraseña: ``passwd -d usuariodos`` 
-  - Establecer limite de renovación de contraseña: ``passwd -n 31 usuariodos
-- Cambiar grupo principal de usuarios y contraseñas
-  ``gpasswd -a usuariodos grupillo``
-- Cambiar el shell (interprete de comandos) asociado a un usuario
-  ``chsh -s '/usr/bin/python3' usuario2
-- Cambiar el grupo principal de un usuario de forma temporal
-  ``newgrp nuevogrupotemp``
-
-## Tuberías y redirecciones
+**Automontar volumen RAID**
+``/dev/md/raidcillo0 /datos ext4 defaults 0 0``
+## Enlaces simbólicos y duros
 **IMPORTANTE**
-- '>': se usa para almacenar la información en otro fichero. SOBREESCRIBE LO QUE YA EXISTA EN EL FICHERO
-- '>>': se usa para almacenar la información en otro fichero. AÑADE AL FINAL DEL FICHERO LO QUE INDIQUEMOS. NO SOBREESCRIBE
+- Enlace simbólico: similar a los accesos directos de Windows. Apuntan a otro enlace duro
+- Enlace duro: apuntan a un fichero en particular del disco
+- No se pueden crear enlaces duros de discos extraibles o USB
 
-- Redireccionar salida y error
-  Es útil para redireccionar la salida de otro comando. Por ejemplo: ``cat /etc/passwd > ficherousuarios``
+### Crear enlace duro 
+``ln fichero pathdestino``
+Ej: ``ln documento.txt /home/usuario/enlace_duro_doc``
 
-  Redireccionar errores estandar: ``aplicacionaejecutar 2 > &1``
-  - 2: error estandar
-  - &1: salida estandar
-- Redireccionar entradas
-  Util cuando en una aplicación tenemos que pasar parámetros, de esta forma podemos almacenarlos en un fichero
-  ``cat < fichero``
-- Tuberías
-  Permiten enviar la salida estandar de un comando como inicio de otro comando. Por ejemplo: mostrar los procesos y ordenarlos de mayor a menor
-  ``ps -a | sort`` 
-  - SORT: ordena a partir de unos critérios
-    ``sort fichero``
-  - GREP: imprime las lineas donde encuentra el patrón
-    `` grep filtro fichero`` 
-  - CUT: trocea una cadena
-    ``cut -d " " -f2 fichero``
-  - TR: sustituye caracteres o elimina los repetidos
-    ``tr '/t' " "`` -> sustituye las tab por espacios
- 
-    
+**Enlaces duros recursivos (de todo el directorio)**
+``cp -rl pathorigen pathdestino``
+Ej: ``cp -rl /home/usuario/Pictures /home/usuario/Desktop/enlaceAfotos``
 
+### Crear enlace simbólico
+``ln -s fichero pathdestino``
+Ej: ``ln -s documento.txt /home/usuario/enlace_soft_doc``
+
+**Enlaces simbólicos recursivos (de todo el directorio)**
+``cp -rs pathorigen pathdestino``
+Ej: ``cp -rs /home/usuario/Pictures /home/usuario/Desktop/enlaceAfotos``
+
+### Eliminar enlaces
+``unlink pathenlace``
+Ej: ``unlink /home/usuario/enlace_duro_doc``
+
+## Copias de seguridad
+Se usa el comando TAR ya que es recomendable comprimir la copia de seguridad para que no ocupe mucho espacio innecesario
+``tar -jcvf backup.tar.gz pathdirectorio``
+Ej: ``tar -jcvf backuHome.tar.gz /home/usuario``
+**Extraer copia de seguridad**
+``tar -jxvf backup.tar.gz``
+
+### Backups incrementales
+Solo agrega lo que se haya modificado
+``tar -cvzf backup.tgz -g snapshot.snar pathacopiar``
+Ej:``tar -cvzf backup/bkp1.tgz -g backup/snapshot.snar data/``
+
+**RESTAURACIÓN**
+``tar -xvGf backup.tgz``
+
+## Programación de tareas (Crontab)
+**IMPORTANTE**
+Cron comprueba los ficheros ``/etc/crontab`` o ``/var/spool/cron``
+
+### Agregar tareas
+Asistente para crear tareas: ``crontab -e``
+Estructura: ``diadelasemana mes diadelmes hora minuto comando a realizar``
+Ej: ``* * * * * script.sh``
+Ej2: ``0 4 * * 1 tar -zcf /backups/seguridadHome.tgz /home/``
+
+### Comandos útiles con CRON
+- Editar el archivo existente: ``crontab -e``
+- Reemplazar fichero: ``crontab fichero``
+- Listar todas las tareas: ``crontab -l``
+- Borrar crontab configurado: ``crontab -d``
+- Manejar crontab de otro usuario: ``crontab -u usuario``
+
+## Gestión de procesos
+### PS 
+Información sobre los procesos que se están ejecutando
+Información importante:
+- PID (primera col): identificador único de cada proceso
+- Terminal (segunda col): 
 
 
 
