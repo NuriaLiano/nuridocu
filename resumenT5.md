@@ -191,10 +191,73 @@ Ej2: ``0 4 * * 1 tar -zcf /backups/seguridadHome.tgz /home/``
 ## Gestión de procesos
 ### PS 
 Información sobre los procesos que se están ejecutando
-Información importante:
+**Información importante:**
 - PID (primera col): identificador único de cada proceso
-- Terminal (segunda col): 
+- Terminal (segunda col): terminal en la que se está ejecutando
+- Tiempo total (tercera col)
+- Nombre proceso (cuarta col)
 
+**PARÁMETROS**
+- e: listado de los procesos
+- f: listaado extendido donde se ve el ppid y la hora
+- ef: listado extendido 
+- u: procesos lanzados por un usuario
+- a: todos los procesos
 
+El más común: ``ps aux``
 
+### PS TREE
+Visualizar los procesos en forma de árbol
+``pstree``
 
+### TOP
+Parecido a PS pero la información que muestra se va actualizando. Muestra el PID, el usuario, la prioridad, el nombre del proceso, el tiempo en ejecución, etc
+``top``
+
+### Procesos en primer y segundo plano
+
+**¿Cómo poner un proceso a correr en segudo plano?**
+Solo es necesario añadir ``&`` después del comando. Ej: ``sleep 10 &``
+
+**Pasar procesos de segundo plano a primer plano**
+Cuando iniciamos un proceso nos aparece un indicador entre corchetes, esto indica el numero de proceso 1, 2, 3... según los que hayamos mandado, este numero es necesario para cambiar de plano. 
+Ej: 
+El resultado de este comando ``root@nuria-msi:~# sleep 100 &`` es: ``[1] 47``
+Para pasar el proceso a primer plano solo necesitamos: ``fg 1`` y la respuesta será: ``sleep 100`` y además impedirá introducir más comandos hasta que no termine ese proceso. 
+
+**Pasar procesos de primer plano a segundo plano**
+
+Primero es necesario parar el proceso si está en ejecución con ``Ctrl + Z``
+Después ya podemos pasarlo a segundo plano con: ``bg jobid``
+
+### Cambiar prioridad de procesos
+**IMPORTANTE**
+La prioridad va desde 20 (más alta) a -20 (más baja).
+A más nivel de prioridad mas lentamente se ejecuta. 
+Solo root puede asignar valores negativos
+
+**Asignar prioridad**
+``nice prioridad jobid``
+Ej: nice 20 10
+
+**Cambiar prioridad**
+Parámetros:
+- g: nivel de prioridad por los miembros del grupo
+- u: nivel de prioridad por el usuario
+- p: nivel de prioridad para el proceso
+``renice -n prioridad -p pid``
+Ej: ``renice -n 5 -n 10``
+
+**Finalizar procesos**
+``kill -9 PDI``
+Ej: ``kill -9 10``
+Parámetros:
+- 1: reinicia el proceso
+- 9: mata el proceso
+- 15: termina el proceso
+- 17: detiene un proceso
+- 19: continua un proceso detenido
+
+**Importante**
+Con el comando ``killall nombreprograma`` puedes eliminar todos los procesos que use ese programa
+Ej: ``killall firefox`` 
