@@ -9,3 +9,17 @@
 8. Optimización de rendimiento: entender cómo optimizar el rendimiento de una base de datos MySQL puede mejorar significativamente la velocidad de las consultas y la escalabilidad de la base de datos.
 9. Copias de seguridad y recuperación: aprender a realizar copias de seguridad y restaurar una base de datos MySQL es importante para proteger los datos en caso de fallos o desastres.
 10. Integración con aplicaciones: finalmente, es importante saber cómo integrar MySQL con aplicaciones web y de escritorio, utilizando lenguajes de programación como PHP, Java, Python, C#, entre otros.
+
+
+CONEXION BASE DE DATOS
+TIPOS DE DATOS 
+LENGUAJE DE DEFINICION DE DATOS
+CREAR TABLAS
+DEFINICION DE RESTRICCIONES
+    RESTRICCIONES A NIVEL DE COLUMNA
+    RESTRICCIONES A NIVEL DE TABLA
+INTEGRIDAD REFERENCIAL
+CREAR UNA TABLA A PARTIR DE OTRA
+MODIFICAR TABLAS
+BORRAR TABLAS
+RENOMBRAR TABLAS
