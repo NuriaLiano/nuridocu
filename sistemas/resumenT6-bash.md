@@ -584,3 +584,19 @@ function multiplicar {
 
 echo "El resultado de multiplicar 5 y 7 es $(multiplicar 5 7)"
 ~~~
+
+## DIFERENCIAS CORCHETES
+
+En Bash, se utilizan los corchetes dobles (()) y los corchetes simples [] en las estructuras de control para evaluar expresiones y comparar valores. Aunque ambos tipos de corchetes se utilizan para propósitos similares, hay algunas diferencias importantes entre ellos.
+
+Los corchetes simples [] son más comunes en Bash y se utilizan para evaluar expresiones condicionales. En particular, se utilizan para comparar valores numéricos, cadenas de texto y archivos. Por ejemplo:
+
+Para comparar dos valores numéricos, se pueden utilizar los operadores -eq (igual), -ne (distinto), -lt (menor que), -le (menor o igual que), -gt (mayor que) y -ge (mayor o igual que). Por ejemplo: [ $x -lt $y ] evalúa a verdadero si la variable x es menor que la variable y.
+Para comparar dos cadenas de texto, se pueden utilizar los operadores = (igual) y != (distinto). Por ejemplo: [ $cadena1 = $cadena2 ] evalúa a verdadero si la variable cadena1 es igual a la variable cadena2.
+Para verificar si un archivo existe o no, se utiliza el operador -e. Por ejemplo: [ -e archivo.txt ] evalúa a verdadero si el archivo archivo.txt existe.
+Por otro lado, los corchetes dobles (()) se utilizan principalmente para evaluar expresiones aritméticas y realizar operaciones matemáticas. Por ejemplo:
+
+Para realizar una suma, se puede utilizar el operador +. Por ejemplo: (( x = 1 + 2 )) asigna el valor 3 a la variable x.
+Para realizar una multiplicación, se puede utilizar el operador *. Por ejemplo: (( y = 3 * 4 )) asigna el valor 12 a la variable y.
+Para comparar dos valores numéricos, se pueden utilizar los mismos operadores que en los corchetes simples. Por ejemplo: (( x > y )) evalúa a verdadero si la variable x es mayor que la variable y.
+En resumen, los corchetes simples se utilizan principalmente para evaluar expresiones condicionales, mientras que los corchetes dobles se utilizan para evaluar expresiones aritméticas y realizar operaciones matemáticas. En general, es importante utilizar el tipo de corchetes adecuado para cada tarea específica, ya que utilizar el tipo incorrecto puede producir resultados inesperados o errores en el script.
