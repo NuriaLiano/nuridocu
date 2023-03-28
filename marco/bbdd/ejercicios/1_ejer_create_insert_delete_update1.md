@@ -1,24 +1,30 @@
+## EJERCICIO 1
+
 1. Crea una tabla llamada "Clientes" con los siguientes campos: "ID", "Nombre", "Apellido", "Dirección" y "Teléfono".
 
+~~~sql
+
+    CREATE TABLE Clientes (
+    ID INT PRIMARY KEY,
+    Nombre VARCHAR(50),
+    Apellido VARCHAR(50),
+    Direccion VARCHAR(100),
+    Telefono VARCHAR(20)
+    );
 ~~~
 
-CREATE TABLE Clientes (
-ID INT PRIMARY KEY,
-Nombre VARCHAR(50),
-Apellido VARCHAR(50),
-Direccion VARCHAR(100),
-Telefono VARCHAR(20)
-);
-~~~
 2. Inserta 3 filas de datos en la tabla "Clientes".
 
+~~~sql
+    INSERT INTO Clientes (ID, Nombre, Apellido, Direccion, Telefono) VALUES
+    (1, 'Juan', 'Pérez', 'Calle Falsa 123', '555-1234'),
+    (2, 'María', 'Gómez', 'Avenida Siempreviva 742', '555-5678'),
+    (3, 'Pedro', 'Sánchez', 'Calle Mayor 5', '555-4321');
 ~~~
-INSERT INTO Clientes (ID, Nombre, Apellido, Direccion, Telefono) VALUES
-(1, 'Juan', 'Pérez', 'Calle Falsa 123', '555-1234'),
-(2, 'María', 'Gómez', 'Avenida Siempreviva 742', '555-5678'),
-(3, 'Pedro', 'Sánchez', 'Calle Mayor 5', '555-4321');
-~~~
-3. Crea una tabla llamada "Productos" con los siguientes campos: "ID", "Nombre", "Precio" y "Cantidad".
+
+## EJERCICIO 2
+
+1. Crea una tabla llamada "Productos" con los siguientes campos: "ID", "Nombre", "Precio" y "Cantidad".
 
 ~~~
 CREATE TABLE Productos (
@@ -28,7 +34,7 @@ Precio DECIMAL(10,2),
 Cantidad INT
 );
 ~~~
-5. Inserta 4 filas de datos en la tabla "Productos".
+2. Inserta 4 filas de datos en la tabla "Productos".
 
 ~~~
 INSERT INTO Productos (ID, Nombre, Precio, Cantidad) VALUES
