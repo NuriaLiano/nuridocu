@@ -9,7 +9,9 @@ Para relacionar tablas en SQL, se deben seguir estos pasos:
 5. Establecer las reglas de integridad referencial: Se pueden establecer reglas adicionales para la integridad referencial utilizando las cláusulas "ON DELETE" y "ON UPDATE". Estas cláusulas especifican qué debe ocurrir si se intenta eliminar o actualizar una fila en la tabla primaria que tiene filas relacionadas en la tabla secundaria.
 
 **EJEMPLO:**
-~~~
+
+~~~sql
+
 CREATE TABLE usuarios (
   id INT PRIMARY KEY,
   nombre VARCHAR(50),
@@ -22,7 +24,9 @@ CREATE TABLE pedidos (
   fecha_pedido DATE,
   id_usuario INT,
   FOREIGN KEY (id_usuario) REFERENCES usuarios(id) ON DELETE CASCADE ON UPDATE CASCADE)
+
 ~~~
+
 En este ejemplo, la tabla "usuarios" tiene una clave primaria "id" y la tabla "pedidos" tiene una clave foránea "id_usuario" que hace referencia a la clave primaria en la tabla "usuarios". Además, se ha especificado que si se elimina o actualiza una fila en la tabla "usuarios" que tiene filas relacionadas en la tabla "pedidos", estas filas relacionadas también se eliminarán o actualizarán en consecuencia.
 
 ### Constraints (restricciones)
