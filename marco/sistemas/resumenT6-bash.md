@@ -26,7 +26,7 @@ No solo sirve para el intérprete bash, también puedes utilizar otros interpret
 ### COMENTARIOS (#)
 
 Son una manera de incluir notas y explicaciones en el código, sin que sean interpretados como comandos por el intérprete de Bash.
-También se pueden utilizar para eivtar que se ejecute un trozo de código. 
+También se pueden utilizar para eivtar que se ejecute un trozo de código.
 
 - **Comentarios en línea**: son comentarios que se incluyen en una sola línea del script. Se indican con el carácter "#" (hash) y todo lo que se escriba después de él hasta el final de la línea será ignorado por el intérprete.
   ``echo "Este es un mensaje" # Este es un comentario``
