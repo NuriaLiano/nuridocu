@@ -10,22 +10,27 @@
 import os
 import sys
 import requests
+import json
+
+#import vars
+with open('config.json', 'r') as f:
+    config = json.load(f)
 
 #global const
 DNAME = ""
 DMODE = 776
 #GITPATH = "/home/glianon/gitlab/"
-GITPATH = "C:/Users/nuria-msi/gitlab/"
+GITPATH = config['GITPATH']
 
 # GitLab API URL and token
-GITLAB_URL = "https://gitlab.com/api/v4"
-GITLAB_TOKEN = "glpat-zggGt6HzmgAjvm4JNEg9"
+GITLAB_URL = config['GITLAB_URL']
+GITLAB_TOKEN = config['GITLAB_TOKEN']
 # GitLab project namespace
-NAMESPACE = "7736983"
+NAMESPACE = config['NAMESPACE']
 # GitLab repository default branch name
-DEFAULT_BRANCH = "main"
+DEFAULT_BRANCH = config['DEFAULT_BRANCH']
 # GitLab repository visibility
-VISIBILITY = "public"
+VISIBILITY = config['VISIBILITY']
 
 #change spaces for lines
 def replaceSpaces(reponame):
