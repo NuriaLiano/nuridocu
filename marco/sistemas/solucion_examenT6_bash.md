@@ -25,15 +25,15 @@ NOTAS:
     edad=$1
 
     if [[ $edad -lt 6 ]]; then
-    echo "Eres exento de pago."
+        echo "Eres exento de pago."
     elif [[ $edad -ge 7 && $edad -le 14 ]]; then
-    echo "Tienes tarifa infantil."
+        echo "Tienes tarifa infantil."
     elif [[ $edad -ge 15 && $edad -le 25 ]]; then
-    echo "Tienes tarifa joven."
+        echo "Tienes tarifa joven."
     elif [[ $edad -ge 26 && $edad -le 62 ]]; then
-    echo "Tienes tarifa general."
+        echo "Tienes tarifa general."
     else
-    echo "Tienes tarifa de jubilado/a."
+        echo "Tienes tarifa de jubilado/a."
     fi
 
 ~~~
