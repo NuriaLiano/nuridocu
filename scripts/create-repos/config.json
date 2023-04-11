@@ -1,9 +1,9 @@
 {
-    // "GITPATH": "/home/glianon/gitlab/",
     "GITPATH": "C:/Users/nuria-msi/gitlab/",
     "GITLAB_URL": "https://gitlab.com/api/v4",
-    "GITLAB_TOKEN": "glpat-zggGt6HzmgAjvm4JNEg9",
-    "NAMESPACE": "7736983",
+    "GITLAB_USER": "Nuria_Liano",
+    "GITLAB_TOKEN": "glpat-z4ufqFkzQKiywJs3QWx4",
+    "NAMESPACE": 7736983,
     "DEFAULT_BRANCH": "main",
     "VISIBILITY": "public"
 }

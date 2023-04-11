@@ -11,6 +11,7 @@ Sin embargo, no todos los sistemas de bases de datos soportan el full outer join
 ### EJEMPLO
 
 ~~~sql
+CREATE DATABASE ventas21;
 CREATE TABLE clientes (
     id_cliente INT PRIMARY KEY,
     nombre VARCHAR(50),

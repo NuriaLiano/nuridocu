@@ -12,13 +12,13 @@ CREATE TABLE ventas (
   precio_unitario DECIMAL(10,2)
 );
 
-INSERT INTO ventas (fecha, cliente, producto, cantidad, precio_unitario) 
+INSERT INTO ventas (id, fecha, cliente, producto, cantidad, precio_unitario) 
 VALUES 
-('2022-01-01', 'Juan Perez', 'Producto 1', 2, 10.50), 
-('2022-01-01', 'Maria Gomez', 'Producto 2', 1, 15.00), 
-('2022-01-02', 'Pedro Sanchez', 'Producto 3', 3, 12.75), 
-('2022-01-02', 'Ana Rodriguez', 'Producto 1', 5, 10.50), 
-('2022-01-03', 'Juan Perez', 'Producto 2', 2, 15.00);
+(1, '2022-01-01', 'Juan Perez', 'Producto 1', 2, 10.50), 
+(2, '2022-01-01', 'Maria Gomez', 'Producto 2', 1, 15.00), 
+(3, '2022-01-02', 'Pedro Sanchez', 'Producto 3', 3, 12.75), 
+(4, '2022-01-02', 'Ana Rodriguez', 'Producto 1', 5, 10.50), 
+(5, '2022-01-03', 'Juan Perez', 'Producto 2', 2, 15.00);
 
 ~~~
 
