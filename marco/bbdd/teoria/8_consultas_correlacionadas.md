@@ -1,3 +1,8 @@
+---
+autor: @nurialiano
+licence: [Creative Commons Attribution-NonCommercial 4.0 International](https://creativecommons.org/licenses/by-nc/4.0/legalcode)
+---
+
 # CONSULTAS CORRELACIONADAS
 
 Las consultas correlacionadas en SQL son aquellas en las que una subconsulta depende de una columna de la consulta principal (consulta externa). En otras palabras, la subconsulta se ejecuta una vez para cada fila de la consulta principal, utilizando los valores de las columnas de esa fila en la subconsulta.

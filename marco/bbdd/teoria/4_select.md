@@ -1,3 +1,8 @@
+---
+autor: @nurialiano
+licence: [Creative Commons Attribution-NonCommercial 4.0 International](https://creativecommons.org/licenses/by-nc/4.0/legalcode)
+---
+
 # SELECT
 
 El comando "SELECT" se utiliza para seleccionar información de una o varias tablas en una base de datos. Al utilizar este comando, se pueden utilizar las siguientes opciones:

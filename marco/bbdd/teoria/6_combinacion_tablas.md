@@ -1,3 +1,8 @@
+---
+autor: @nurialiano
+licence: [Creative Commons Attribution-NonCommercial 4.0 International](https://creativecommons.org/licenses/by-nc/4.0/legalcode)
+---
+
 # COMBINACIÓN DE TABLAS
 
 Técnica utilizada para combinar dos o más tablas en una sola tabla, basada en una o varias columnas que tienen en común. Esto se logra utilizando la cláusula **JOIN** en una consulta SQL. El objetivo de la combinación de tablas es recuperar datos de varias tablas relacionadas en una sola consulta.

@@ -1,3 +1,8 @@
+---
+autor: @nurialiano
+licence: [Creative Commons Attribution-NonCommercial 4.0 International](https://creativecommons.org/licenses/by-nc/4.0/legalcode)
+---
+
 # SUBCONSULTAS
 
 Las subconsultas en SQL son consultas anidadas dentro de otra consulta. Es decir, una subconsulta es una consulta que se realiza dentro de otra consulta más grande, con el fin de obtener un resultado específico.
@@ -87,3 +92,24 @@ En este ejemplo, la subconsulta devuelve dos columnas, departamento y cargo, que
    ~~~
 
 En este ejemplo, la subconsulta devuelve una fila aleatoria de la tabla departamentos que está en la región Norte y se utiliza en la cláusula WHERE para filtrar los resultados de la consulta principal.
+
+## ¿Es lo mismo las subconsultas que los joins?
+
+Tanto las subconsultas como las cláusulas JOIN son formas de combinar datos de múltiples tablas en una consulta SQL. Sin embargo, hay algunas diferencias entre ellas:
+
+1. Estructura de la consulta:
+
+   - Las subconsultas se escriben dentro de la cláusula WHERE o HAVING de la consulta principal.
+   - Las cláusulas JOIN se escriben al final de la consulta principal.
+
+2. Tamaño del conjunto de resultados:
+
+   - Las subconsultas suelen devolver un conjunto de resultados pequeño que se utiliza para filtrar los resultados de la consulta principal.
+   - Las cláusulas JOIN unen varias tablas de datos y devuelven un conjunto de resultados más grande.
+
+3. Rendimiento:
+
+   - Las subconsultas pueden ser menos eficientes en términos de rendimiento que las cláusulas JOIN, especialmente cuando se utilizan para filtrar grandes conjuntos de datos.
+   - Las subconsultas pueden ser menos eficientes en términos de rendimiento que las cláusulas JOIN, especialmente cuando se utilizan para filtrar grandes conjuntos de datos.
+
+>:pencil: **NOTA** Se recomienda utilizar cláusulas JOIN para unir tablas de datos grandes, mientras que las subconsultas son útiles para filtrar datos en un conjunto de resultados más pequeño.

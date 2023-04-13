@@ -1,3 +1,10 @@
+---
+autor: @nurialiano
+licence: [Creative Commons Attribution-NonCommercial 4.0 International](https://creativecommons.org/licenses/by-nc/4.0/legalcode)
+---
+
+
+
 # Introducción a las bases de datos
 
 Las bases de datos son una herramienta fundamental para el almacenamiento, organización y gestión de información en cualquier ámbito. Desde pequeñas empresas hasta grandes corporaciones, pasando por proyectos personales y aplicaciones móviles, todos ellos utilizan bases de datos para almacenar y gestionar información de manera eficiente.
@@ -118,30 +125,3 @@ Entre las tareas que realiza un SGBD se encuentran:
 - Realizar copias de seguridad y restauración de la base de datos
 
 Los SGBD pueden ser de diferentes tipos, según su modelo de datos, su arquitectura y su capacidad de procesamiento. Algunos de los SGBD más comunes son MySQL, Oracle, Microsoft SQL Server, PostgreSQL y MongoDB.
-
-## MYSQL básicos
-
-A continuación, te presento algunos de los comandos básicos de MySQL:
-
-1. Conexión a la base de datos
-   ``mysql -u usuario -p contraseña``
-2. Mostrar base de datos
-   ``show databases:``
-3. Selección de una base de datos
-   ``USE nombre_de_la_base_de_datos;``
-4. Mostrar tablas de la base de datos:
-   ``show tables;``
-5. Creación de una tabla
-
-   ~~~sql
-    CREATE TABLE nombre_de_la_tabla (
-    columna1 tipo_de_dato,
-    columna2 tipo_de_dato,
-    ...
-    );
-   ~~~
-
-6. Inserción de datos en una tabla
-   ``INSERT INTO nombre_de_la_tabla (columna1, columna2, ...) VALUES (valor1, valor2, ...);``
-7. Consulta de datos de una tabla
-   ``SELECT * FROM nombre_de_la_tabla;``

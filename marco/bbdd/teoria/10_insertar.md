@@ -1,3 +1,8 @@
+---
+autor: @nurialiano
+licence: [Creative Commons Attribution-NonCommercial 4.0 International](https://creativecommons.org/licenses/by-nc/4.0/legalcode)
+---
+
 # INSERTAR VALORES
 
 Para insertar valores en una tabla de SQL se utiliza la sentencia INSERT INTO seguida del nombre de la tabla y los valores a insertar. La sintaxis básica es la siguiente

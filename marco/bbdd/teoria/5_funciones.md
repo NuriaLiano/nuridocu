@@ -1,3 +1,8 @@
+---
+autor: @nurialiano
+licence: [Creative Commons Attribution-NonCommercial 4.0 International](https://creativecommons.org/licenses/by-nc/4.0/legalcode)
+---
+
 # FUNCIONES
 
 Es un lenguaje de programación utilizado para manejar y manipular bases de datos relacionales. Las funciones SQL son comandos o instrucciones utilizadas para realizar tareas específicas en una base de datos.

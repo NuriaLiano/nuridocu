@@ -1,3 +1,8 @@
+---
+autor: @nurialiano
+licence: [Creative Commons Attribution-NonCommercial 4.0 International](https://creativecommons.org/licenses/by-nc/4.0/legalcode)
+---
+
 # UNIÓN, INTERSECCIÓN Y DIFERENCIA
 
 (también conocido como MINUS o DIFERENCIA) son operadores que se utilizan para combinar o comparar los resultados de dos o más consultas
