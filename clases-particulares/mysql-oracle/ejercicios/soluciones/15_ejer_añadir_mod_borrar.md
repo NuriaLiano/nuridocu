@@ -20,7 +20,7 @@ USE videojuegos;
 CREATE TABLE titulos (
   id INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
   nombre VARCHAR(255) NOT NULL,
-  plataforma_id VARCHAR(255) NOT NULL,
+  plataforma_id int NOT NULL,
   fecha_lanzamiento DATE NOT NULL
 );
 ~~~
@@ -28,12 +28,12 @@ CREATE TABLE titulos (
 ## Insertar datos
 
 ~~~sql
-INSERT INTO titulos (nombre, plataforma, fecha_lanzamiento) VALUES
-  ('The Legend of Zelda: Breath of the Wild', 'Nintendo Switch', '2017-03-03'),
-  ('Red Dead Redemption 2', 'PlayStation 4', '2018-10-26'),
-  ('Horizon Zero Dawn', 'PlayStation 4', '2017-02-28'),
-  ('Fortnite', 'PC', '2017-07-25'),
-  ('Minecraft', 'PC', '2011-11-18');
+INSERT INTO titulos (nombre, plataforma_id, fecha_lanzamiento) VALUES
+  ('The Legend of Zelda: Breath of the Wild', '3', '2017-03-03'),
+  ('Red Dead Redemption 2', '1', '2018-10-26'),
+  ('Horizon Zero Dawn', '1', '2017-02-28'),
+  ('Fortnite', '2', '2017-07-25'),
+  ('Minecraft', '2', '2011-11-18');
 ~~~
 
 ## Crea una tabla 'plataforma'
@@ -54,11 +54,14 @@ VALUES
 ## Añadir la relación entre 'titulos' y 'plataformas'
 
 ~~~sql
+-- op
 ALTER TABLE titulos ADD CONSTRAINT fk_plataforma
 FOREIGN KEY (plataforma_id) REFERENCES plataformas(id);
+
+ALTER TABLE titulos ADD FOREIGN KEY (plataforma_id) REFERENCES plataformas(id);
 ~~~
 
-## Cambiar la restricción de la columna 'nombre' de la tabla 'plataforma' a UNIQUE
+## Cambiar la restricción de la columna 'nombre' de la tabla 'plataformas' a UNIQUE
 
 ~~~sql
 ALTER TABLE plataformas MODIFY nombre VARCHAR(255) UNIQUE;
@@ -93,9 +96,12 @@ ALTER TABLE plataformas MODIFY fabricante INT;
 
 >:warning: Ten en cuenta que, al cambiar el tipo de dato de una columna, **es posible que se pierda información si el tipo de dato original no se puede convertir al nuevo tipo de dato**. Asegúrate de tener copias de seguridad de tus datos antes de realizar cualquier cambio importante en la estructura de la tabla.
 
-## Añadir una restriccion a la clave foránea en la tabla 'titulos'
+## Añadir una restriccion 'on delete cascade' a la clave foránea en la tabla 'titulos'
 
 ~~~sql
+ALTER TABLE titulos
+DROP FOREIGN KEY fk_plataforma;
+
 ALTER TABLE titulos
 ADD CONSTRAINT fk_plataforma
 FOREIGN KEY (plataforma_id) REFERENCES plataformas(id)

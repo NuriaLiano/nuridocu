@@ -112,3 +112,24 @@ AND id NOT IN (SELECT id_cliente FROM compras WHERE fecha > '2022-12-31');
 ~~~
 
 En este ejemplo, la subconsulta se utiliza en la cláusula WHERE para encontrar todos los clientes que han realizado compras en un rango de fechas específico pero no han realizado ninguna compra después de ese rango de fechas.
+
+## ¿Es lo mismo las subconsultas que los joins?
+
+Tanto las subconsultas como las cláusulas JOIN son formas de combinar datos de múltiples tablas en una consulta SQL. Sin embargo, hay algunas diferencias entre ellas:
+
+1. Estructura de la consulta:
+
+   - Las subconsultas se escriben dentro de la cláusula WHERE o HAVING de la consulta principal.
+   - Las cláusulas JOIN se escriben al final de la consulta principal.
+
+2. Tamaño del conjunto de resultados:
+
+   - Las subconsultas suelen devolver un conjunto de resultados pequeño que se utiliza para filtrar los resultados de la consulta principal.
+   - Las cláusulas JOIN unen varias tablas de datos y devuelven un conjunto de resultados más grande.
+
+3. Rendimiento:
+
+   - Las subconsultas pueden ser menos eficientes en términos de rendimiento que las cláusulas JOIN, especialmente cuando se utilizan para filtrar grandes conjuntos de datos.
+   - Las subconsultas pueden ser menos eficientes en términos de rendimiento que las cláusulas JOIN, especialmente cuando se utilizan para filtrar grandes conjuntos de datos.
+
+>:pencil: **NOTA** Se recomienda utilizar cláusulas JOIN para unir tablas de datos grandes, mientras que las subconsultas son útiles para filtrar datos en un conjunto de resultados más pequeño.
