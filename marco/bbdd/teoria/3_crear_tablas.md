@@ -14,7 +14,7 @@ licence: [Creative Commons Attribution-NonCommercial 4.0 International](https://
    4. No utilizar números
 2. **Especificar las columnas y los tipos de datos**: Cada columna de la tabla debe tener un nombre y un tipo de dato asociado
 3. **Definir las restricciones**: Las restricciones son reglas que limitan los valores que se pueden ingresar en una columna, por ejemplo, una restricción de clave primaria asegura que cada fila tenga un valor único en esa columna.
-4. **Estabblecer las relaciones entre las tablas**: Si se tienen varias tablas en la base de datos, es importante establecer relaciones entre ellas para poder acceder a la información de manera eficiente. Las relaciones se definen mediante claves foráneas que apuntan a la clave primaria de otra tabla.
+4. **Establecer las relaciones entre las tablas**: Si se tienen varias tablas en la base de datos, es importante establecer relaciones entre ellas para poder acceder a la información de manera eficiente. Las relaciones se definen mediante claves foráneas que apuntan a la clave primaria de otra tabla.
 5. **Crear índices**: Los índices son estructuras de datos que permiten acceder a la información de manera más rápida. Se recomienda crear índices en las columnas que se utilizan con frecuencia en las consultas.
 
 Es importante tener en cuenta algunos **aspectos adicionales**, como la **definición de valores predeterminados**, **las opciones de autoincremento para las claves primarias** y la **configuración de la codificación** de caracteres para admitir diferentes idiomas y conjuntos de caracteres.
