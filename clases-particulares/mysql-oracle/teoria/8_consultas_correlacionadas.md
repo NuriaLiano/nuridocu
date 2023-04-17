@@ -1,8 +1,3 @@
----
-autor: @nurialiano
-licence: [Creative Commons Attribution-NonCommercial 4.0 International](https://creativecommons.org/licenses/by-nc/4.0/legalcode)
----
-
 # CONSULTAS CORRELACIONADAS
 
 Las consultas correlacionadas en SQL son aquellas en las que una subconsulta depende de una columna de la consulta principal (consulta externa). En otras palabras, la subconsulta se ejecuta una vez para cada fila de la consulta principal, utilizando los valores de las columnas de esa fila en la subconsulta.
@@ -13,12 +8,12 @@ Es importante tener en cuenta que las consultas correlacionadas pueden ser menos
 
 ## EJEMPLO
 
-~~~sql
+```sql
 SELECT * 
 FROM orders o 
 WHERE o.order_date > (SELECT MAX(order_date) 
                       FROM orders 
                       WHERE customer_id = o.customer_id);
-~~~
+```
 
 En esta consulta, la subconsulta se utiliza para encontrar la fecha más reciente de un pedido para cada cliente. Luego, se utiliza esa fecha más reciente para filtrar los pedidos en la consulta principal, devolviendo solo los pedidos cuya fecha de pedido sea posterior a la fecha más reciente de ese cliente

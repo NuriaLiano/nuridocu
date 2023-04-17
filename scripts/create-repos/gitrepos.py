@@ -8,7 +8,7 @@ import gitlab
 with open('scripts/create-repos/config.json', 'r') as f:
     config = json.load(f)
 
-#global const
+#global vars and const
 DNAME = ""
 DMODE = 776
 GITPATH = config['GITPATH']
@@ -23,22 +23,16 @@ NAMESPACE = config['NAMESPACE']
 DEFAULT_BRANCH = config['DEFAULT_BRANCH']
 # GitLab repository visibility
 VISIBILITY = config['VISIBILITY']
+#Gitlab username
+USERNAME = config['GITLAB_USER']
+INSTANCE = gitlab.Gitlab(GITLAB_URL, private_token=GITLAB_TOKEN)
+#1. CREATE REPO IN GITLAB
+#2. CLONE GITLAB REPO ON LOCAL
+#3. CONFIG GIT INIT
+#3. CREATE README
+#4. COMMIT 
+#5. PUSH
 
-#change spaces for lines
-def replaceSpaces(reponame):
-    try:
-        global DNAME
-        DNAME = reponame.replace(" ", "-")
-        return DNAME
-    except ValueError():
-        print("ERROR | Ha ocurrido un error al formatear el nombre del repo") 
-
-#check if that directory exists
-def existsDirectory():
-    try:
-        return os.path.exists(GITPATH + DNAME)
-    except FileExistsError():
-        print("ERROR | El directorio ya existe") 
 
 def createDirectory():
     try:
@@ -93,43 +87,59 @@ def createLocalRepo():
 #         # Send the GET request to get the user ID
 #         response = requests.get(url, headers=headers)
 
-#         # Parse the response JSON and return the user ID
-#         return response.json()[0]["id"]
 
-#     except requests.exceptions.RequestException as e:
-#         print("ERROR | Ha ocurrido un error al obtener el ID de usuario: ", e)
-#         return None
+# def checkRepoNameExits():
+#     #1. like param
+#     #2. ask to user
+#     #3. set default dname 
 
-# def namespace_exists(username):
+#     if(len(sys.argv) >= 2):
+#         DNAME = sys.argv[1]
+#     #else:
+#         #chequear si existe el repo en gitlab
+
+#         #chequear si existe la carpeta en local
+
+
+# def createGitLabRepo():
 #     try:
-#         # Get the user ID
-#         user_id = get_user_id(username)
+#         #set endpoint API
+#         url = GITLAB_URL + "/projects"
 
-#         # Set the API endpoint
-#         url = GITLAB_URL + "users/" + str(user_id) + "/projects"
-
-#         # Set the request headers
+#         #set the request headers and data
 #         headers = {"PRIVATE-TOKEN": GITLAB_TOKEN}
+#         data = {
+#             "name": DNAME,
+#             "namespace": {
+#                 "id": NAMESPACE
+#             },
+#             "default_branch": DEFAULT_BRANCH,
+#             "visibility": VISIBILITY
+#         }
 
-#         # Send the GET request to get the projects for the user
-#         response = requests.get(url, headers=headers)
+#         #send the POST request to create the repo
+#         response = requests.post(url, headers=headers, data=data)
 
-#         # Parse the response JSON and check if any project has the namespace equal to the username
-#         projects = response.json()
-#         for project in projects:
-#             if project["namespace"]["name"] == username:
-#                 return True
+#         #debug to fic error with request to API
+#         #print(response.status_code)
+#         #print(response.json())
 
-#         return False
+#         #check if the request was succesfull
+#         if response.status_code == 201:
+#             return True
+#         else:
+#             print("ERROR | The GitLab Repository could not be created")
+#             return False
 #     except requests.exceptions.RequestException as e:
-#         print("ERROR | Ha ocurrido un error al obtener los proyectos del usuario: ", e)
+#         print("ERROR | An error occurred while creating the repo: ", e)
 #         return False
 
-def createGitLabRepo():
+#checkRepoNameExits()
+def check_repository_exists():
     try:
         # Set the API endpoint  
-        url = GITLAB_URL + "/projects"
-
+        url = GITLAB_URL + "users?username=Nuria_Liano"
+        
         #set the request headers and data
         headers = {"PRIVATE-TOKEN": GITLAB_TOKEN}
         data = {
