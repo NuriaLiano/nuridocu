@@ -1,3 +1,8 @@
+---
+autor: @nurialiano
+licence: [Creative Commons Attribution-NonCommercial 4.0 International](https://creativecommons.org/licenses/by-nc/4.0/legalcode)
+---
+
 # EJERCICIO REPASO AÑADIR, MODIFICAR Y BORRAR
 
 ## Crea la base de datos 'videojuegos'
