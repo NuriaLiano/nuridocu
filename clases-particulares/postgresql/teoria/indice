@@ -1,3 +1,8 @@
+
+funciones ventana
+self join
+
+
 # objetos básicos
 
 Cluster: Un área de almacenamiento de PostgreSQL en una instancia, compuesta de una o varias bases de datos. Pueden existir varios clusters dentro de una instancia, cada uno con su propio puerto TCP. En terminología MySQL esto se conoce como instancia.
