@@ -27,7 +27,7 @@ SELECT nombre, apellido, CONCAT(nombre, ' ', apellido) AS nombre_completo
 FROM empleados;
 ~~~
 
-### EXPLICACIÓN
+**EXPLICACIÓN**
 
 Esta consulta selecciona el nombre y el apellido de cada empleado, y utiliza la función CONCAT() para unirlos en una sola cadena en la columna nombre_completo.
 
@@ -52,7 +52,7 @@ SELECT nombre, precio, precio * 0.9 AS precio_descuento
 FROM productos;
 ~~~
 
-### EXPLICACIÓN
+**EXPLICACIÓN**
 
 Esta consulta selecciona el nombre y el precio de cada producto, y multiplica el precio por 0.9 para obtener el precio con un descuento del 10% en la columna precio_descuento.
 
