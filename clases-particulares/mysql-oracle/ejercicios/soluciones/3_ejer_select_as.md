@@ -1,3 +1,8 @@
+---
+autor: @nurialiano
+licence: [Creative Commons Attribution-NonCommercial 4.0 International](https://creativecommons.org/licenses/by-nc/4.0/legalcode)
+---
+
 # EJERCICIOS SELECT
 
 ## EJERCICIO 1 - FUNCIONES Y AS
@@ -58,12 +63,7 @@ Esta consulta selecciona el nombre y el precio de cada producto, y multiplica el
   -- Crear la base de datos 'mi_basedatos2'
   CREATE DATABASE mi_basedatos2;
   -- Usar la base de datos 'mi_basedatos2'
-  USE mi_basedatos2;
-  -- Crear una tabla llamada 'empleados' con cuatro columnas: 'id', 'nombre', 'apellido' y 'puesto'
-  CREATE TABLE empleados (
-    id INT PRIMARY KEY,
-    nombre VARCHAR(50),
-    apellido VARCHAR(50),
+  USE mi_ctido VARCHAR(50),
     puesto VARCHAR(50)
   );
   -- Insertar algunos datos en la tabla 'empleados'
