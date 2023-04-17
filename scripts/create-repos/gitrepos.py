@@ -1,26 +1,18 @@
-#TODO: check if ssh key is enable on gitlab and github
-#ensure if git init config is ok
-#create directory
-#create readme
-#create repo in gitlab
-#git add
-#git commit
-#git push
-
 import os
 import sys
 import requests
 import json
+import gitlab
 
 #import vars
-with open('config.json', 'r') as f:
+with open('scripts/create-repos/config.json', 'r') as f:
     config = json.load(f)
 
 #global const
 DNAME = ""
 DMODE = 776
-#GITPATH = "/home/glianon/gitlab/"
 GITPATH = config['GITPATH']
+GITLAB_USER = config['GITLAB_USER']
 
 # GitLab API URL and token
 GITLAB_URL = config['GITLAB_URL']
@@ -53,11 +45,22 @@ def createDirectory():
         return os.mkdir(GITPATH + DNAME, DMODE)
     except FileExistsError():
         print("ERROR | El directorio ya existe") 
+
+def find_gitlab_repo():
+    instance = gitlab.Gitlab('https://gitlab.com', private_token=GITLAB_TOKEN)
+
+    #search all project with the same name
+    projects = instance.projects.list(search='nuridocu')
+
+    #filter the list with the name
+    for project in projects:
+        if project.path_with_namespace == f"Nuria_Liano/eliminar":
+            return project
     
+    return None
+
+
 def createLocalRepo():
-
-    !IMPORTANTE PRIMERO HAY QUE HACER UN CLONE DEL REPO DE GITLAB EN LOCAL, NO VALE CREAR LA CARPETA PRIMERO¡
-
     #verify that a folder name has been passed as a parameter
     if len(sys.argv) < 2:
         #order the folder name
@@ -155,8 +158,28 @@ def createGitLabRepo():
         print("ERROR | Ha ocurrido un error al crear el repositorio: ", e)
         return False
 
-def gitInitLocalRepo():
+def cloneGitlabRepo():
+    try:
+        #create instance
+        instance = gitlab.Gitlab('https://gitlab.com', private_token='glpat-Xx2Gj7v4F5jMp9Sy75uz')
 
+        #search gitlab repo
+        project = instance.projects.get('44773891')
+
+        # #clone gitlab repo
+        # result = project.repository_archive(prefix=None, path="/home/glianon/gitlab/")
+
+        # print(result)
+        tree = project.repository_tree()
+
+        # loop through the tree and download each file
+        for item in tree:
+            if item["type"] == "blob":
+                file_content = project.repository_raw(file_path=item["path"], ref="master")
+                with open("/home/glianon/gitlab/" + item["path"], "wb") as f:
+                    f.write(file_content)
+    except Exception as e:
+        print("Error:", e)
 
 def createInitialReadme():
 
@@ -172,34 +195,12 @@ def createInitialReadme():
 
 
 def main():
-    createLocalRepo()
-    createGitLabRepo()
-    createInitialReadme()
+    # createLocalRepo()
+    # createGitLabRepo()
+    # createInitialReadme()
+    print(cloneGitlabRepo())
+    # print(find_gitlab_repo())
+
+
 
 main()
-
-    
-
-
-
-
-# import subprocess
-
-# # Ejecutamos el comando git config --list y obtenemos la salida como una cadena
-# output = subprocess.check_output(["git", "config", "--list"]).decode("utf-8")
-
-# # Creamos un diccionario para almacenar las variables de configuración
-# config_vars = {}
-
-# # Analizamos la salida y almacenamos cada variable en el diccionario
-# for line in output.split("\n"):
-#     if line.strip() == "":
-#         continue
-#     key, value = line.split("=")
-#     config_vars[key.strip()] = value.strip()
-
-# # Verificamos que el nombre de usuario y el correo electrónico sean correctos
-# username = config_vars.get("user.name")
-# email = config_vars.get("user.email")
-# if not username or not email:
-#     print("No se encontró el nombre de usuario o el correo electrón
