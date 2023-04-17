@@ -1,3 +1,7 @@
+---
+description: Breve introducción con conceptos básicos
+---
+
 # Introducción a las bases de datos
 
 Las bases de datos son una herramienta fundamental para el almacenamiento, organización y gestión de información en cualquier ámbito. Desde pequeñas empresas hasta grandes corporaciones, pasando por proyectos personales y aplicaciones móviles, todos ellos utilizan bases de datos para almacenar y gestionar información de manera eficiente.
