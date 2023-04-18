@@ -8,6 +8,7 @@ license: [Creative Commons Attribution-NonCommercial 4.0 International](https://
 Una tabla es una estructura de datos que se utiliza para almacenar información en filas y columnas. Cada fila representa una entrada individual en la tabla, mientras que cada columna representa un atributo específico de esa entrada. Las tablas son la base de la mayoría de las bases de datos relacionales, lo que significa que se establecen relaciones entre ellas a través de claves y referencias cruzadas.
 
 ## Partes de una tabla
+
 ![partes de una tabla](img/partes-tablas.png)
 
 - **Tablas**: las tablas son como hojas de papel donde se escribe la información. Cada tabla tiene un nombre y varias columnas donde se escriben los datos.
@@ -20,7 +21,7 @@ Una tabla es una estructura de datos que se utiliza para almacenar información 
 
 ### Nombre de la tabla
 
-Nombrar una tabla en una base de datos puede parecer una tarea simple, pero es importante seguir algunas recomendaciones para garantizar que el nombre de la tabla sea fácilmente comprensible y coherente con la estructura de la base de datos. 
+Nombrar una tabla en una base de datos puede parecer una tarea simple, pero es importante seguir algunas recomendaciones para garantizar que el nombre de la tabla sea fácilmente comprensible y coherente con la estructura de la base de datos.
 
 - **Nombres descriptivos**
 - **Sustantivos singulares**
@@ -30,6 +31,7 @@ Nombrar una tabla en una base de datos puede parecer una tarea simple, pero es i
 - **No utilizar números**
 
 >:pencil: **NOTA**
+>
 > - **camelCase**: la primera letra de cada palabra se escribe en mayúscula y las palabras se escriben juntas sin espacios.
 > - **snake_case**: las palabras se separan con un guión bajo.
 
