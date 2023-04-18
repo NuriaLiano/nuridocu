@@ -103,7 +103,13 @@ UPDATE juegos
 SET plataforma_id = plataformas.id
 FROM plataformas
 WHERE juegos.plataforma = plataformas.nombre;
+
+-- o con add constraint
+ALTER TABLE juegos ADD CONSTRAINT fk_plataforma_id FOREIGN KEY (plataforma_id) REFERENCES plataformas (id);
 ~~~
+
+>:pencil:**NOTA** como ver el nombre de la restriccion
+> 
 
 ## 9. Cambia el campo 'rating' para que permita valores negativos
 
@@ -138,6 +144,10 @@ WHERE rating >= 4.5;
 SELECT titulo
 FROM juegos
 WHERE lanzamiento < '2019-01-01';
+
+SELECT titulo
+FROM juegos
+WHERE extract(year from lanzamiento) < 2019;
 ~~~
 
 ## 13. Seleccionar el promedio de rating de os juegos lanzados en Playstation 4
