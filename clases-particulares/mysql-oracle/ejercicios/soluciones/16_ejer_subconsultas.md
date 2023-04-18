@@ -6,6 +6,7 @@ licence: [Creative Commons Attribution-NonCommercial 4.0 International](https://
 # SUBCONSULTAS
 
 ~~~sql
+CREATE DATABASE concesionario;
 CREATE TABLE coches (
   id INTEGER PRIMARY KEY,
   marca TEXT,
@@ -74,15 +75,15 @@ FROM coches
 WHERE id = (SELECT coche_id FROM ventas ORDER BY precio_venta DESC LIMIT 1);
 ~~~
 
-## 4 - Devolver la lista de modelos de coches vendidos en orden alfabético
+<!-- ## 4 - Devolver la lista de modelos de coches vendidos en orden alfabético
 
 ~~~sql
 SELECT modelo 
 FROM coches 
 WHERE id IN (SELECT coche_id FROM ventas) ORDER BY modelo ASC;
-~~~
+~~~ -->
 
-## 5 - Devolver la marca y el modelo de los coches vendidos por encima del precio medio de venta:
+## 5 - Devolver la marca y el modelo de los coches vendidos por encima del precio medio de venta
 
 ~~~sql
 SELECT marca, modelo 

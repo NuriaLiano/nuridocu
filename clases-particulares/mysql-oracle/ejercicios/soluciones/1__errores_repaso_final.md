@@ -27,8 +27,7 @@ rollback to savepoint
 y commit  
 con tematica de juegos de gran theft auto
 
-
-Crea una base de datos llamada "petstore" que incluya una tabla "pets" con las siguientes columnas
+## Crea una base de datos llamada "petstore" que incluya una tabla "pets" con las siguientes columnas
 
     id: número entero, clave primaria, autoincrementable
     name: cadena de caracteres, no nula
