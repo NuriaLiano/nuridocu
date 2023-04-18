@@ -109,10 +109,78 @@ TRUNCATE TABLE mi_tabla;
 
 ## Sintaxis de SAVEPOINT y ROLLBACK TO SAVEPOINT
 
+Se utilizan en MySQL para crear puntos de guardado de transacciones llamados SAVEPOINT, lo que permite deshacer solo una parte de una transacción en lugar de deshacer toda la transacción.
+
+~~~sql
+SAVEPOINT savepoint_name;
+~~~
+
+Para revertir la transacción a un SAVEPOINT
+
+~~~sql
+ROLLBACK TO SAVEPOINT savepoint_name;
+~~~
+
+Esto restaura la transacción al SAVEPOINT indicado, revirtiendo cualquier cambio realizado a partir de ese punto en adelante.
+
+>:pencil:**NOTA** es importante tener en cuenta que los SAVEPOINTS solo se pueden utilizar dentro de una transacción, y que no se pueden utilizar después de que se haya realizado un COMMIT en la transacción. Además, no se pueden utilizar fuera de la sesión de conexión actual.
+
 ## Bloqueo de tablas
+
+Es un mecanismo que se utiliza para controlar el acceso concurrente a las tablas de una base de datos. Cuando una transacción necesita realizar operaciones en una tabla, puede solicitar un bloqueo de esa tabla para garantizar que ningún otro proceso pueda modificar los datos de esa tabla mientras se realiza la transacción.
+
+- Bloqueo de lectura: Permite que múltiples transacciones lean los datos de la tabla simultáneamente, pero impide que cualquier transacción realice modificaciones en la tabla.
+- Bloqueo de escritura: Permite que una sola transacción realice modificaciones en una tabla, impidiendo que cualquier otra transacción lea o escriba en la misma tabla mientras el bloqueo está activo.
 
 ### Sintaxis de LOCK TABLES
 
+~~~sql
+LOCK TABLES nombre_tabla WRITE;
+~~~
+
 ### Sintaxis de UNLOCK TABLES
 
+Desbloqueo de todas la tablas
+
+~~~sql
+UNLOCK TABLES;
+~~~
+
+Desbloqueo de una tabla
+
+~~~sql
+UNLOCK TABLES nombre_tabla;
+~~~
+
 ## Sintaxis de SET TRANSACTION
+
+Se utiliza para establecer el nivel de aislamiento de la transacción actual en una base de datos en particular. El nivel de aislamiento determina la forma en que una transacción interactúa con otras transacciones que pueden estar intentando acceder a los mismos datos en la misma base de datos.
+
+>:pencil: **NOTA** puedes usar SET TRANSACTION en cualquier momento dentro de una transacción, ya sea antes o después de iniciar la transacción con START TRANSACTION. La diferencia radica en cómo se aplican los cambios en los niveles de aislamiento.
+>
+> - antes de START TRANSACTION: los cambios en los niveles de aislamiento se aplicarán a todas las declaraciones dentro de la transacción que sigue a START TRANSACTION.
+> - después de START TRANSACTION: los cambios en los niveles de aislamiento solo se aplicarán a las declaraciones que siguen a SET TRANSACTION.
+
+~~~sql
+SET TRANSACTION [ READ WRITE | READ ONLY ] [ , ISOLATION LEVEL { SERIALIZABLE | REPEATABLE READ | READ COMMITTED | READ UNCOMMITTED } ];
+~~~
+
+Las opciones **READ WRITE** y **READ ONLY** se utilizan para especificar si la transacción va a leer y escribir datos o solo leer datos.
+La opción **ISOLATION LEVEL** se utiliza para especificar el nivel de aislamiento de la transacción, que puede ser uno de los cuatro siguientes:
+
+- **SERIALIZABLE**: El nivel de aislamiento más alto, que garantiza que ninguna otra transacción pueda modificar los datos que la transacción actual está leyendo o escribiendo hasta que la transacción actual se haya completado.
+- **REPEATABLE READ**: Garantiza que todas las lecturas realizadas dentro de la transacción actual siempre vean los mismos datos, independientemente de si otros cambios están ocurriendo en la base de datos.
+- **READ COMMITTED**: Garantiza que todas las lecturas realizadas dentro de la transacción actual vean solo los cambios confirmados realizados por otras transacciones.
+- **READ UNCOMMITTED**: El nivel de aislamiento más bajo, que permite a la transacción leer datos que aún no han sido confirmados por otras transacciones.
+
+### Ejemplo
+
+~~~sql
+SET TRANSACTION ISOLATION LEVEL SERIALIZABLE;
+
+START TRANSACTION;
+
+-- Aquí puedes ejecutar tus operaciones de base de datos
+
+COMMIT;
+~~~
