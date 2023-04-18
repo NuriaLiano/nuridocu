@@ -1,6 +1,5 @@
 # REPASO FINAL MYSQL
 
-genera ejercicios para examen y dime las respuestas en mysql  donde se use, 
 subconsultas, 
 add constraint, 
 add foreign key, 
