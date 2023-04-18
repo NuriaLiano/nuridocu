@@ -1,7 +1,8 @@
 ---
-autor: @nurialiano
-licence: [Creative Commons Attribution-NonCommercial 4.0 International](https://creativecommons.org/licenses/by-nc/4.0/legalcode)
+author: @nurialiano
+license: [Creative Commons Attribution-NonCommercial 4.0 International](https://creativecommons.org/licenses/by-nc/4.0/legalcode)
 ---
+
 # Definición de datos 'DDL'
 
 DDL significa "Data Definition Language" (Lenguaje de Definición de Datos) en SQL. Se utiliza para definir y modificar la estructura de las bases de datos y sus objetos relacionados, como tablas, índices, vistas y restricciones.
