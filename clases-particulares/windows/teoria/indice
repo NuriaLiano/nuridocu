@@ -60,3 +60,7 @@ operaciones generales en windows
   - schtasks
   - interfaz grafica
   - 
+
+
+cd, dir, tree, mr, rm, push, popd, ren, copy, move, attrib, del, type, assoc, 
+fc, ftype, mklink, openfiles, print, where, >, >>, <, | , *, ?, shutdown, chkdsk, convert, defrag, format, label, at, runas, start, taskkill, tasklist, driverquery, hostname, systeminfo, ver, date, time, logoff, query session, net user, net localgroup, whoami,  variables con set, cls, color, msg

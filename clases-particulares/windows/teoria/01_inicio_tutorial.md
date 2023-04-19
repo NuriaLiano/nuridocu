@@ -64,3 +64,4 @@ help
 
 ![comando help](img/command-help.png)
 
+## RUTAS ABSOLUTAS Y RELATIVAS
