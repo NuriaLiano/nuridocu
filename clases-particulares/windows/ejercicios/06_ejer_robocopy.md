@@ -1,3 +1,7 @@
+---
+author: "@nurialiano"
+license: "Creative Commons Attribution-NonCommercial 4.0 International"
+---
 # Ejercicios sobre ROBOCOPY
 
 ## 1. Copiar una carpeta y su contenido a otro directorio

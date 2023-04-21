@@ -1,7 +1,8 @@
 ---
-author: @nurialiano
-license: [Creative Commons Attribution-NonCommercial 4.0 International](https://creativecommons.org/licenses/by-nc/4.0/legalcode)
+author: "@nurialiano"
+license: "Creative Commons Attribution-NonCommercial 4.0 International"
 ---
+
 
 ## EJERCICIO 1
 

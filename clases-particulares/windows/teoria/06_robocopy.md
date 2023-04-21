@@ -1,3 +1,7 @@
+---
+author: "@nurialiano"
+license: "Creative Commons Attribution-NonCommercial 4.0 International"
+---
 # ROBOCOPY
 
 Es una herramienta de línea de comandos de Windows que permite copiar archivos y directorios de una ubicación a otra de manera eficiente y con muchas opciones avanzadas.
