@@ -63,9 +63,14 @@ Esta consulta selecciona el nombre y el precio de cada producto, y multiplica el
   -- Crear la base de datos 'mi_basedatos2'
   CREATE DATABASE mi_basedatos2;
   -- Usar la base de datos 'mi_basedatos2'
-  USE mi_ctido VARCHAR(50),
+  USE mi_basedatos2;
+  -- Crear tabla
+  CREATE TABLE empleados (
+    id INT PRIMARY KEY,
+    nombre VARCHAR(50),
+    apellido VARCHAR(50),
     puesto VARCHAR(50)
-  );
+);
   -- Insertar algunos datos en la tabla 'empleados'
   INSERT INTO empleados (id, nombre, apellido, puesto)
   VALUES
