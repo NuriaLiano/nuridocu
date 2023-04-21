@@ -1,3 +1,8 @@
+---
+author: @nurialiano
+license: [Creative Commons Attribution-NonCommercial 4.0 International](https://creativecommons.org/licenses/by-nc/4.0/legalcode)
+---
+
 ## EJERCICIO 1
 
 1. Crea una tabla llamada "Clientes" con los siguientes campos: "ID", "Nombre", "Apellido", "Dirección" y "Teléfono".

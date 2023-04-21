@@ -1,3 +1,8 @@
+---
+author: @nurialiano
+license: [Creative Commons Attribution-NonCommercial 4.0 International](https://creativecommons.org/licenses/by-nc/4.0/legalcode)
+---
+
 # Ejercicio 1 (nivel básico)
 1. Crear una tabla "Estudiantes" con las columnas "ID", "Nombre", "Edad" y "Correo electrónico".
 Solución:

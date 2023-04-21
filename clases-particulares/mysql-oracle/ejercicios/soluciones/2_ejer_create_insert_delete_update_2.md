@@ -1,3 +1,8 @@
+---
+author: @nurialiano
+license: [Creative Commons Attribution-NonCommercial 4.0 International](https://creativecommons.org/licenses/by-nc/4.0/legalcode)
+---
+
     Crea una tabla llamada "Empleados" con los siguientes campos: "ID", "Nombre", "Apellido", "Departamento" y "Fecha de contratación".
 
 sql
