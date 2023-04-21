@@ -158,7 +158,7 @@ FROM juegos
 WHERE plataforma = 'PlayStation 4';
 ~~~
 
-## 14. Seleccionar el número de juegos por plataforma, solo incluyendo plataformas con  más de un juego
+## 14. Seleccionar el número de juegos por plataforma, solo incluyendo plataformas con más de un juego
 
 ~~~sql
 SELECT plataforma, COUNT(*) AS num_juegos
@@ -177,6 +177,8 @@ GROUP BY desarrollador
 ORDER BY promedio_rating DESC;
 ~~~
 
+Esta consulta selecciona el desarrollador y el promedio de rating de los juegos cuyo rating es mayor o igual a 4.5. Luego, agrupa los resultados por desarrollador y los ordena por promedio_rating de forma descendente.
+
 ## 16. Selecciona los títulos de los juegos que se lanzaron en 2018 o después, limitado a 3 resultados
 
 ~~~sql
@@ -184,6 +186,13 @@ SELECT titulo
 FROM juegos
 WHERE lanzamiento >= '2018-01-01'
 LIMIT 3;
+
+--opcion 2
+SELECT titulo
+FROM juegos
+WHERE EXTRACT(YEAR FROM lanzamiento) >= 2018
+LIMIT 3;
+
 ~~~
 
 ## 17. Exportar los datos de la tabla 'juegos' a un archivo CSV sen el directorio 'home' del usuario actual
@@ -198,6 +207,11 @@ COPY juegos TO '/home/john/juegos.csv' DELIMITER ',' CSV HEADER;
 SELECT juegos.*, plataformas.nombre AS nombre_plataforma
 FROM juegos
 JOIN plataformas ON juegos.plataforma = plataformas.nombre;
+
+--opcion con subconsulta
+SELECT titulo, 
+       (SELECT nombre FROM plataformas WHERE plataformas.id = juegos.plataforma_id) AS plataforma
+FROM juegos;
 ~~~
 
 ## 19. Seleccionar los nombres de los desarrolladores y la cantidad de juegos que han creado solo incluyendo desarrolladores con más de un juego
@@ -206,6 +220,12 @@ JOIN plataformas ON juegos.plataforma = plataformas.nombre;
 SELECT juegos.desarrollador, COUNT(*) AS num_juegos
 FROM juegos
 GROUP BY juegos.desarrollador
+HAVING COUNT(*) > 1;
+
+--opcion 2
+SELECT desarrollador, COUNT(*) AS cantidad_juegos
+FROM juegos
+GROUP BY desarrollador
 HAVING COUNT(*) > 1;
 ~~~
 
@@ -220,7 +240,23 @@ JOIN (
     GROUP BY plataforma
 ) AS avg_rating_plataforma ON juegos.plataforma = avg_rating_plataforma.plataforma
 WHERE juegos.plataforma = 'PlayStation 4' AND juegos.rating >= avg_rating_plataforma.avg_rating;
+
+--opcion 2
+SELECT titulo
+FROM juegos
+WHERE plataforma = 'PlayStation 4' AND rating >= (
+  SELECT AVG(rating)
+  FROM juegos
+);
 ~~~
+
+En esta consulta, se usa una subconsulta para calcular la media de rating de todos los juegos. Luego, se compara el rating de cada juego de PlayStation 4 con esta media para seleccionar solo los juegos que cumplen la condición.
+
+La consulta devuelve los títulos de los juegos lanzados por PlayStation 4 que tienen un rating mayor o igual a la media de rating de todos los juegos.
+
+OPCION 2
+
+En esta consulta, se usa una subconsulta para calcular la media de rating para cada plataforma y luego se realiza un JOIN con la tabla juegos usando la columna plataforma. Finalmente, se filtran los resultados para seleccionar los juegos con plataforma "PlayStation 4" y cuyo rating sea mayor o igual a la media de rating de PlayStation 4.
 
 ## 21. Seleccionar los nombres de las plataformas que tienen al menos un juego con un rating mayor o igual a 4.8 y lo snombres de los desarrolladores que han creado ese juego
 
