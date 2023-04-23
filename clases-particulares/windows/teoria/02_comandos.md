@@ -73,7 +73,7 @@ rm C:\Users\Usuario\Documentos\carpeta_borrador
 - '/s': Elimina el directorio y su contenido (subcarpetas y archivos).
 - '/v': Muestra información detallada sobre el proceso de eliminación de la carpeta
 
-### PUSH
+### PUSHD
 
 Se utiliza para cambiar la ubicación actual del directorio y para guardar la ruta actual en una pila.
 
@@ -240,7 +240,7 @@ print documento.txt
 
 ### ROBOCOPY
 
-Se utiliza para copiar el contenido de un directorio en otro, y solo copia los archivos que hayan sido modificados o añadidos. 
+Se utiliza para copiar el contenido de un directorio en otro, y solo copia los archivos que hayan sido modificados o añadidos.
 
 - /E: copia directorios vacíos y subdirectorios, incluyendo los vacíos.
 - /MIR: copia directorios vacíos y subdirector
@@ -393,7 +393,7 @@ label C: Windows
 
 ### AT
 
-Permite programar la ejecución de otro comando para una hora determinada. 
+Permite programar la ejecución de otro comando para una hora determinada.
 
 - /INTERACTIVE: permite la interacción con el escritorio.
 - /EVERY: programa la tarea para que se ejecute de forma periódica.
