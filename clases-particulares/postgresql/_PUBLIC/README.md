@@ -1,16 +1,33 @@
-# INDICE
+# PostgreSQL de 0 a ninja
 
-## Curso sobre PostgreSQL
+¡Bienvenido al curso de PostgreSQL desde cero! Este curso está diseñado para ayudarte a aprender a manejar bases de datos utilizando PostgreSQL, desde los fundamentos hasta niveles más avanzados.
 
-### Ejercicios iniciales
+En este curso, comenzaremos desde el nivel más básico, donde te familiarizarás con la instalación y configuración de PostgreSQL. Luego, avanzaremos a través de una serie de lecciones detalladas, donde aprenderás sobre la estructura de las bases de datos, cómo crear y gestionar tablas y cómo utilizar las consultas para extraer información de ellas.
 
-- 01_repaso_inicial
+Además, a lo largo del curso, se te presentarán distintas actividades para reforzar los conceptos aprendidos. Estas actividades te permitirán aplicar lo que has aprendido y ponerlo en práctica, para que puedas comprender mejor los conceptos y estar seguro de que los has asimilado correctamente.
+
+Además, ofrecemos la posibilidad de enviar tus actividades para ser corregidas por un experto a través del correo electrónico **corrijeme@nurialiano.es**, de modo que puedas recibir feedback personalizado sobre tus avances.
+
+Este curso está diseñado para cualquier persona que quiera aprender a manejar bases de datos con PostgreSQL, independientemente de su nivel de experiencia previa. Así que, si eres nuevo en PostgreSQL o tienes experiencia previa en bases de datos, ¡este curso es para ti!
+
+¡Empezamos!
+
+>:warning: **ADVERTENCIA** es importante tener en cuenta que en este curso no se abordará el diseño conceptual ni el diseño relacional de bases de datos.
+>:soon: **ANUNCIO** proximamente nuevo curso "Diseño de Bases de Datos"
+
+## Pruebas de nivel
+
+Aquí encontrarás una serie de pruebas para evaluar tu nivel de conocimiento en diferentes temas. También tendrás ejercicios a lo largo de los temas y pruebas finales.
+
+>:warning: **ADVERTENCIA** Recuerda que estas pruebas son solo una ayuda para evaluar tu nivel y no deben tomarse como la verdad absoluta.
+
+- [01_repaso_inicial](ejercicios/01_repaso_inicial.md)
 - 02_ejer_select
 - 02.01_ejer_select
 
 --------
 
-### Indice de contenidos
+## Indice de contenidos
 
 - Tutorial básico
 - Primeros pasos
@@ -67,3 +84,28 @@
 - Disparadores (triggers)
 - Funciones
 - Usuarios y permisos
+
+## ¿Cómo corrijo mis ejercicios?
+
+Existen dos formas:
+
+- En cada actividad propuesta existe un link (tendrás que encontrarle :wink: ) donde encontrarás las soluciones.
+- Envíanos un email a **corrijeme@nurialiano.es** para que un experto en la materia pueda corregirlos personalmente y enviarte el feedback con las soluciones.
+
+### Aspectos a tener en cuenta antes de enviar el email
+
+Estamos encantados de ayudarte y corregirte los ejercicios pero, antes de solicitar nuestra ayuda o corrección, tienes que tener en cuenta los siguientes aspectos:
+
+- **NO** realizamos ejercicios personales
+- **NO** corregiremos ejercicios si no son los propuestos en el curso
+- Atenderemos tus dudas siempre y cuando tengan que ver con el curso
+- Sientete libre de enviarnos sugerencias de ejercicios/examenes o posibles correcciones del material propuesto al email **sugerencias@nurialiano.es** o través de una 'Pull request' en GitHub o GitLab
+- Todo el material está expuesto bajo una licencia de autor, permitimos su difusión siempre y cuando se nombre al autor '@nurialiano'
+
+Para que el email sea correcto y podamos corregirlo es necesario que nos adjuntes y/o tengas en cuenta el siguiente contenido:
+
+
+- Atenderemos tus dudas siempre y cuando tengan que ver con el curso
+- Necesitamos saber que ejercicio y/o base de datos estás utilizando
+- Necesitamos captura o "copy/paste" del error que has encontrado
+- **NO es un servicio urgente ni express, los expertos atenderán siempre y cuando sea posible**
