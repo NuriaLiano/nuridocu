@@ -63,7 +63,7 @@
 - Comandos transaccionales y bloqueos de tabla
 - Multitabla
 - Vistas
-- PLPGSQL
+- PL/pgSQL
 - Disparadores (triggers)
 - Funciones
 - Usuarios y permisos
