@@ -13,6 +13,7 @@ Este curso está diseñado para cualquier persona que quiera aprender a manejar 
 ¡Empezamos!
 
 >:warning: **ADVERTENCIA** es importante tener en cuenta que en este curso no se abordará el diseño conceptual ni el diseño relacional de bases de datos.
+>
 >:soon: **ANUNCIO** proximamente nuevo curso "Diseño de Bases de Datos"
 
 ## Pruebas de nivel
@@ -58,6 +59,7 @@ Aquí encontrarás una serie de pruebas para evaluar tu nivel de conocimiento en
 - Definición de datos
 - Manejando bases de datos
 - Manejando tablas
+- Manejando vistas
 - Manejando campos
 - Manejando relaciones
 - Manejando restricciones
@@ -68,44 +70,47 @@ Aquí encontrarás una serie de pruebas para evaluar tu nivel de conocimiento en
   - Operadores
   - Limit
   - Into outfile
-  - Group by
   - ASC/DESC
-  - Having
   - Order by
-- Funciones
-- Join
-- Subconsultas
-- Union, intersección y diferencia
-- Variables de usuario
-- Comandos transaccionales y bloqueos de tabla
+- Unión, intersección y diferencia
 - Multitabla
-- Vistas
-- PL/pgSQL
+- Agrupamiento
+  - Group by
+  - Having
+- Subconsultas
+- Join
+  - On
+  - Outer
+  - Left
+  - Right
+  - Full
+  - Natural
 - Disparadores (triggers)
+- Comandos transaccionales y bloqueos de tabla
+- Variables de usuario
 - Funciones
+- PL/pgSQL
 - Usuarios y permisos
 
 ## ¿Cómo corrijo mis ejercicios?
 
 Existen dos formas:
 
-- En cada actividad propuesta existe un link (tendrás que encontrarle :wink: ) donde encontrarás las soluciones.
+- En cada actividad propuesta hemos añadido una tarea extra donde, si la resuelves encontrarás el link a el documento con las soluciones :wink:
 - Envíanos un email a **corrijeme@nuridocu.es** para que un experto en la materia pueda corregirlos personalmente y enviarte el feedback con las soluciones.
 
-### Aspectos a tener en cuenta antes de enviar el email
+Chequea el apartado de introducción donde explicamos como [corregir los ejercicios](../../../README.md#requisitos-para-enviar-ejercicios)
 
-Estamos encantados de ayudarte y corregirte los ejercicios pero, antes de solicitar nuestra ayuda o corrección, tienes que tener en cuenta los siguientes aspectos:
+## Tengo algunas dudas ¿Cómo las resuelvo?
 
-- **NO** realizamos ejercicios personales
-- **NO** corregiremos ejercicios si no son los propuestos en el curso
-- Atenderemos tus dudas siempre y cuando tengan que ver con el curso
-- Sientete libre de enviarnos sugerencias de ejercicios/examenes o posibles correcciones del material propuesto al email **sugerencias@nuridocu.es** o través de una 'Pull request' en GitHub o GitLab
-- Todo el material está expuesto bajo una licencia de autor, permitimos su difusión siempre y cuando se nombre al autor '@nurialiano'
+El grupo de expertos está disponible para discutir e intentar solucionar todas las dudas que tengas. Tan sólo es necesario que no escribas un email a **corrijeme@nuridocu.es**, siguiendo el asunto obligatorio, donde nos expliques tus dudas.
 
-Para que el email sea correcto y podamos corregirlo es necesario que nos adjuntes y/o tengas en cuenta el siguiente contenido:
+Chequea el apartado de introducción donde explicamos como [contactar con el grupo de expertos para aclarar las dudas](../../../README.md#requisitos-para-enviar-dudas)
 
+## Licencia y uso
 
-- Atenderemos tus dudas siempre y cuando tengan que ver con el curso
-- Necesitamos saber que ejercicio y/o base de datos estás utilizando
-- Necesitamos captura o "copy/paste" del error que has encontrado
-- **NO es un servicio urgente ni express, los expertos atenderán siempre y cuando sea posible**
+Echa un vistazo al apartado donde hablamos de ello en la introduccion [ver licencia y uso del contenido](../../../README.md#licencia-y-uso)
+
+## Meme de PostgreSQL :grin:
+
+![meme_postgresql](../img/meme_postgresql.jpg)
