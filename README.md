@@ -1,26 +1,12 @@
 # NURIDOCU
 
-Este repositorio contiene documentación relacionada con varias tecnologías y herramientas de administración de sistemas. Encontrarás información detallada sobre MySQL, PostgreSQL, PowerShell, Windows, Nagios, Ganglia, entre otras cosas que iré añadiendo.
+:green_heart: Si te gusta el contenido de este repositorio o te resulta últil, déjanos una estrellita :star:, es gratis ¡y esto nos motiva a seguir compartiendo contenido!
 
 ![Progress](https://img.shields.io/badge/progress-15%25-brightgreen.svg?style=flat-square)
 ![Pipeline status](https://img.shields.io/gitlab/pipeline/Nuria_Liano/nuridocu/$CI_PIPELINE_ID?style=flat-square)
 ![GitLab](https://img.shields.io/gitlab/license/43595844?color=%2334ebeb&style=flat-square)
 ![GitLab forks](https://img.shields.io/gitlab/forks/43595844?color=%23ebe134&logo=gitlab&style=flat-square)
 ![GitHub forks](https://img.shields.io/github/forks/NuriaLiano/nuridocu?color=%23ebe134&logo=github&style=flat-square)
-
-## Índice
-
-- [MYSQL](clases-particulaes/mysql-oracle)
-  - [MYSQL - teoría](clases-particulaes/mysql-oracle/teoria)
-  - [MYSQL - ejercicios](clases-particulaes/mysql-oracle/ejercicios)
-- [PostgreSQL](clases-particulaes/postgresql)
-  - [PostgreSQL - teoría](clases-particulaes/postgresql/teoria)
-  - [PostgreSQL - ejercicios](clases-particulaes/postgresql/ejercicios)
-- [Nagios4](nagios4)
-- [GITREPOS](scripts)
-- [Útiles](utiles)
-- [Windows](windows)
-  - [Powershell](windows/powershell/)
 
 ## ¿Qué es NURIDOCU?
 
@@ -33,7 +19,7 @@ Si en algún curso es necesario una base previa no explicada en ese mismo, se in
 
 Facilitamos a nuestros alumnos unos ejercicios con soluciones y a la vez una teoría necesaria para entender que se está haciendo y por que.
 Por encima de todo intentamos que los alumnos aprendan a razona en vez de aprender a mecanizar procedimientos (que para eso ya está la IA :wink:)
-Por eso ofrecemos un buzón de correo (**corrijeme@nurialiano.es**) donde puedes enviar tus dudas o los ejercicios resueltos para que los echemos un ojo, los corrijamos y te demos feedback.
+Por eso ofrecemos un buzón de correo (**corrijeme@nuridocu.es**) donde puedes enviar tus dudas o los ejercicios resueltos para que los echemos un ojo, los corrijamos y te demos feedback.
 
 Creemos firmemente que el conocimiento debería ser público y de calidad por eso, en la medida de lo posible, ofrecemos tanto nuestro conocimiento como nuestra experiencia laboral para crear los cursos, corregir los ejercicios y guiar al alumno durante el curso.
 
@@ -56,7 +42,7 @@ NURIDOCU es un repositorio en crecimiento, vamos actualizando el contenido y añ
 
 Y más...
 
->:pencil: **NOTA** en caso de sugerencias para nuevos cursos o si quieres colaborar con un curso hecho por ti envíanos un email a **sugerencias@nurialiano.es** y nos ponemos en contacto
+>:pencil: **NOTA** en caso de sugerencias para nuevos cursos o si quieres colaborar con un curso hecho por ti envíanos un email a **sugerencias@nuridocu.es** y nos ponemos en contacto
 
 ## ¿Cómo son los cursos?
 
@@ -76,14 +62,14 @@ La estructura de directorios es la siguiente:
     - soluciones (tendrás que encontrar el link oculto :wink:)
   - teoría
 
->:heavy_exclamation_mark: **RECORDATORIO** si tienes alguna duda durante el curso sobre el contenido, ejercicios o necesitas material extra puedes escribirnos a **corrijeme@nurialiano.es** y nos ponemos en contacto contigo
+>:heavy_exclamation_mark: **RECORDATORIO** si tienes alguna duda durante el curso sobre el contenido, ejercicios o necesitas material extra puedes escribirnos a **corrijeme@nuridocu.es** y nos ponemos en contacto contigo
 
 ## Material necesario
 
 No te preocupes por este apartado, si tienes un ordenador con un sistema operativo actual (Windows 11/10, MacOS a partir de *LEOPARD* o distribuciones con soporte de Linux), 2 GB memoria RAM mínimo y espacio de almacenamiento para instalar programas vas a poder seguir los cursos sin problemas.
 
 En el README de cada curso está especificado los requisitos mínimos para llevarle a cabo.
->:pencil: **NOTA** Si tu equipo no cumple con esos requisitos escríbenos a **corrijeme@nurialiano.es** y buscamos una solución
+>:pencil: **NOTA** Si tu equipo no cumple con esos requisitos escríbenos a **corrijeme@nuridocu.es** y buscamos una solución
 
 ## ¿Cómo sé que nivel tengo?
 
@@ -95,7 +81,7 @@ Si crees que partes desde 0 puedes seguir el 'roadmap' propuesto en cada inicio 
 ## ¿Y si tengo dudas o problemas?
 
 Valoramos mucho que confies en nosotros y te hayas iniciado a aprender algo nuevo, por lo que ponemos a tu servicio un buzón de correo en caso de que tengas cualquier duda tanto con la teoría como con los ejercicios propuestos.
-**corrijeme@nurialiano.es**
+**corrijeme@nuridocu.es**
 
 ### Requisitos para enviar dudas
 
@@ -128,7 +114,7 @@ Los ejercicios propuestos los puedes corregir de varias formas:
   No te lo podíamos poner todo tan facil, el link a las soluciones está un poco escondido. En cada ejercicio encontrarás un ejercicio extra en el que, si lo resuelves, verás un link con acceso al mismo documento pero con las soluciones.
 
 - **Enviándonos un documento .md con los enunciados y tus respuesas.**
-  Si prefieres que un experto revise tus ejercicios y te dé el feedback de los mismos puedes enviarnos un correo a **corrijeme@nurialiano.es** donde adjuntes el documento .md con las respuestas y los enunciados.
+  Si prefieres que un experto revise tus ejercicios y te dé el feedback de los mismos puedes enviarnos un correo a **corrijeme@nuridocu.es** donde adjuntes el documento .md con las respuestas y los enunciados.
 
 ### Requisitos para enviar ejercicios
 
@@ -150,78 +136,66 @@ Cabe destacar que el uso de ese buzón es exclusivo para estos cursos, por lo qu
 
 NURIDOCU está compuesto por un grupo de expertos en distintas materias y, aunque parezcan superhéroes y superheroínas, también somos humanos y metemos la pata :stuck_out_tongue_winking_eye: por eso agredecemos enormemente que nos ayudes con esas "meteduras de pata" que podemos tener.
 
-### Requisitos para enviar ejercicios
+Si has encontrado una errata, algún error en el código o en los materiales que ofrecemos, escríbenos al buzón de correo **sugerecias@nuridocu.es** con el siguiente asunto: [ERRATA] ejercicio/material donde se encuentra.
+ej: [ERRATA] 01_ejer_inicial.md
 
-Para que podamos corregirlo es necesario que el email que nos envies cumpla estos requisitos:
+Y explicanos con detalle donde está el error y, si quieres, cuéntanos como lo podrías solucionar
+
+También puedes acudir al repositorio y lanzarnos una pull request, en cuanto sea posible nuestro equipo lo revisará y lo corregirá.
+
+>:green_heart: toda contribución que aportes al repositorio o a los cursos será publicada indicando tu foto de perfil y tu username en el apartado [Colaboradores](#colaboradores) tanto en la página dedicada como en el footer del README de introducción de cada curso.
+
+### Requisitos para sugerir nuevos cursos
+
+Para que podamos valorarlo es necesario que el email que nos envies cumpla estos requisitos:
 
 - Nos encantaría conocerte, ¡presentate! :smile:
 - Sé amable, recuerda que es un servicio gratuito.
 - **NO ATENDEMOS CORRECCIONES URGENTES** el experto te enviará el feedback lo antes posible.
-- En el asunto indica que es una duda de la siguente forma: [CORRECCION]
-  ejemplo de asunto: "[CORRECCION] 01_ejer_directorios"
-- Elabora un documento .md (markdown) siguiendo esta [plantilla de correcciones]().
-- Adjunta el documento y cuentanos que te han parecido los ejercicios o que dudas has tenido. ¡Tu opinión es importante para mejorar!
+- En el asunto indica que es una segerencia de curso de la siguente forma: [SUGERENCIA CURSO]
+  ejemplo de asunto: "[SUGERENCIA CURSO] Elastic Search para novatos"
+- Elabora un documento .md (markdown) siguiendo esta [plantilla de sugerencias de cursos]().
+- En caso de que quieras subir un curso tendrás que especificarlo en el documento que nos envies y facilitarnos un modo de contacto para que podamos concretarlo.
+- Adjunta toda la documentación que consideres oportuna y explícanos con detalle el enfoque que te gustaría darle al curso. ¡Estamos abiertos a plantear los cursos de todas las formas posibles!
 
->:green_heart: danos feedback sobre los cursos, nos ayuda a mejorar y poder ofrecer mejores cursos.
-
+>:green_heart: nos encanta seguir aprendiendo por eso valoramos mucho las sugerencias de nuevos cursos. Envíanos la documentación y ¡manos a la obra!.
+>
+>:green_heart: toda contribución que aportes al repositorio o a los cursos será publicada indicando tu foto de perfil y tu username en el apartado [Colaboradores](#colaboradores) tanto en la página dedicada como en el footer del README de introducción de cada curso.
 
 ## Contacto
 
+El grupo de expertos está totalmente disponible para cualquier duda, error, consejo, sugerencia, etc... Es importante recordar unos puntos para que podamos leer tu correo y responderte lo antes posible.
+
+- Presentate, es gratis y nos encantará conocerte :smile:
+- Sé amable, el grupo de expertos te intentará ayudar en todo lo posible
+- **NO ATENDEMOS URGENCIAS**
+- **NO REALIZAMOS EXAMENES**
+- **NO CORREGIMOS EJERCICIOS FUERA DE LOS PRESENTADOS EN LOS CURSOS**
+- Es obligatorio seguir las estructuras para cada tipo de correo
+- Aporta toda la documentación que tengas y explica lo mejor posible para que nos contactas.
+- En caso de que no hayas recibido respuesta puedes reenviarnos el email anterior con el asunto [REVISAR] y el asunto del anterior email.
+
+Una vez están claros estos puntos, escríbenos a:
+
+- **corrijeme@nuridocu.es** si tienes dudas o quieres que corrijamos tus ejercicios. Chequea el asunto necesario en el email [Requisitos para envíar dudas](#requisitos-para-enviar-dudas) o [Requisitos para enviar ejercicios](#requisitos-para-enviar-ejercicios)
+- **sugerencias@nuridocu.es** si quieres plantearnos alguna sugerencia de contenido, quieres impartir tu propio curso o prefieres sugerirnos algún tema para elaborar nuevos cursos. Chequea el asunto necesario en el email [Requisitos para sugerir nuevos cursos](#requisitos-para-sugerir-nuevos-cursos)
+
 ## Colaboradores
+
+Estos son todos los colaboradores que han ido pasando por NURIDOCU, tanto aportando material, corrigiendo errores, sugiriendo nuevos cursos, elaborando cursos y respondiendo todas las dudas y correcciones que surgen.
+
+:green_heart: ¡Siempre tendreis un huequito en el corazón de NURIDOCU ! :green_heart:
 
 ## Licencia y uso
 
-¡Bienvenido al curso de PostgreSQL desde cero! Este curso está diseñado para ayudarte a aprender a manejar bases de datos utilizando PostgreSQL, desde los fundamentos hasta niveles más avanzados.
+Todos los documentos reflejados en este repositorio están bajo la licencia [Creative Commons Atribución-NoComercial (CC BY-NC)](https://creativecommons.org/licenses/by-nc/4.0/)
 
-En este curso, comenzaremos desde el nivel más básico, donde te familiarizarás con la instalación y configuración de PostgreSQL. Luego, avanzaremos a través de una serie de lecciones detalladas, donde aprenderás sobre la estructura de las bases de datos, cómo crear y gestionar tablas y cómo utilizar las consultas para extraer información de ellas.
+Se permite la distribución gratuita de este archivo y su contenido, siempre y cuando se cumplan las siguientes condiciones:
 
-Además, a lo largo del curso, se te presentarán distintas actividades para reforzar los conceptos aprendidos. Estas actividades te permitirán aplicar lo que has aprendido y ponerlo en práctica, para que puedas comprender mejor los conceptos y estar seguro de que los has asimilado correctamente.
+- Se debe mantener intacta la información de derechos de autor y propiedad intelectual y se debe incluir una nota de atribución al autor original en cualquier distribución del archivo.
+- No se permite la venta de este archivo o de cualquier contenido incluido en él, ya sea en su forma original o modificada.
+- No se permite la modificación del archivo original o de cualquier contenido incluido en él, sin el permiso expreso del autor original.
 
-Además, ofrecemos la posibilidad de enviar tus actividades para ser corregidas por un experto a través del correo electrónico **corrijeme@nurialiano.es**, de modo que puedas recibir feedback personalizado sobre tus avances.
+Cualquier violación de estas condiciones será considerada una infracción de los derechos de autor y propiedad intelectual, y se tomarán las medidas legales apropiadas para proteger los intereses del autor original.
 
-Este curso está diseñado para cualquier persona que quiera aprender a manejar bases de datos con PostgreSQL, independientemente de su nivel de experiencia previa. Así que, si eres nuevo en PostgreSQL o tienes experiencia previa en bases de datos, ¡este curso es para ti!
-
-¡Empezamos!
-
->:warning: **ADVERTENCIA** es importante tener en cuenta que en este curso no se abordará el diseño conceptual ni el diseño relacional de bases de datos.
->:soon: **ANUNCIO** proximamente nuevo curso "Diseño de Bases de Datos"
-
-## Pruebas de nivel
-
-Aquí encontrarás una serie de pruebas para evaluar tu nivel de conocimiento en diferentes temas. También tendrás ejercicios a lo largo de los temas y pruebas finales.
-
->:warning: **ADVERTENCIA** Recuerda que estas pruebas son solo una ayuda para evaluar tu nivel y no deben tomarse como la verdad absoluta.
-
-- 01_repaso_inicial
-- 02_ejer_select
-- 02.01_ejer_select
-
---------
-
-## Indice de contenidos
-
-
-## ¿Cómo corrijo mis ejercicios?
-
-Existen dos formas:
-
-- En cada actividad propuesta existe un link (tendrás que encontrarle :wink: ) donde encontrarás las soluciones.
-- Envíanos un email a **corrijeme@nurialiano.es** para que un experto en la materia pueda corregirlos personalmente y enviarte el feedback con la soluciones.
-
-### Aspectos a tener en cuenta antes de enviar el email
-
-Estamos encantados de ayudarte y corregirte los ejercicios pero, antes de solicitar nuestra ayuda o corrección, tienes que tener en cuenta los siguientes aspectos:
-
-- **NO** realizamos ejercicios personales
-- **NO** corregiremos ejercicios si no son los propuestos en el curso
-- Atenderemos tus dudas siempre y cuando tengan que ver con el curso
-- Sientete libre de enviarnos sugerencias de ejercicios/examenes o posibles correcciones del material propuesto al email **sugerencias@nurialiano.es** o través de una 'Pull request' en GitHub o GitLab
-- Todo el material está expuesto bajo una licencia de autor, permitimos su difusión siempre y cuando se nombre al autor '@nurialiano'
-
-Para que el email sea correcto y podamos corregirlo es necesario que nos adjuntes y/o tengas en cuenta el siguiente contenido:
-
-
-- Atenderemos tus dudas siempre y cuando tengan que ver con el curso
-- Necesitamos saber que ejercicio y/o base de datos estás utilizando
-- Necesitamos captura o "copy/paste" del error que has encontrado
-- **NO es un servicio urgente ni express, los expertos atenderán siempre y cuando sea posible**
+Gracias por tu comprensión y cumplimiento de estas condiciones.

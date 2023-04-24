@@ -6,7 +6,7 @@ En este curso, comenzaremos desde el nivel más básico, donde te familiarizará
 
 Además, a lo largo del curso, se te presentarán distintas actividades para reforzar los conceptos aprendidos. Estas actividades te permitirán aplicar lo que has aprendido y ponerlo en práctica, para que puedas comprender mejor los conceptos y estar seguro de que los has asimilado correctamente.
 
-Además, ofrecemos la posibilidad de enviar tus actividades para ser corregidas por un experto a través del correo electrónico **corrijeme@nurialiano.es**, de modo que puedas recibir feedback personalizado sobre tus avances.
+Además, ofrecemos la posibilidad de enviar tus actividades para ser corregidas por un experto a través del correo electrónico **corrijeme@nuridocu.es**, de modo que puedas recibir feedback personalizado sobre tus avances.
 
 Este curso está diseñado para cualquier persona que quiera aprender a manejar bases de datos con PostgreSQL, independientemente de su nivel de experiencia previa. Así que, si eres nuevo en PostgreSQL o tienes experiencia previa en bases de datos, ¡este curso es para ti!
 
@@ -90,7 +90,7 @@ Aquí encontrarás una serie de pruebas para evaluar tu nivel de conocimiento en
 Existen dos formas:
 
 - En cada actividad propuesta existe un link (tendrás que encontrarle :wink: ) donde encontrarás las soluciones.
-- Envíanos un email a **corrijeme@nurialiano.es** para que un experto en la materia pueda corregirlos personalmente y enviarte el feedback con las soluciones.
+- Envíanos un email a **corrijeme@nuridocu.es** para que un experto en la materia pueda corregirlos personalmente y enviarte el feedback con las soluciones.
 
 ### Aspectos a tener en cuenta antes de enviar el email
 
@@ -99,7 +99,7 @@ Estamos encantados de ayudarte y corregirte los ejercicios pero, antes de solici
 - **NO** realizamos ejercicios personales
 - **NO** corregiremos ejercicios si no son los propuestos en el curso
 - Atenderemos tus dudas siempre y cuando tengan que ver con el curso
-- Sientete libre de enviarnos sugerencias de ejercicios/examenes o posibles correcciones del material propuesto al email **sugerencias@nurialiano.es** o través de una 'Pull request' en GitHub o GitLab
+- Sientete libre de enviarnos sugerencias de ejercicios/examenes o posibles correcciones del material propuesto al email **sugerencias@nuridocu.es** o través de una 'Pull request' en GitHub o GitLab
 - Todo el material está expuesto bajo una licencia de autor, permitimos su difusión siempre y cuando se nombre al autor '@nurialiano'
 
 Para que el email sea correcto y podamos corregirlo es necesario que nos adjuntes y/o tengas en cuenta el siguiente contenido:
