@@ -1,3 +1,7 @@
+---
+author: "@nurialiano"
+license: "Creative Commons Attribution-NonCommercial 4.0 International"
+---
 # Usuarios y grupos con NetUser y Net LocalGroup
 
 NET USER y NET LOCALGROUP son comandos en CMD que se utilizan para administrar usuarios y grupos en Windows.

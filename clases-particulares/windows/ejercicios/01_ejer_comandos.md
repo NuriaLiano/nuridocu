@@ -1,3 +1,7 @@
+---
+author: "@nurialiano"
+license: "Creative Commons Attribution-NonCommercial 4.0 International"
+---
 # Ejercicios comandos CMD
 
 >:pencil:**NOTA** Cada vez que ejecutes un ejercicio tienes que limpiar la consola.

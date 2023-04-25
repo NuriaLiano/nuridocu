@@ -2,6 +2,7 @@
 author: "@nurialiano"
 license: "Creative Commons Attribution-NonCommercial 4.0 International"
 ---
+
 # EJERCICIOS SELECT
 
 ## EJERCICIO 1 - FUNCIONES Y AS
@@ -26,7 +27,7 @@ SELECT nombre, apellido, CONCAT(nombre, ' ', apellido) AS nombre_completo
 FROM empleados;
 ~~~
 
-### EXPLICACIÓN
+EXPLICACIÓN
 
 Esta consulta selecciona el nombre y el apellido de cada empleado, y utiliza la función CONCAT() para unirlos en una sola cadena en la columna nombre_completo.
 
@@ -51,37 +52,41 @@ SELECT nombre, precio, precio * 0.9 AS precio_descuento
 FROM productos;
 ~~~
 
-### EXPLICACIÓN
+EXPLICACIÓN
 
 Esta consulta selecciona el nombre y el precio de cada producto, y multiplica el precio por 0.9 para obtener el precio con un descuento del 10% en la columna precio_descuento.
 
 ## EJERCICIO 3 - AS Y ORDER BY
 
 ~~~sql
-CREATE DATABASE mi_basedatos2;
 
-\c mi_basedatos2
-
-CREATE TABLE empleados (
-  id SERIAL PRIMARY KEY,
-  nombre VARCHAR(50),
-  apellido VARCHAR(50),
-  puesto VARCHAR(50)
+  -- Crear la base de datos 'mi_basedatos2'
+  CREATE DATABASE mi_basedatos2;
+  -- Usar la base de datos 'mi_basedatos2'
+  USE mi_basedatos2;
+  -- Crear tabla
+  CREATE TABLE empleados (
+    id INT PRIMARY KEY,
+    nombre VARCHAR(50),
+    apellido VARCHAR(50),
+    puesto VARCHAR(50)
 );
+  -- Insertar algunos datos en la tabla 'empleados'
+  INSERT INTO empleados (id, nombre, apellido, puesto)
+  VALUES
+    (1, 'Juan', 'Pérez', 'Gerente'),
+    (2, 'María', 'González', 'Supervisor'),
+    (3, 'Pedro', 'López', 'Técnico'),
+    (4, 'Laura', 'Hernández', 'Asistente'),
+    (5, 'Luis', 'Martínez', 'Técnico'),
+    (6, 'Carla', 'Sánchez', 'Asistente'),
+    (7, 'Javier', 'García', 'Técnico');
 
-INSERT INTO empleados (nombre, apellido, puesto) VALUES
-  ('Juan', 'Pérez', 'Gerente'),
-  ('María', 'González', 'Supervisor'),
-  ('Pedro', 'López', 'Técnico'),
-  ('Laura', 'Hernández', 'Asistente'),
-  ('Luis', 'Martínez', 'Técnico'),
-  ('Carla', 'Sánchez', 'Asistente'),
-  ('Javier', 'García', 'Técnico');
-
-SELECT nombre, apellido, puesto 
-FROM empleados 
-WHERE puesto = 'Técnico' 
-ORDER BY apellido;
+  -- Realizar una consulta para obtener los nombres de los empleados con el puesto 'Técnico'
+  SELECT nombre, apellido, puesto 
+  FROM empleados 
+  WHERE puesto = 'Técnico' 
+  ORDER BY apellido ASC;
 
 ~~~
 

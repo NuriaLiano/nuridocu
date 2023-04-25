@@ -1,3 +1,7 @@
+---
+author: "@nurialiano"
+license: "Creative Commons Attribution-NonCommercial 4.0 International"
+---
 # COMANDOS CMD
 
 ## Moverse por los directorios

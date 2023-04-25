@@ -1,3 +1,7 @@
+---
+author: "@nurialiano"
+license: "Creative Commons Attribution-NonCommercial 4.0 International"
+---
 # Solución examen 'Creación de tablas'
 
 Dado el esquema de las tablas de una base de datos que gestiona los pubs de una comarca, es necesario crear las tablas con las especificaciones que se indican a continuación. (3 puntos)

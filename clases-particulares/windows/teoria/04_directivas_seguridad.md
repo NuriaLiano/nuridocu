@@ -1,3 +1,7 @@
+---
+author: "@nurialiano"
+license: "Creative Commons Attribution-NonCommercial 4.0 International"
+---
 # Directivas de seguridad
 
 Las directivas (también conocidas como políticas o políticas de grupo) en Windows son un conjunto de reglas y configuraciones que permiten a los administradores de sistemas establecer y aplicar políticas de seguridad, gestión de recursos y otras configuraciones en los equipos y usuarios de una red de manera centralizada.
