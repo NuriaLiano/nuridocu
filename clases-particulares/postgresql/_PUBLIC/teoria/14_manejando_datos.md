@@ -1,0 +1,42 @@
+---
+author: "@nurialiano"
+license: "Creative Commons Attribution-NonCommercial 4.0 International"
+---
+
+# Datos
+
+## Crear
+
+Este proceso implica crear una tabla con sus columnas y especificar los tipos de datos que se utilizarán para cada columna.
+
+~~~sql
+CREATE TABLE usuarios (
+  id SERIAL PRIMARY KEY,
+  nombre VARCHAR(50) NOT NULL,
+  email VARCHAR(50) NOT NULL
+);
+~~~
+
+## Añadir
+
+Una vez que se ha creado una tabla, se pueden añadir datos a ella utilizando la sentencia INSERT.
+
+~~~sql
+INSERT INTO usuarios (nombre, email) VALUES ('Juan', 'juan@gmail.com');
+~~~
+
+## Modificar
+
+Si necesitas cambiar o actualizar datos en una tabla, se puede utilizar la sentencia UPDATE.
+
+~~~sql
+UPDATE usuarios SET email='juan.fernandez@gmail.com' WHERE nombre='Juan';
+~~~
+
+## Eliminar
+
+Si necesitas eliminar registros de una tabla, se puede utilizar la sentencia DELETE.
+
+~~~sql
+DELETE FROM usuarios WHERE id=1;
+~~~

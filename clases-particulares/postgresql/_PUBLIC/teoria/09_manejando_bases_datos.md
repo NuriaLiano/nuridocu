@@ -26,8 +26,8 @@ Si queremos crear una base de datos desde cero, podemos utilizar el siguiente co
 CREATE DATABASE mombre_de_la_base_de_datos;
 ~~~
 
->:pencil: **NOTA** es importante recordar que una vez hayas creado la base de datos, tienes que seleccionarla con el comando 'USE'
-> ej: ``use biblioteca``
+>:pencil: **NOTA** es importante recordar que una vez hayas creado la base de datos, tienes que seleccionarla con el comando '\c'
+> ej: ``\c biblioteca``
 
 ## Copia de seguridad
 
@@ -36,10 +36,9 @@ Como he mencionado anteriormente, es recomendable hacer una copia de seguridad d
 >:warning: **ADVERTENCIA** este comando puede variar en función del sistema de gestión de bases de datos.
 
 ~~~sql
-mysqldump -u usuario -p nombre_de_la_base_de_datos  > nombre_del_archivo.sql
+pg_dump nombre_de_la_base_de_datos > nombre_del_archivo.sql
 ~~~
 
->:pencil: **NOTA** cuando establecemos el parámetro '-p' podemos pasar la contraseña a continuación o, para aumentar la seguridad, dejalo vacío. Una vez que le demos a intro nos preguntará la contraseña. De esta forma evitamos que la contraseña sea visible.
 >:pencil: **NOTA** es probable que delante de 'nombre_del_archivo.sql' tengamos que específicar la ruta donde está alojado
 
 ## Importar
@@ -50,8 +49,10 @@ En cambio, si ya tenemos la base de datos creada y queremos utilizarla en un nue
 >:warning: es importante crear la base de datos antes de importarla. Para ello puedes usar: [crear base de datos](#crear)
 
 ~~~sql
-mysql -u usuario -p  nombre_de_la_base_de_datos < nombre_del_archivo.sql;
+psql -d nombre_de_base_de_datos -f nombre_del_archivo.sql
 ~~~
+
+<!-- TODO: seccion de posibles errores -->
 
 ## Alter / renombrar
 
@@ -67,8 +68,16 @@ En caso de querer cambiar de entorno o de servidor nuestra base de datos, es nec
 
 >:warning: **ADVERTENCIA** este comando puede variar en función del sistema de gestión de bases de datos.
 
+Primero tenemos que conectarnos a la base de datos que queremos exportar
+
 ~~~sql
-mysqldump -u usuario -p nombre_de_base_de_datos > nombre_del_archivo.sql;
+psql -U usuario -h localhost -d nombre_de_la_base_de_datos
+~~~
+
+A continuación, ya podemos exportar la base de datos.
+
+~~~sql
+pg_dump nombre_de_base_de_datos > nombre_del_archivo.sql
 ~~~
 
 ## Eliminar
