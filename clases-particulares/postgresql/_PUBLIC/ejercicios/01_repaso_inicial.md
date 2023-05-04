@@ -72,6 +72,8 @@ license: "Creative Commons Attribution-NonCommercial 4.0 International"
 
 ## 21. Seleccionar los nombres de las plataformas que tienen al menos un juego con un rating mayor o igual a 4.8 y lo snombres de los desarrolladores que han creado ese juego
 
+## 22. Seleccionar los títulos de los juegos que se lanzaron en Playstation 4 y los titulos que se lanzaron en Nintendo Switch pero no en PC
+
 ## 23. Inserta los juegos lanzados después del 2018 en una tabla llamada 'juegos_mas_nuevos' siguiendo la misma estructura de la tabla 'juegos'
 
 ## 24. Cambia el desarrollador por 'Bandai Namco Entertainment' del juego 'Dark Souls III'
@@ -85,4 +87,3 @@ license: "Creative Commons Attribution-NonCommercial 4.0 International"
 ## 28. Elimina el registro 'The Last of Us Part II'
 
 ## 29. Eliminar la base de datos 'videojuegos'
-
