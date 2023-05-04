@@ -27,7 +27,7 @@ Y para las siguientes arquitecturas:
 - amd64
 - arm64 (18.04 and newer; LTS releases only)
 - i386 (18.04 and older)
-- ppc64el (LTS releases only
+- ppc64el (LTS releases only)
 
 ### Instalación desde paquetes de nuestra distribución
 
