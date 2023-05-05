@@ -22,8 +22,8 @@ Aquí encontrarás una serie de pruebas para evaluar tu nivel de conocimiento en
 
 >:warning: **ADVERTENCIA** Recuerda que estas pruebas son solo una ayuda para evaluar tu nivel y no deben tomarse como la verdad absoluta.
 
-- [01_repaso_inicial](ejercicios/01_repaso_inicial.md)
-- 02_ejer_select
+- [01_repaso_inicial](../ejercicios/01_repaso_inicial.md)
+- [02_ejer_select](../ejercicios/enunciados/02_ejer_select.md)
 - 02.01_ejer_select
 
 --------
@@ -31,21 +31,20 @@ Aquí encontrarás una serie de pruebas para evaluar tu nivel de conocimiento en
 ## Indice de contenidos
 
 - Tutorial básico
-- Primeros pasos
-- Conceptos iniciales
-  - Introducción a las bases de datos
-  - ¿Qué es una base de datos?
-  - Tipos de bases de datos
-  - Lenguajes de bases de datos
-  - Fases para el diseño de bases de datos
-  - Modelos de bases de datos
-  - Partes de una base de datos
-  - Tipos de relaciones
-  - Tipos de claves
-  - Tipos de campos
-  - Expresiones y operadores
-  - Sistema gestor de base de datos
-  - Comandos básicos iniciales
+- [Conceptos iniciales](../_PUBLIC/teoria/01_inicio.md)
+  - [Introducción a las bases de datos](../_PUBLIC/teoria/01_inicio.md#introducción-a-las-bases-de-datos)
+  - [¿Qué es una base de datos?](../_PUBLIC/teoria/01_inicio.md#¿qué-es-una-base-de-datos)
+  - [Tipos de bases de datos](../_PUBLIC/teoria/01_inicio.md#tipos-de-bases-de-datos)
+  - [Lenguajes de bases de datos](../_PUBLIC/teoria/01_inicio.md#lenguajes-de-bases-de-datos)
+  - [Fases para el diseño de bases de datos](../_PUBLIC/teoria/01_inicio.md#fases-para-el-diseño-de-bases-de-datos)
+  - [Modelos de bases de datos](../_PUBLIC/teoria/01_inicio.md#modelos-de-bases-de-datos)
+  - [Partes de una base de datos](../_PUBLIC/teoria/01_inicio.md#partes-de-una-base-de-datos)
+  - [Tipos de relaciones](../_PUBLIC/teoria/01_inicio.md#tipos-de-relaciones)
+  - [Tipos de claves](../_PUBLIC/teoria/01_inicio.md#tipos-de-claves)
+  - [Tipos de campos](../_PUBLIC/teoria/01_inicio.md#tipos-de-campos)
+  - [Expresiones y operadores](../_PUBLIC/teoria/01_inicio.md#expresiones-y-operadores)
+  - [Sistema gestor de base de datos](../_PUBLIC/teoria/01_inicio.md#sistema-gestor-de-base-de-datos-sgbd-o-dbms)
+  - [Comandos básicos iniciales](../_PUBLIC/teoria/01_inicio.md#postgresql-básicos)
 - Tablas conceptos
   - Partes de una tabla
   - Aspectos importantes y recomendaciones

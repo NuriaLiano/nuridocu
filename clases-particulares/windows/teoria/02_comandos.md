@@ -619,8 +619,6 @@ set /A NUMERO=%NUMERO%+5
 set /P NOMBRE="Ingrese su nombre: "
 ~~~
 
-
-
 ## Visualización
 
 ### CLS

@@ -109,7 +109,12 @@ ALTER TABLE juegos ADD CONSTRAINT fk_plataforma_id FOREIGN KEY (plataforma_id) R
 ~~~
 
 >:pencil:**NOTA** como ver el nombre de la restriccion
-> 
+>
+> ~~~sql
+> SELECT constraint_name
+>FROM information_schema.constraint_column_usage
+>WHERE table_name = 'nombre_de_la_tabla' AND column_name = 'nombre_de_la_columna';
+>~~~
 
 ## 9. Cambia el campo 'rating' para que permita valores negativos
 
@@ -258,14 +263,29 @@ OPCION 2
 
 En esta consulta, se usa una subconsulta para calcular la media de rating para cada plataforma y luego se realiza un JOIN con la tabla juegos usando la columna plataforma. Finalmente, se filtran los resultados para seleccionar los juegos con plataforma "PlayStation 4" y cuyo rating sea mayor o igual a la media de rating de PlayStation 4.
 
-## 21. Seleccionar los nombres de las plataformas que tienen al menos un juego con un rating mayor o igual a 4.8 y lo snombres de los desarrolladores que han creado ese juego
+## 21. Seleccionar los nombres de las plataformas que tienen al menos un juego con un rating mayor o igual a 4.8 y los nombres de los desarrolladores que han creado ese juego
 
 ~~~sql
 SELECT DISTINCT plataformas.nombre, juegos.desarrollador
 FROM juegos
 JOIN plataformas ON juegos.plataforma = plataformas.nombre
 WHERE juegos.rating >= 4.8;
+
+--con subconsultas y duplicados
+SELECT DISTINCT p.nombre, j.desarrollador
+FROM juegos j
+JOIN plataformas p ON j.plataforma = p.nombre
+WHERE j.desarrollador IN (
+  SELECT j2.desarrollador
+  FROM juegos j2
+  WHERE j2.rating >= 4.8
+);
+
 ~~~
+
+La consulta utiliza la cláusula JOIN para combinar las tablas "juegos" y "plataformas" basándose en el campo "plataforma". Luego, filtra los resultados mediante la cláusula WHERE para seleccionar solo aquellos juegos con una valoración (rating) mayor o igual a 4.8.
+
+La cláusula SELECT selecciona los nombres de las plataformas (plataformas.nombre) y los nombres de los desarrolladores (juegos.desarrollador) que han creado esos juegos, utilizando la función DISTINCT para evitar que se muestren resultados duplicados.
 
 ## 22. Seleccionar los títulos de los juegos que se lanzaron en Playstation 4 y los titulos que se lanzaron en Nintendo Switch pero no en PC
 
@@ -276,6 +296,9 @@ UNION
 EXCEPT
 (SELECT titulo FROM juegos WHERE plataforma = 'PC');
 ~~~
+
+La primera subconsulta selecciona los títulos de juegos que se lanzaron en PlayStation 4, la segunda subconsulta selecciona los títulos de juegos que se lanzaron en Nintendo Switch y la tercera subconsulta selecciona los títulos de juegos que se lanzaron en PC.
+El operador UNION combina los resultados de las dos primeras subconsultas y el operador EXCEPT elimina los títulos de juegos que también se lanzaron en PC.
 
 ## 23. Inserta los juegos lanzados después del 2018 en una tabla llamada 'juegos_mas_nuevos' siguiendo la misma estructura de la tabla 'juegos'
 
@@ -324,7 +347,18 @@ SELECT juegos.titulo, juegos.plataforma, juegos.genero, juegos.lanzamiento, jueg
 FROM juegos
 JOIN plataformas ON juegos.plataforma = plataformas.nombre
 WHERE juegos.desarrollador IN ('Naughty Dog', 'SIE Santa Monica Studio');
+
+-- usando OR
+CREATE VIEW juegos_naughtydog_santamonica AS
+SELECT juegos.titulo, juegos.plataforma, juegos.genero, juegos.lanzamiento, juegos.rating, plataformas.fabricante
+FROM juegos
+JOIN plataformas ON juegos.plataforma = plataformas.nombre
+WHERE juegos.desarrollador = 'Naughty Dog' OR juegos.desarrollador = 'SIE Santa Monica Studio');
 ~~~
+
+La vista se crea mediante la cláusula CREATE VIEW, seguida del nombre de la vista y la definición de la consulta que conformará la vista. En este caso, la consulta utiliza un JOIN entre las tablas "juegos" y "plataformas" para obtener información sobre la plataforma en la que se lanzó cada juego.
+
+La cláusula WHERE se utiliza para filtrar los juegos según su desarrollador, seleccionando solo aquellos desarrollados por "Naughty Dog" o "SIE Santa Monica Studio".
 
 ## 27. Elimina la tabla 'plataformas
 
