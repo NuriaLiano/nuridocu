@@ -26,7 +26,7 @@ mkdir ~/SCRIPTS_exa
 cd ~/SCRIPTS_exa
 ~~~
 
-## 4. Crea un script 'auto_usuarios.sh' para automatizar la creación de cuenta de usuarios y grupos. El script tendra que validar si en el fichero de autenticación de fichero de Linux existe el usuario y tiene los parámetros correctos que recogerá por parámetro al ejecutar el script
+## 4. Crea un script 'auto_usuarios.sh' para automatizar la creación de cuenta de usuarios y grupos. El script tendra que validar si en el fichero de passwd existe el usuario y tiene los parámetros correctos que recogerá por parámetro al ejecutar el script
 
 - Si el usuario existe
   - pedir el grupo. NO existe
@@ -47,24 +47,30 @@ cd ~/SCRIPTS_exa
 ~~~bash
 #!/bin/bash
 
-# Validar que se ha pasado el nombre de usuario como argumento
+# Comprobar que el usuario que ejecuta el script es root
+if [ "$(id -u)" != "0" ]; then
+  echo "Este script debe ser ejecutado como root."
+  exit 1
+fi
+
+# Comprobar que se ha pasado el nombre de usuario como argumento
 if [ $# -lt 1 ]; then
   echo "Debe indicar el nombre del usuario a crear."
   exit 1
 fi
 
 # Comprobar si el usuario existe
-if id "$1" >/dev/null 2>&1; then
+if grep -q "^$1:" /etc/passwd; then
   echo "El usuario $1 ya existe."
   # Pedir el nombre del grupo
   read -p "Introduzca el nombre del grupo: " group_name
   # Comprobar si el grupo existe
-  if ! getent group "$group_name" >/dev/null 2>&1; then
+  if ! grep -q "^$group_name:" /etc/group; then
     echo "El grupo $group_name no existe."
     # Bucle para pedir el nombre del grupo hasta que exista
     while true; do
       read -p "Introduzca un grupo válido: " group_name
-      if getent group "$group_name" >/dev/null 2>&1; then
+      if grep -q "^$group_name:" /etc/group; then
         break
       fi
       echo "El grupo $group_name no existe."
@@ -75,9 +81,9 @@ if id "$1" >/dev/null 2>&1; then
 else
   echo "El usuario $1 no existe."
   # Pedir los parámetros para crear la cuenta de usuario y grupo
-  read -p "Introduzca el nombre del grupo: " group_name
   read -p "Introduzca el nombre completo del usuario: " full_name
   read -p "Introduzca la contraseña del usuario: " password
+  read -p "Introduzca el nombre del grupo: " group_name
   # Crear el directorio home del usuario
   mkdir "/home/$1"
   # Crear el grupo
@@ -85,11 +91,13 @@ else
   # Crear el usuario
   useradd -c "$full_name" -m -g "$group_name" -s /bin/bash "$1"
   # Cambiar la contraseña del usuario
-  echo -e "$password\n$password" | passwd "$1"
+  echo "$1:$password" | chpasswd
+  # Generar contraseña aleatoria y segura
+  random_password=$(openssl rand -base64 12)
   # Añadir el usuario y la fecha de creación a un archivo usu_creados
-  echo "$(date +%F) - $1" >> usu_creados.txt
+  echo "$(date +%F) - $1 - $random_password" >> usu_creados.txt
   echo "La cuenta de usuario $1 ha sido creada correctamente."
-  echo "La contraseña por defecto es $password. Deberá cambiarla en su primer inicio de sesión."
+  echo "La contraseña por defecto es $random_password. Deberá cambiarla en su primer inicio de sesión."
 fi
 ~~~
 

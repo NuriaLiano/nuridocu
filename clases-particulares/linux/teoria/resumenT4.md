@@ -129,10 +129,3 @@ Parámetros:
     ``cut -d " " -f2 fichero``
   - TR: sustituye caracteres o elimina los repetidos
     ``tr '/t' " "`` -> sustituye las tab por espacios
- 
-    
-
-
-
-
-

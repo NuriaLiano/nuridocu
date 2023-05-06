@@ -11,7 +11,7 @@
 1. Crea un directorio llamado **EXAMEN** en tu directorio **/home/usuario** y hazlo tu directorio activo.
 **Desde este momento ese será tu directorio activo y no te moverás en ningún otro momento**
 
->:warning:**ADVERTENCIA** Comprueba que estás en el directorio raíz de tu usuario (/home/usuario). En caso de no estar en tu $HOME tendras que ejecutar ``cd ~`` para moverte y facilitar el resto de instrucciones. 
+>:warning:**ADVERTENCIA** Comprueba que estás en el directorio raíz de tu usuario (/home/usuario). En caso de no estar en tu $HOME tendras que ejecutar ``cd ~`` para moverte y facilitar el resto de instrucciones.
 
 ~~~bash
 #1. Crear el directorio
