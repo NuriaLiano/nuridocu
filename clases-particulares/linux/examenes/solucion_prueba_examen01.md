@@ -107,7 +107,7 @@ fi
 - primaria 2gb ntfs
 - logica 2 gb fat32
 - logica 1gb ext3
-- logica 2 ext4
+- logica 2gb ext4
 
 >:warning: **¡CUIDADO!** primero hay que crear una partición extendida para almacenar las particiones lógicas
 
@@ -180,7 +180,7 @@ mkdir ~/mnt_1
 
 #montar de forma automática
 sudo nano /etc/fstab
-UUID=[UUID_de_la_partición_de_3_GiB] /home/usuario/mnt_1 ext4 defaults 0 2
+UUID=[UUID_de_la_partición_de_3_GiB] /home/usuario/mnt_1 ext4 default 0 2
 ~~~
 
 ## 7. Crea un enlace que haga referencia llamada 'enlace_documentos' a la ruta del directorio 'Documentos' al 'Escritorio' de tu usuario
