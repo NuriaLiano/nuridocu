@@ -1,7 +1,7 @@
 ---
 author: "@nurialiano"
 license: "Creative Commons Attribution-NonCommercial 4.0 International"
----
+---100
 
 # Comandos transaccionales y de bloqueo de tablas
 
