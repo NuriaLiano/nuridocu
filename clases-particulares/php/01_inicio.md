@@ -24,7 +24,9 @@ Ahora que ya tenemos un poco de contexto acerda de que es PHP pero ahora vamos a
 ### Desventajas
 
 ## ¿Para qué se usa PHP?
+
 ## ¿Qué es un lenguaje de programación?
+
 ## Tipos de lenguajes de programación
 ### Lenguajes de programacion lado cliente
 ### Lenguajes de programacion lado servidor

@@ -5,9 +5,11 @@ license: "Creative Commons Attribution-NonCommercial 4.0 International"
 
 # Disparadores (triggers)
 
-Son una funcionalidad de PostgreSQL que permiten ejecutar automáticamente una acción en respuesta a ciertos eventos, como por ejemplo la inserción, actualización o eliminación de filas en una tabla.
+En PostgreSQL, los "triggers" o "disparadores" son objetos que te permiten definir acciones automáticas que se ejecutan en respuesta a ciertos eventos en una tabla específica. Estos eventos pueden ser operaciones de inserción (INSERT), actualización (UPDATE) o eliminación (DELETE) en la tabla.
 
-Estos eventos pueden ser desencadenados por una operación realizada en una tabla específica, en cuyo caso se habla de disparadores de tabla, o bien por una operación realizada en cualquier tabla de una base de datos, en cuyo caso se habla de disparadores de base de datos.
+Un trigger consta de dos partes principales: un evento que desencadena la ejecución del trigger y una función que se ejecuta en respuesta al evento. Cuando ocurre el evento especificado, PostgreSQL ejecuta la función del trigger.
+
+TODO:<!--IMAGEN DESCRIPTIVA DE LA PARTES DE UN TRIGGER-->
 
 Se pueden utilizar para:
 
@@ -24,10 +26,93 @@ Se pueden utilizar para:
 
 ### Disparadores de fila (row-level triggers)
 
-Se ejecutan una vez por cada fila afectada por una operación DML (insertar, actualizar o eliminar). Se pueden utilizar para realizar validaciones o acciones en función de los valores de las columnas de la fila afectada.
+Estos triggers se ejecutan para cada fila afectada por la operación que desencadenó el evento. Pueden ser configurados para ejecutarse "antes" (BEFORE) o "después" (AFTER) de la operación que disparó el trigger. Los triggers a nivel de fila se definen para una tabla específica y pueden acceder y modificar los datos de la fila actual.
+
+Por ejemplo:
+Supongamos que tienes una tabla llamada "empleados" con las columnas "nombre", "salario" y "salario_anterior". Quieres mantener actualizado el valor de la columna "salario_anterior" cada vez que se actualice el salario de un empleado.
+
+~~~sql
+-- Crear la tabla de ejemplo
+CREATE TABLE empleados (
+  nombre VARCHAR(50),
+  salario NUMERIC(10,2),
+  salario_anterior NUMERIC(10,2)
+);
+
+-- Crear el trigger a nivel de fila
+CREATE OR REPLACE FUNCTION actualizar_salario_anterior()
+  RETURNS TRIGGER AS $$
+BEGIN
+  NEW.salario_anterior := OLD.salario; -- Actualizar el valor de salario_anterior
+  RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+-- Asociar el trigger al evento UPDATE en la tabla empleados
+CREATE TRIGGER trigger_actualizar_salario_anterior
+BEFORE UPDATE ON empleados
+FOR EACH ROW
+EXECUTE FUNCTION actualizar_salario_anterior();
+~~~
 
 ### Disparadores de sentencia (statement-level triggers)
 
-Se ejecutan una sola vez por cada operación DML, independientemente del número de filas afectadas. Se utilizan para realizar acciones que afectan a varias filas, como actualizar una columna en todas las filas que cumplen una determinada condición.
+Estos triggers se ejecutan una vez por sentencia SQL, independientemente del número de filas afectadas por la sentencia. Los triggers a nivel de sentencia también se pueden configurar para ejecutarse "antes" o "después" de la operación que desencadenó el evento. A diferencia de los triggers a nivel de fila, los triggers a nivel de sentencia no tienen acceso directo a los datos de la tabla. Sin embargo, pueden ejecutar consultas adicionales basadas en la operación realizada.
 
+Por ejemplo:
+Supongamos que tienes una tabla llamada "pedidos" con las columnas "id_pedido", "fecha", "estado" y "total". Quieres realizar una auditoría que registre cada vez que se inserte, actualice o elimine un pedido en la tabla.
 
+~~~sql
+-- Crear la tabla de auditoría
+CREATE TABLE auditoria_pedidos (
+  id_audit SERIAL PRIMARY KEY,
+  fecha_audit TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  accion VARCHAR(10),
+  id_pedido INT,
+  detalle TEXT
+);
+
+-- Crear el trigger a nivel de sentencia
+CREATE OR REPLACE FUNCTION auditar_pedidos()
+  RETURNS TRIGGER AS $$
+BEGIN
+  IF TG_OP = 'INSERT' THEN
+    INSERT INTO auditoria_pedidos (accion, id_pedido, detalle)
+    VALUES ('INSERT', NEW.id_pedido, 'Nuevo pedido insertado');
+  ELSIF TG_OP = 'UPDATE' THEN
+    INSERT INTO auditoria_pedidos (accion, id_pedido, detalle)
+    VALUES ('UPDATE', OLD.id_pedido, 'Pedido actualizado');
+  ELSIF TG_OP = 'DELETE' THEN
+    INSERT INTO auditoria_pedidos (accion, id_pedido, detalle)
+    VALUES ('DELETE', OLD.id_pedido, 'Pedido eliminado');
+  END IF;
+  RETURN NULL;
+END;
+$$ LANGUAGE plpgsql;
+
+-- Asociar el trigger al evento INSERT, UPDATE y DELETE en la tabla pedidos
+CREATE TRIGGER trigger_auditar_pedidos
+AFTER INSERT OR UPDATE OR DELETE ON pedidos
+EXECUTE FUNCTION auditar_pedidos();
+~~~
+
+## Crear disparadores
+
+### Sintaxis básica
+
+~~~sql
+CREATE [CONSTRAINT] TRIGGER nombre_trigger
+{BEFORE | AFTER | INSTEAD OF} {evento} ON nombre_tabla
+[REFERENCING {OLD | NEW} {ROW | TABLE} [AS] alias]
+[FOR EACH {ROW | STATEMENT}]
+[WHEN (condición)]
+EXECUTE FUNCTION nombre_función_trigger();
+~~~
+
+## Borrar disparadores
+
+## Modificar disparadores
+
+## Deshabilitar uno o varios disparadores asociados a una tabla
+
+## Habilitar uno o varios disparadores asociados a una tabla
