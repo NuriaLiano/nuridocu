@@ -1,5 +1,5 @@
 
-# Ejercicio con objetos, sesiones, conexión a base de datos, consultas y subconsultas
+# Ejercicio 1. Objetos, sesiones, conexiones a la base de datos, consultas sencillas. 
 
 Has sido contratado como desarrollador web para crear un sistema de consulta de series de televisión. Deberás implementar un formulario básico y una página de resultados utilizando PHP y sesiones.
 
