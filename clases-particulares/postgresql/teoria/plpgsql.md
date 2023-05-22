@@ -235,22 +235,23 @@ En resumen, la manipulación de registros en PL/pgSQL permite trabajar con filas
 
 El punto seis se refiere a las transacciones en PL/pgSQL. Una transacción es una secuencia de operaciones que se ejecutan como una unidad lógica e indivisible. PL/pgSQL proporciona funcionalidades para controlar y manejar transacciones en el lenguaje de programación. Aquí tienes más detalles y ejemplos sobre las transacciones en PL/pgSQL:
 
-- Inicio de una transacción:
-  Puedes iniciar una transacción utilizando la sentencia BEGIN o BEGIN TRANSACTION. Esto marca el inicio de la secuencia de operaciones que formarán parte de la transacción. Aquí tienes un ejemplo:
+    Inicio de una transacción:
+    Puedes iniciar una transacción utilizando la sentencia BEGIN o BEGIN TRANSACTION. Esto marca el inicio de la secuencia de operaciones que formarán parte de la transacción. Aquí tienes un ejemplo:
 
-~~~sql
+plpgsql
+
 BEGIN;
 -- Secuencia de operaciones
 ...
 COMMIT; -- o ROLLBACK;
-~~~
 
 En el ejemplo anterior, BEGIN inicia la transacción, seguida de una secuencia de operaciones que formarán parte de la transacción. Luego, se utiliza COMMIT para confirmar y guardar los cambios realizados en la transacción, o ROLLBACK para deshacer todos los cambios y cancelar la transacción.
 
-- Control de transacciones:
-  PL/pgSQL ofrece sentencias para controlar el comportamiento de las transacciones. Puedes utilizar SAVEPOINT para crear un punto de guardado dentro de una transacción y luego utilizar ROLLBACK TO SAVEPOINT para revertir los cambios realizados hasta ese punto específico. Aquí tienes un ejemplo:
+    Control de transacciones:
+    PL/pgSQL ofrece sentencias para controlar el comportamiento de las transacciones. Puedes utilizar SAVEPOINT para crear un punto de guardado dentro de una transacción y luego utilizar ROLLBACK TO SAVEPOINT para revertir los cambios realizados hasta ese punto específico. Aquí tienes un ejemplo:
 
-~~~sql
+plpgsql
+
 BEGIN;
 -- Secuencia de operaciones
 SAVEPOINT punto_guardado;
@@ -261,10 +262,91 @@ ELSE
     -- Operaciones adicionales
 END IF;
 COMMIT;
-~~~
+
+En este ejemplo, se utiliza SAVEPOINT para crear un punto de guardado llamado "punto_guardado" dentro de la transacción. Luego, se ejecutan más operaciones y se evalúa una condición. Si la condición no se cumple, se continúa con las operaciones adicionales. Sin embargo, si la condición se cumple, se utiliza ROLLBACK TO SAVEPOINT para revertir los cambios hasta el punto de guardado, deshaciendo las operaciones realizadas después del SAVEPOINT.
+
+    Manejo de errores y excepciones:
+    Cuando se produce un error o excepción dentro de una transacción, PL/pgSQL permite capturar y manejar la excepción utilizando bloques de manejo de excepciones. Puedes utilizar los bloques EXCEPTION y EXIT para controlar el flujo de ejecución en caso de errores. Aquí tienes un ejemplo:
+
+plpgsql
+
+BEGIN;
+-- Secuencia de operaciones
+BEGIN
+    -- Alguna operación que puede generar una excepción
+    ...
+EXCEPTION
+    WHEN exception_type THEN
+        -- Manejo de la excepción
+        ...
+    WHEN OTHERS THEN
+        -- Manejo de otras excepciones
+        ...
+END;
+COMMIT; -- o ROLLBACK;
+
+En este ejemplo, se utiliza un bloque EXCEPTION para capturar excepciones específicas (definidas por "exception_type") y realizar el manejo correspondiente. También se utiliza un bloque WHEN OTHERS para capturar cualquier otra excepción no especificada previamente. Puedes utilizar comandos como RAISE para generar nuevas excepciones dentro del bloque de manejo.
+
+En resumen, las transacciones en PL/pgSQL permiten agrupar operaciones en una unidad lógica e indivisible. Puedes controlar el inicio y finalización de las transacciones utilizando BEGIN, COMMIT y ROLLBACK. Además, PL/pgSQL ofrece funcionalidades para crear puntos de guardado con SAVE
 
 En este ejemplo, se utiliza SAVEPOINT para crear un punto de guardado llamado "punto_guardado" dentro de la transacción. Luego, se ejecutan más operaciones y se evalúa una condición. Si la condición no se cumple, se continúa con las operaciones adicionales. Sin embargo, si la condición se cumple, se utiliza ROLLBACK TO SAVEPOINT para revertir los cambios hasta el punto de guardado, deshaciendo las operaciones realizadas después del SAVEPOINT.
 
 1. Manejo de excepciones: El lenguaje PL/pgSQL proporciona mecanismos para manejar errores y excepciones que puedan ocurrir durante la ejecución de la función. Esto incluye capturar y procesar errores específicos y tomar acciones adecuadas.
+
+El punto siete se refiere a los cursores en PL/pgSQL. Un cursor es una estructura que permite recorrer y manipular conjuntos de resultados obtenidos a partir de una consulta. PL/pgSQL proporciona funcionalidades para declarar, abrir, recorrer y cerrar cursores dentro de las funciones y procedimientos. Aquí tienes más detalles y ejemplos sobre el uso de cursores en PL/pgSQL:
+
+    Declaración de cursores:
+    Puedes declarar un cursor utilizando la sintaxis:
+
+plpgsql
+
+DECLARE nombre_cursor CURSOR FOR consulta;
+
+Donde "nombre_cursor" es el nombre que le asignas al cursor y "consulta" es la consulta SQL que define el conjunto de resultados. Aquí tienes un ejemplo:
+
+plpgsql
+
+DECLARE empleado_cursor CURSOR FOR SELECT * FROM empleados;
+
+En este ejemplo, se declara un cursor llamado "empleado_cursor" que recorrerá el conjunto de resultados de la consulta SELECT * FROM empleados.
+
+    Apertura y recorrido del cursor:
+    Para abrir un cursor y comenzar a recorrer los resultados, se utiliza la sentencia OPEN. Luego, puedes utilizar la sentencia FETCH para obtener los valores de las filas del cursor. Aquí tienes un ejemplo:
+
+plpgsql
+
+DECLARE
+    empleado_cursor CURSOR FOR SELECT * FROM empleados;
+    empleado registro_empleados%ROWTYPE;
+BEGIN
+    OPEN empleado_cursor;
+    LOOP
+        FETCH empleado_cursor INTO empleado;
+        EXIT WHEN NOT FOUND; -- Salir del bucle cuando no hay más filas
+        -- Operaciones con los valores del registro
+        RAISE NOTICE 'Nombre: %', empleado.nombre;
+        RAISE NOTICE 'Edad: %', empleado.edad;
+    END LOOP;
+    CLOSE empleado_cursor;
+END;
+
+En este ejemplo, se declara el cursor "empleado_cursor" y se abre con la sentencia OPEN. Luego, se utiliza un bucle LOOP para recorrer cada fila del cursor utilizando FETCH, que asigna los valores de la fila al registro "empleado". Dentro del bucle, puedes realizar operaciones con los valores del registro.
+
+    Cierre del cursor:
+    Después de recorrer los resultados y realizar las operaciones necesarias, es importante cerrar el cursor utilizando la sentencia CLOSE para liberar los recursos asociados. Aquí tienes un ejemplo:
+
+plpgsql
+
+DECLARE empleado_cursor CURSOR FOR SELECT * FROM empleados;
+...
+CLOSE empleado_cursor;
+
+En este ejemplo, se cierra el cursor "empleado_cursor" utilizando la sentencia CLOSE.
+
+Además de la apertura, recorrido y cierre básicos de cursores, PL/pgSQL también ofrece funcionalidades avanzadas para controlar el comportamiento de los cursores, como definir la posición inicial del cursor, desplazarse hacia adelante o hacia atrás en los resultados, filtrar filas y más.
+
+En resumen, los cursores en PL/pgSQL permiten recorrer y manipular conjuntos de resultados obtenidos a partir de consultas. Puedes declarar, abrir, recorrer y cerrar cursores para acceder a los datos de manera más controlada y realizar operaciones específicas en cada fila del conjunto de resultados.
+
+---
 
 En resumen, PL/pgSQL es un lenguaje procedural que amplía el lenguaje SQL en PostgreSQL. Permite escribir funciones y procedimientos almacenados dentro de la base de datos, lo que proporciona flexibilidad y potencia para implementar lógica de programación compleja directamente en el motor de la base de datos.
