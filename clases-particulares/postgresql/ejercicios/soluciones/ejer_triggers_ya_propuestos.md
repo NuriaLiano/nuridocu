@@ -103,7 +103,7 @@ CREATE OR REPLACE FUNCTION actualizar_ventas_oficina()
     BEGIN
         UPDATE oficinas
         SET ventas = ventas + NEW.importe
-        WHERE id = (SELECT vendedor_oficina_id FROM vendedores WHERE id = NEW.vendedor_id);
+        WHERE id = (SELECT vendedor_id FROM vendedores WHERE id = NEW.vendedor_id);
         RETURN NEW;
     END;
     $$
@@ -179,6 +179,29 @@ CREATE TRIGGER verificar_stock_disponible_trigger
     BEFORE INSERT ON ventas
     FOR EACH ROW
     EXECUTE FUNCTION verificar_stock_disponible();
+
+--opcion con variable
+CREATE OR REPLACE FUNCTION verificar_limite_credito()
+    RETURNS TRIGGER
+    AS $$
+    DECLARE
+        credito_cliente NUMERIC(8, 2);
+    BEGIN
+        SELECT credito INTO credito_cliente FROM clientes WHERE id = NEW.cliente_id;
+        
+        IF NEW.importe > credito_cliente THEN
+            RAISE EXCEPTION 'La compra supera el límite de crédito del cliente.';
+        END IF;
+        
+        RETURN NEW;
+    END;
+    $$
+    LANGUAGE plpgsql;
+
+CREATE TRIGGER verificar_limite_credito_trigger
+    BEFORE INSERT ON ventas
+    FOR EACH ROW
+    EXECUTE FUNCTION verificar_limite_credito();
 ~~~
 
 - La base de datos debe actualizar automáticamente la cantidad de productos en stock al realizar una venta.

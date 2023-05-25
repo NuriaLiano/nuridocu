@@ -111,8 +111,26 @@ EXECUTE FUNCTION nombre_función_trigger();
 
 ## Borrar disparadores
 
+~~~sql
+DROP TRIGGER nombre_del_disparador ON nombre_de_la_tabla;
+~~~
+
 ## Modificar disparadores
+
+No existe una sentencia específica para modificar un disparador existente. En cambio, debes eliminar el disparador existente y luego crear uno nuevo con las modificaciones necesarias.
 
 ## Deshabilitar uno o varios disparadores asociados a una tabla
 
+~~~sql
+ALTER TABLE nombre_de_la_tabla DISABLE TRIGGER nombre_del_disparador;
+~~~
+
+>:pencil:**NOTA** Si tienes múltiples disparadores que deseas deshabilitar, puedes enumerarlos separados por comas.
+
 ## Habilitar uno o varios disparadores asociados a una tabla
+
+~~~sql
+ALTER TABLE nombre_de_la_tabla ENABLE TRIGGER nombre_del_disparador;
+~~~
+
+>:pencil:**NOTA** Si tienes múltiples disparadores que deseas habilitar, puedes enumerarlos separados por comas.
