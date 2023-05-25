@@ -196,25 +196,51 @@ correspondiente al servicio.
 
 #### PHPDOCUMENTOR
 
-Esta librería revisa los comentarios que hayas añadido al código de la clase que quieras a publicar (debe ser
-una clase, no funciones aisladas), y genera como salida el documento WSDL correspondiente. Para que
-funcione correctamente, es necesario que los comentarios de las clases sigan un formato específico: el mismo
-que utiliza la herramienta de documentación PHPDocumentor.
-PHPDocumentor es una herramienta de código libre para generación automática de documentación, similar a
-Javadoc(para el lenguaje Java).
-Si comentamos el código de nuestras aplicaciones siguiendo unas normas, PHPDocumentor es capaz de
-generar, a partir de los comentarios que introduzcamos en el código mientras programamos, documentación
-en diversos formatos (HTML,PDF,XML).
-Los comentarios se deben ir introduciendo en el código distribuidos en bloques, y utilizando ciertas marcas
-específicas como @param para indicar un parámetro y @return para indicar el valor devuelto por una función.
-Existe una extensión de visual studio code que nos ayuda también a generar los comentarios PHPDoc
-Generator
+[Documentación oficial](https://docs.phpdoc.org/3.0/)
+
+Es una herramienta de código libre que se utiliza para la generación automática de documentación en PHP. Se asemeja a Javadoc, que se utiliza en el lenguaje de programación Java. PHPDocumentor analiza los comentarios agregados al código fuente de una clase y genera documentación en varios formatos, como HTML, PDF y XML.
+
+Para que PHPDocumentor funcione correctamente, es necesario seguir un formato específico en los comentarios de las clases. Los comentarios deben estar distribuidos en bloques y utilizar marcas específicas, como "@param" para indicar un parámetro y "@return" para indicar el valor devuelto por una función.
+
+>:pencil: **NOTA** existe una extensión para VSCode que ayuda a generar los comentarios de manera más eficiente. [PHPDoc](https://marketplace.visualstudio.com/items?itemName=ronvanderheijden.phpdoc-generator)
+
+~~~php
+/**
+ * Suma dos números enteros.
+ *
+ * @param int $a El primer número.
+ * @param int $b El segundo número.
+ * @return int La suma de los dos números.
+ */
+function sumar($a, $b) {
+    return $a + $b;
+}
+~~~
+
+En este ejemplo, el comentario PHPDoc describe brevemente la función y utiliza las marcas "@param" para indicar los parámetros de entrada y "@return" para indicar el valor devuelto por la función.
 
 ## WSDL
 
 Un archivo WSDL define los métodos que se pueden invocar en el servicio web, los parámetros de entrada y salida de cada método, y los protocolos de transporte utilizados.
 
 ### Estructura WSDL
+
+![Section 1.png](./estructura_wsdl.png)
+
+- **Definición** : Es el elemento principal de todos los documentos WSDL. Define el nombre del servicio web, declara múltiples espacios de nombres utilizados en el resto del documento y contiene todos los elementos de servicio descritos aquí.
+  - **xmlns** : Define el espacio de nombres que se utilizará para todos los elementos sin un prefijo de espacio de nombres explícito.
+  >:black_joker: **Por ejemplo** el atributo "xmlns" establece el espacio de nombres predeterminado "http://schemas.xmlsoap.org/wsdl/" para todos los elementos dentro del elemento "definitions".
+  - **xmlns:soap** :  Se utiliza para declarar un espacio de nombres con un prefijo específico, en este caso "soap". Permite asociar ese prefijo a un espacio de nombres específico dentro del documento WSDL.
+  >:black_joker: **Por ejemplo** el atributo "xmlns:soap" asocia el prefijo "soap" con el espacio de nombres "http://schemas.xmlsoap.org/wsdl/soap/". Esto permite usar el prefijo "soap" para referirse a elementos y atributos dentro de ese espacio de nombres.
+  - **targetNamespace** : Se utiliza para definir el espacio de nombres objetivo del documento WSDL. Establece el espacio de nombres al que pertenecen los elementos y tipos definidos en el archivo WSDL.
+  >:black_joker: **Por ejemplo** el atributo "targetNamespace" establece el espacio de nombres objetivo como "http://example.com/namespace". Esto significa que los elementos y tipos definidos dentro del documento WSDL pertenecen a ese espacio de nombres.
+- **Tipos de datos** : Los tipos de datos que se utilizarán en los mensajes se definen en forma de esquemas XML
+- **Mensaje** : Es una definición abstracta de los datos, presentados como un mensaje completo o como argumentos que se asignarán a una invocación de método.
+- **Operación** : Es la definición abstracta de la operación para un mensaje, como nombrar un método, una cola de mensajes o un proceso empresarial, que aceptará y procesará el mensaje.
+- **Tipo de puerto** : Es un conjunto abstracto de operaciones asignadas a uno o más puntos finales, que define la colección de operaciones para una unión; la colección de operaciones, al ser abstracta, se puede asignar a múltiples transportes a través de varias uniones.
+- **Unión** : Es un conjunto abstracto de operaciones asignadas a uno o más puntos finales, que define la colección de operaciones para una unión; la colección de operaciones, al ser abstracta, se puede asignar a múltiples transportes a través de varias uniones.
+- **Puerto** : Es una combinación de una unión y una dirección de red, que proporciona la dirección de destino de la comunicación del servicio.
+- **Servicio** : Es una colección de puntos finales relacionados que abarcan las definiciones del servicio en el archivo; los servicios asignan la unión al puerto e incluyen cualquier definición de extensibilidad.
 
 ### WSDL tipos de datos
 
