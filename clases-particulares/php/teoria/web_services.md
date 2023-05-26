@@ -221,19 +221,19 @@ En este ejemplo, el comentario PHPDoc describe brevemente la función y utiliza 
 
 ## WSDL
 
-Un archivo WSDL define los métodos que se pueden invocar en el servicio web, los parámetros de entrada y salida de cada método, y los protocolos de transporte utilizados.
+Imagina que has creado una aplicación o función especial que puede ser útil para otros desarrolladores. ¡Eso es genial! Pero ahora necesitas decirles cómo utilizarla correctamente, ¿verdad?
+
+Aquí es donde entra en juego el WSDL (Web Services Description Language). Es como un lenguaje especial basado en XML que nos ayuda a crear un documento de descripción de nuestro servicio web. Este documento es una guía detallada que explica cómo interactuar con nuestro servicio, como un manual de instrucciones.
+
+Una vez que tengamos nuestro documento WSDL listo, lo compartiremos con los posibles usuarios de nuestro servicio. Lo colocaremos en algún lugar accesible y generalmente se puede acceder agregando "?wsdl" a la URL del servicio. Así, los programadores interesados pueden obtener toda la información necesaria para utilizar nuestro servicio de manera correcta y eficiente.
+
+Por cierto, el documento WSDL tiene un espacio de nombres especial llamado http://schemas.xmlsoap.org/wsdl. Es como una dirección única para identificar nuestro documento WSDL en el vasto mundo de los servicios web. Pero también podemos usar otros espacios de nombres para aprovechar características y estándares adicionales.
 
 ### Estructura WSDL
 
 ![Section 1.png](./estructura_wsdl.png)
 
 - **Definición** : Es el elemento principal de todos los documentos WSDL. Define el nombre del servicio web, declara múltiples espacios de nombres utilizados en el resto del documento y contiene todos los elementos de servicio descritos aquí.
-  - **xmlns** : Define el espacio de nombres que se utilizará para todos los elementos sin un prefijo de espacio de nombres explícito.
-  >:black_joker: **Por ejemplo** el atributo "xmlns" establece el espacio de nombres predeterminado "http://schemas.xmlsoap.org/wsdl/" para todos los elementos dentro del elemento "definitions".
-  - **xmlns:soap** :  Se utiliza para declarar un espacio de nombres con un prefijo específico, en este caso "soap". Permite asociar ese prefijo a un espacio de nombres específico dentro del documento WSDL.
-  >:black_joker: **Por ejemplo** el atributo "xmlns:soap" asocia el prefijo "soap" con el espacio de nombres "http://schemas.xmlsoap.org/wsdl/soap/". Esto permite usar el prefijo "soap" para referirse a elementos y atributos dentro de ese espacio de nombres.
-  - **targetNamespace** : Se utiliza para definir el espacio de nombres objetivo del documento WSDL. Establece el espacio de nombres al que pertenecen los elementos y tipos definidos en el archivo WSDL.
-  >:black_joker: **Por ejemplo** el atributo "targetNamespace" establece el espacio de nombres objetivo como "http://example.com/namespace". Esto significa que los elementos y tipos definidos dentro del documento WSDL pertenecen a ese espacio de nombres.
 - **Tipos de datos** : Los tipos de datos que se utilizarán en los mensajes se definen en forma de esquemas XML
 - **Mensaje** : Es una definición abstracta de los datos, presentados como un mensaje completo o como argumentos que se asignarán a una invocación de método.
 - **Operación** : Es la definición abstracta de la operación para un mensaje, como nombrar un método, una cola de mensajes o un proceso empresarial, que aceptará y procesará el mensaje.
@@ -244,160 +244,258 @@ Un archivo WSDL define los métodos que se pueden invocar en el servicio web, lo
 
 ### WSDL tipos de datos
 
+#### Etiqueta definitions
+
+La etiqueta "definitions" se utiliza en WSDL para envolver y definir el conjunto completo de elementos que conforman la descripción de un servicio web. Proporciona un contenedor global para todos los elementos relacionados con el servicio, como los tipos de datos, mensajes, operaciones, etc.
+
+~~~xml
+<definitions name="HelloService"
+   targetNamespace="http://www.examples.com/wsdl/HelloService.wsdl"
+   xmlns="http://schemas.xmlsoap.org/wsdl/"
+   xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+   xmlns:tns="http://www.examples.com/wsdl/HelloService.wsdl"
+   xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+</definitions>
+~~~
+
+##### - name
+
+Este atributo define el nombre del servicio, en este caso, "HelloService".
+
+##### - targetNamespace
+
+Este atributo especifica el espacio de nombres al que pertenece el documento WSDL. Proporciona una identificación única para el servicio web. En este ejemplo, el espacio de nombres es "http://www.examples.com/wsdl/HelloService.wsdl".
+
+##### - xmlns
+
+Este espacio de nombres define el espacio de nombres predeterminado para los elementos en el documento WSDL. En este caso, "http://schemas.xmlsoap.org/wsdl/" se utiliza como espacio de nombres predeterminado.
+
+##### - xmlns:soap (opcional)
+
+Este espacio de nombres está asociado con el protocolo SOAP (Simple Object Access Protocol) y se utiliza para definir el formato de mensajes SOAP en el servicio web.
+
+##### - xmlns:tns (opcional)
+
+Este espacio de nombres se utiliza para especificar el espacio de nombres del servicio web en sí. En este caso, el espacio de nombres es "http://www.examples.com/wsdl/HelloService.wsdl".
+
+##### - xmlns:xsd (opcional)
+
+Este espacio de nombres se utiliza para referenciar el lenguaje XML Schema (XSD), que se utiliza para definir los tipos de datos en el documento WSDL.
+
 #### Etiqueta types
 
-#### Clases
+La etiqueta "types" en WSDL se utiliza para definir y agrupar los tipos de datos utilizados en la descripción de un servicio web. Proporciona un lugar centralizado donde se pueden definir los tipos de datos complejos, como clases o estructuras, que se utilizan en los mensajes de entrada y salida de las operaciones del servicio.
 
-(all y sequence)
+**Estructura usando clases**
+
+~~~xml
+<types>
+    <xsd:schema targetNamespace="http://ejercicios.soap.es/usuarios/">
+        <xsd:complexType name="direccion">
+            <xsd:all>
+                <xsd:element name="ciudad" type="xsd:string"/>
+                <xsd:element name="calle" type="xsd:string"/>
+                <xsd:element name="numero" type="xsd:string"/>
+                <xsd:element name="piso" type="xsd:string"/>
+                <xsd:element name="CP" type="xsd:string"/>
+            </xsd:all>
+        </xsd:complexType>
+        <xsd:complexType name="usuario">
+            <xsd:all>
+                <xsd:element name="id" type="xsd:int"/>
+                <xsd:element name="nombre" type="xsd:string"/>
+                <xsd:element name="direccion" type="tns:direccion"/>
+                <xsd:element name="email" type="xsd:string"/>
+            </xsd:all>
+        </xsd:complexType>
+    </xsd:schema>
+</types>
+~~~
+
+##### - xsd:schema targetNamespace="http://ejercicios.soap.es/usuarios/"
+
+Esta etiqueta define un esquema XML utilizando el lenguaje XML Schema (XSD). El atributo targetNamespace especifica el espacio de nombres objetivo del esquema.
+
+##### - xsd:complexType name="direccion"
+
+Define un tipo complejo llamado "direccion". Un tipo complejo en XML Schema se utiliza para definir estructuras de datos con múltiples elementos.
+
+##### - xsd:all
+
+Indica que los elementos dentro de xsd:complexType deben aparecer todos en cualquier orden.Todos los elementos enumerados dentro de xsd:all son opcionales y no tienen una secuencia específica. Se garantiza que cada elemento se puede repetir como máximo una vez. Esta construcción es adecuada cuando no hay restricciones de orden en los elementos y todos los elementos son opcionales.
+
+~~~xml
+<types>
+    <xsd:schema targetNamespace="http://ejercicios.soap.es/usuarios/">
+        <xsd:complexType name="direccion">
+            <xsd:all>
+                <xsd:element name="ciudad" type="xsd:string"/>
+                <xsd:element name="calle" type="xsd:string"/>
+                <xsd:element name="numero" type="xsd:string"/>
+            </xsd:all>
+        </xsd:complexType>
+    </xsd:schema>
+</types>
+~~~
+
+##### - xsd:sequence
+
+Define que los elementos deben aparecer en un orden secuencial específico dentro de un tipo complejo. Los elementos enumerados dentro de xsd:sequence deben seguir el orden especificado, y pueden ser obligatorios u opcionales. Cada elemento se puede repetir cualquier número de veces. Esta construcción es adecuada cuando el orden de los elementos es importante y deben aparecer en una secuencia particular.
+
+##### - xsd:choice
+
+Indica que solo uno de los elementos enumerados dentro de xsd:choice puede estar presente en un tipo complejo. Los elementos dentro de xsd:choice son mutuamente excluyentes y solo uno de ellos puede aparecer en la instancia del XML. Esta construcción es útil cuando solo se permite una opción específica entre varios elementos posibles.
+
+##### - xsd:element name="ciudad" type="xsd:string"
+
+Define un elemento llamado "ciudad" de tipo "xsd:string" dentro del tipo complejo "direccion". Esto significa que "ciudad" es una cadena de texto.
+
+##### - xsd:complexType name="usuario"
+
+Define otro tipo complejo llamado "usuario".
+
+##### - xsd:element name="id" type="xsd:int"
+
+Define un elemento llamado "id" de tipo "xsd:int" (entero) dentro del tipo complejo "usuario".
+
+##### - xsd:element name="nombre" type="xsd:string"
+
+Define un elemento llamado "nombre" de tipo "xsd:string" (cadena de texto) dentro del tipo complejo "usuario".
+
+##### - xsd:element name="direccion" type="tns:direccion"
+
+Define un elemento llamado "direccion" de tipo "tns:direccion" (refiriéndose al tipo complejo "direccion" definido anteriormente) dentro del tipo complejo "usuario". Esto indica que el elemento "direccion" es de tipo "direccion".
 
 #### Arrays
 
+En WSDL, cuando necesitamos definir un array, no existe un tipo base adecuado en XML Schema para hacerlo directamente. En su lugar, podemos utilizar el tipo Array definido en el esquema de codificación SOAP.
+
+~~~xml
+<xsd:complexType name="ArrayOfUsuario">
+  <xsd:complexContent>
+    <xsd:restriction base="soapenc:Array">
+      <xsd:attribute ref="soapenc:arrayType" 
+                     wsdl:arrayType="tns:Usuario[]" />
+    </xsd:restriction>
+  </xsd:complexContent>
+</xsd:complexType>
+~~~
+
+En el ejemplo anterior, se define un tipo complejo llamado ArrayOfUsuario, que representa un array de elementos de tipo Usuario. Para ello, se utiliza la restricción xsd:restriction con la base soapenc:Array, que indica que estamos definiendo un array. Dentro de esta restricción, se utiliza el atributo ref para hacer referencia al atributo arrayType, que especifica el tipo de array que estamos definiendo. En este caso, el atributo arrayType tiene el valor tns:Usuario[], lo que indica que estamos definiendo un array de elementos de tipo Usuario.
+
+Es importante tener en cuenta que este ejemplo hace referencia a los espacios de nombres soapenc y tns, los cuales deben estar definidos en el documento WSDL para ser utilizados correctamente. Además, este ejemplo asume que ya se ha definido previamente el tipo complejo Usuario en la sección types del documento WSDL.
+
+Sin embargo, en muchos casos, no será necesario definir tipos de array personalizados en el documento WSDL. En su lugar, podemos utilizar los tipos propios de XML Schema, como xsd:string, xsd:float o xsd:boolean, según sea necesario. Esto es especialmente útil cuando los arrays contienen tipos de datos simples y no necesitamos definiciones más complejas.
+
 #### Message
 
-(request, response)
+La sección message en un documento WSDL sirve para definir los mensajes que se utilizan en un servicio web. Un mensaje en WSDL representa una operación específica que se puede invocar en el servicio web.
+
+La sección message consta de uno o más elementos message que definen los mensajes de entrada y salida de una operación. Cada mensaje puede contener uno o más elementos part, que representan los parámetros individuales o los valores de retorno de la operación.
+
+La sección message es importante porque permite describir de manera precisa la estructura y el contenido de los mensajes que se intercambian entre el cliente y el servicio web. Al definir los mensajes en el documento WSDL, se establece un contrato claro entre el cliente y el servicio web sobre los datos que se deben enviar y recibir.
+
+Cada message se identifica mediante un atributo name único, que proporciona un nombre descriptivo para el mensaje. Es común utilizar una convención de nomenclatura que incluye los sufijos "Request" y "Response" al final de los nombres de los mensajes para indicar si son mensajes de entrada o salida, respectivamente.
+
+La sección message es una parte esencial en la descripción de un servicio web, ya que define los tipos y la estructura de los datos que se transmiten entre el cliente y el servicio. Esta información es utilizada por herramientas y aplicaciones para generar automáticamente el código necesario para interactuar con el servicio web.
+
+~~~xml
+<message name="getUsuarioRequest">
+  <part name="id" type="xsd:int"/>
+</message>
+<message name="getUsuarioResponse">
+  <part name="getUsuarioReturn" type="tns:usuario"/>
+</message>
+~~~
+
+En el ejemplo anterior, se definen dos mensajes: getUsuarioRequest y getUsuarioResponse. El mensaje getUsuarioRequest representa los parámetros de entrada de la función getUsuario, que en este caso es el parámetro id de tipo xsd:int. El elemento part dentro del mensaje especifica el nombre (name) y el tipo (type) del parámetro de entrada.
+
+Por otro lado, el mensaje getUsuarioResponse representa el valor de salida de la función getUsuario, que es un objeto usuario. El elemento part dentro del mensaje especifica el nombre (name) del valor de salida y el tipo (type) del objeto usuario.
+
+**Es importante destacar que es común utilizar el sufijo "Request" al final del nombre del mensaje que representa los parámetros de entrada, y el sufijo "Response" para el mensaje que representa los parámetros de salida. Esto ayuda a tener una nomenclatura clara y consistente en el documento WSDL.**
 
 #### Estilos de enlazado
 
-(document o RPC) La selección que hagamos influirá en cómo se transmitan los mensajes dentro de las peticiones y
-respuestas SOAP.
-Además, cada estilo de enlazado puede ser de tipo encoded o literal (aunque en realidad la combinación
-document/encoded no se utiliza). Al indicar encoded, estamos diciendo que vamos a usar un conjunto de
-reglas de codificación, como las que se incluyen en el propio protocolo SOAP [espacio de nombres]
-(http://schemas.xmlsoap.org/soap/encoding/), para convertir en XML los parámetros de las peticiones y
-respuestas.
-Nosotros trabajaremos únicamente con estilo de enlazado RPC/encoded
+En WSDL, el estilo de enlace se refiere a cómo se transmiten los mensajes dentro de las solicitudes y respuestas SOAP en un servicio web. Hay dos estilos de enlace comunes: "document" y "RPC".
+Además, cada estilo de enlace puede ser de tipo "encoded" o "literal". La combinación de estilo de enlace "document/encoded" no se utiliza comúnmente.
+
+- **encoded** : significa que se utilizará un conjunto de reglas de codificación para convertir los parámetros de las peticiones y respuestas en XML. Estas reglas de codificación se especifican en el espacio de nombres http://schemas.xmlsoap.org/soap/encoding/ y forman parte del protocolo SOAP. Esto implica que los valores de los parámetros se codificarán de acuerdo con estas reglas antes de ser transmitidos.
+- **literal** : implica que los valores de los parámetros se transmitirán directamente en XML sin necesidad de aplicar una codificación específica.
 
 #### PortType
 
-Las funciones que creas en un servicio web, se conocen con el nombre de operaciones en un documento
-WSDL.
-En lugar de definirlas una a una, es necesario agruparlas en lo que en WSDL se llama portType. Un portType
-contiene una lista de funciones, indicando para cada función (operation) la lista de parámetros de entrada y
-de salida que le corresponden.
+En un documento WSDL, las funciones que se crean en un servicio web se conocen como operaciones. Para agrupar estas operaciones de manera organizada, se utilizan los elementos portType.
+Un portType en WSDL contiene una lista de funciones (operaciones) y para cada función se especifica la lista de parámetros de entrada y salida que le corresponden.
 
 ~~~xml
 <portType name="usuarioPortType">
-<operation name="getUsuario">
-<input message="tns:getUsuarioRequest"/>
-<output message="tns:getUsuarioResponse"/>
-</operation>
+  <operation name="getUsuario">
+    <input message="tns:getUsuarioRequest"/>
+    <output message="tns:getUsuarioResponse"/>
+  </operation>
 </portType>
+
 ~~~
 
-Normalmente a no ser que estemos generando un servicio web bastante complejo, el documento WSDL
-contendrá un único portType
+Se define un portType llamado "usuarioPortType" que contiene una operación llamada "getUsuario". Esta operación tiene un parámetro de entrada (input) llamado "getUsuarioRequest" y un parámetro de salida (output) llamado "getUsuarioResponse". Los atributos "message" en los elementos input y output hacen referencia a mensajes previamente definidos en el documento WSDL.
 
-Cada portType debe contener un atributo name con el nombre (único para todos los elementos portType).
-Cada elemento operation también debe contener un atributo name, que se corresponderá con el nombre de
-la función que se ofrece. Además, en función del tipo de operación de que se trate, contendrá:
-Un elemento input para indicar funciones que no devuelven valor (su objetivo es sólo enviar un
-mensaje al servidor).
-Un elemento input y otro output, en este orden, para el caso más habitual: funciones que reciben algún
-parámetro, se ejecutan, y devuelven un resultado.
-Es posible (aunque muy extraño) encontrase funciones a la inversa: sólo con un parámetro output (el servidor
-envía una notificación al cliente) o con los parámetros output e input por ese orden (el servidor le pide al
-cliente alguna información).
-Por tanto, al definir una función (un elemento operation) se debe tener cuidado con el orden de los
-elementos input y output.
-Normalmente, los elementos input y output contendrán un atributo message para hacer referencia a un
-mensaje definido anteriormente.
+Normalmente, a menos que se esté desarrollando un servicio web muy complejo, el documento WSDL contendrá un único portType que agrupe todas las operaciones.
+
+Cada portType debe tener un atributo name con un nombre único. Cada operación (elemento operation) también debe tener un atributo name que corresponde al nombre de la función que se ofrece. Dependiendo del tipo de operación, se pueden tener diferentes configuraciones:
+
+- Para funciones que no devuelven un valor, se utiliza solo el elemento input para enviar un mensaje al servidor.
+- Para funciones que reciben parámetros y devuelven un resultado, se utilizan los elementos input y output en ese orden.
+- En casos raros, se pueden encontrar funciones con solo un## RESUMEN
+
+
+<service> junto con el elemento <port> se utiliza para describir y configurar un servicio web específico en el documento WSDL. Proporciona la información necesaria para acceder al servicio, como el binding utilizado y la URL del punto de conexión. parámetro de salida (el servidor envía una notificación al cliente) o con los parámetros output e input en ese orden (el servidor solicita información al cliente). Estos casos son menos comunes.
+
+Al definir una función (operación), es importante tener en cuenta el orden de los elementos input y output. Por lo general, los elementos input y output hacen referencia a mensajes definidos previamente mediante el atributo message.
+
+La estructura de portType y las operaciones dentro de él son esenciales para describir las funcionalidades ofrecidas por un servicio web en el documento WSDL.
 
 #### Binding
 
-Antes comentábamos que existían distintos estilos de enlazado, que influían en cómo se debían crear los
-mensaje. En el elemento binding se debe indicar que el estilo de enlazado de tu documento sea
-RPC/encoded.
-Aunque es posible crear documentos WSDL con varios elementos binding, la mayoría contendrán solo uno (si
-no fuera así, sus atributos name deberán ser distintos).
-En él, para cada una de las funciones (operation) del portType que acabamos de crear, se deberá indicar
-cómo se codifica y transmite la información.
-Para el portType anterior, podemos crear un elemento binding como el siguiente:
+El elemento <binding> en un documento WSDL se utiliza para indicar cómo se codifica y transmite la información para cada función (operation) definida en el portType. Especifica el estilo de enlazado que se utilizará y otros detalles relacionados con el protocolo de transporte.
 
 ~~~xml
 <binding name="usuarioBinding" type="tns:usuarioPortType">
-<soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
-<operation name="getAlumno">
-<soap:operation soapAction="http://ejercicios.soap.es/usuarios/Usuario.php?
-getUsuario" style="rpc"/>
-<input>
-<soap:body use="encoded"
-encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
-</input>
-<output>
-<soap:body use="encoded"
-encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
-</output>
-</operation>
+  <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http" />
+  <operation name="getAlumno">
+    <soap:operation soapAction="http://ejercicios.soap.es/usuarios/Usuario.php?getUsuario" style="rpc" />
+    <input>
+      <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+    </input>
+    <output>
+      <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+    </output>
+  </operation>
 </binding>
+
 ~~~
 
-Fíjate que el atributo type hace referencia al portType creado anteriormente. El siguiente elemento indica el
-tipo de codificación (RPC) y, mediante la URL correspondiente, el protocolo de transporte a utilizar (HTTP)
-El elemento soap:operation debe contener un atributo soapAction con la URL para esa función
-(operation)en particular. Dentro de él habrá normalmente un elemento input y otro output (los mismos que
-en la operation correspondiente). En ellos, mediante los atributos del elemento soap:body, se indica el estilo
-concreto de enlazado (encoded con su encondingStyle correspondiente).
+Dentro del elemento binding, se utiliza el elemento soap:binding para especificar el estilo y el protocolo de transporte. En este caso, se establece el estilo como "rpc" y el transporte como HTTP utilizando la URL http://schemas.xmlsoap.org/soap/http.
+
+A continuación, se define la operación "getAlumno" dentro del elemento operation. El atributo name indica el nombre de la operación que se corresponde con la función en el portType.
+
+El elemento soap:operation contiene el atributo soapAction, que especifica la URL asociada a esa función en particular. Proporciona información sobre cómo se debe procesar la operación.
+
+Dentro del elemento input y output, se utiliza el elemento soap:body para indicar el estilo de enlazado con el atributo use establecido como "encoded". El atributo encodingStyle especifica el espacio de nombres de codificación correspondiente, en este caso http://schemas.xmlsoap.org/soap/encoding/.
 
 #### Service
 
-Por último, falta definir el elemento service. Normalmente sólo encontraremos un elemento service en cada
-documento WSDL. En él, se hará referencia al binding anterior utilizando un elemento port, y se indicará la
-URL en la que se puede acceder al servicio.
+El elemento service se utiliza para definir un servicio en el documento WSDL. Normalmente, solo habrá un elemento service en cada documento WSDL.
+
+Dentro del elemento service, se especifica un nombre para el servicio utilizando el atributo name. Este nombre identifica de manera única el servicio dentro del contexto del documento WSDL.
+
+El elemento port se utiliza para hacer referencia al elemento binding definido previamente, estableciendo la asociación entre el servicio y el estilo de enlazado. El atributo name en el elemento port proporciona un nombre para el puerto del servicio.
+
+Dentro del elemento port, se utiliza el elemento soap:address para indicar la ubicación o URL en la que se puede acceder al servicio. El atributo location en el elemento soap:address especifica la URL del punto de conexión del servicio web.
 
 ~~~xml
 <service name="usuario">
-<port name="usuarioPort" binding="tns:usuarioBinding">
-<soap:address location="http://ejercicios.soap.es/usuarios/Usuario.php" />
-</port>
+    <port name="usuarioPort" binding="tns:usuarioBinding">
+        <soap:address location="http://ejercicios.soap.es/usuarios/Usuario.php" />
+    </port>
 </service>
-~~~
-
-## Servicios web REST
-
-REST es una tecnología mucho más flexible que transporta datos por medio del protocolo HTTP.
-Además permite utilizar los diversos métodos que proporciona HTTP para comunicarse, como lo son GET,
-POST, PUT, DELETE, PATCH.
-Permite transmitir prácticamente cualquier tipo de datos, ya que el tipo de datos está definido por el Header
-Content-Type, lo que nos permite mandar, XML, JSON, binarios (imágenes o documentos), text, etc.
-La gran mayoría transmite en JSON por un motivo muy importante: JSON es interpretado de forma
-natural por JavaScript
-REST es más liviano en peso y mucho más rápido en su procesamiento que SOAP.
-
-### Cliente
-
-Para obtener los datos del un servicio web REST se utiliza la librería cURL. Es una biblioteca que permite
-conectarse y comunicarse con diferentes tipos de servidores y diferentes tipos de protocolos.
-Un ejemplo de una petición GET podría ser la siguiente:
-
-~~~php
-$url_servicio = "http://zoologico.laravel/rest";
-$curl = curl_init($url_servicio);
-//establecemos el verbo http que queremos utilizar para la petición
-curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "GET");
-curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-$respuesta_curl = curl_exec($curl);
-curl_close($curl);
-$respuesta_decodificada = json_decode($respuesta_curl);
-~~~
-
-### Servidor
-
-La idea es generar una página que devuelva una respuesta en formato JSON.
-Para ello se puede utilizar el método json de Laravel.
-Se crea un controlador específico y las rutas correspondientes.
-Luego, en el controlador se hacen los métodos necesarios para realizar todas las operaciones del servicio
-web.
-
-Por ejemplo, si queremos devolver en formato JSON todos los animales de nuestro zoologico, podemos hacer
-algo así:
-
-~~~php
-$animales=Animal::all();
-return response()->json($animales);
-~~~
-
-Si quisiéramos enviar un mensaje lo haríamos a través de un array asociativo:
-
-~~~php
-return response()->json(['mensaje' => ‘El mensaje a enviar’]);
 ~~~
