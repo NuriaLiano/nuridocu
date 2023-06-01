@@ -90,6 +90,13 @@ WHERE mod.marca_id = m.id
   AND mo.modelo_id = mod.id
   AND mo.color = 'Rojo'
   AND mo.precio < 10000;
+
+--usando join
+SELECT marcas.nombre AS marca, modelos.nombre AS modelo
+FROM motos
+JOIN modelos ON motos.modelo_id = modelos.id
+JOIN marcas ON modelos.marca_id = marcas.id
+WHERE motos.color = 'Rojo' AND motos.precio < 10000;
 ~~~
 
 ## Ejercicio 3. Mostrar los nombres de los modelos que estén disponibles en color rojo pero no en color azul (except)

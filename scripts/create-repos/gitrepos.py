@@ -1,25 +1,82 @@
-import configparser, sys, gitlab, os, git, shutil
+import sys, gitlab, os, git, shutil, json, datetime
 
-#TODO: NO FUNCIONA POR QUE LAS RUTAS ESTAN MAL, TIENES QUE REVISAR DESDE DONDE SE EJECUTA EL SCRIPT Y FIJAR UNA UBICACION FIJA QUE SE PUEDA MODIFICAR EN EL CONFIG
-#TODO: añadir que compruebe el git config y si no le configure
-#TODO: al borrar el repo preguntar para borrar la carpeta local
+############ TODO ############
+###############################
+
+#TODO: - Create README.md PARA EL PROYECTO DE GITREPOS
+#TODO: ME FALTA LA PARTE DE GITHUB
+#TODO: CUANDO ESTE LA PARTE DE GITHUB HACE FALTA EL MIRROR DE LOS DOS REPOSITORIOS, GITLAB Y GITHUB
+
+
+############ COMMON FUNCTIONS ############
+##########################################
+
+def check_config_exits():
+    if os.path.exists(os.getcwd()):
+        return True
+    else:
+        return False
+    
+def open_config_data(config_path):
+    try:
+        # Leer el archivo JSON
+        with open(config_path) as file:
+            return json.load(file)
+    except FileNotFoundError:
+        print(Fore.RED + '[ERROR]' + f'File "{config_path}" does not exist')
+
+def check_define_config(config_path):
+    #validar si el path que pasamos tiene la palabra config
+    if config_path.find('.config.json') == -1:
+        return os.path.join(config_path, '.config.json')
+    else:
+        return config_path
+
+def add_data_config(tagname, value, config_path):
+    #primero hay que abrir el fichero
+    data = open_config_data(config_path)
+    # Agrega la nueva palabra al diccionario
+    data['DEFAULT'][tagname] = value
+    try:
+        # Guarda el diccionario en el fichero .config.json
+        with open(config_path, 'w') as file:
+            json.dump(data, file, indent=4)
+    except IOError:
+        print(Fore.RED + '[ERROR]' + f'Error al guardar los cambios en {config_path}')
 
 def load_config():
 
     #global vars
     global GL_TK, URL_GL, INSTANCE_GL, USERNAME_GL, CONFIG_PATH
 
-    #request config path
-    config_path = input(Fore.CYAN + 'Enter the .config path: ')
+    #comprueba que el fichero .config.json existe en el directorio actual
+    if check_config_exits() is False:
+        #si no existe, se lo pide al usuario
+        config_path = input('Enter the absolute path to the .config.json: ')
 
-    #read config file
-    config = configparser.ConfigParser()
-    config.read(config_path)
-    #obtain token
-    GL_TK = config.get('DEFAULT', 'GL_TOKEN')
-    URL_GL = config.get('DEFAULT', 'URL_GL')
-    INSTANCE_GL = gitlab.Gitlab('https://gitlab.com', private_token=GL_TK)
+        #chequear si en el path está puesto .config.json
+        CONFIG_PATH = check_define_config(config_path)
+        
+        #lo almacena para no tener que volver a preguntar
+        add_data_config('CONFIG_PATH', CONFIG_PATH, CONFIG_PATH)
 
+    else:
+        #recoger el path actual
+        config_path = os.path.dirname(os.path.abspath(__file__))
+        #chequear si en el path está puesto .config.json
+        CONFIG_PATH = check_define_config(config_path)
+
+    #open config file
+    data = open_config_data(CONFIG_PATH)
+
+    # Extraer los valores del JSON
+    GL_TK = data['DEFAULT']['GL_TOKEN']
+    URL_GL = data['DEFAULT']['URL_GL']
+
+    INSTANCE_GL = gitlab.Gitlab(URL_GL, private_token=GL_TK)
+
+############ GETTERS ############
+#################################
 
 def get_repo_name():
     #global vars
@@ -38,17 +95,53 @@ def get_repo_name():
 def get_local_dir():
     #global vars
     global LOCAL_PATH_REPO
-    while True:
-        local_dir_input = input(Fore.CYAN + 'Enter the local path: ')
-        if local_dir_input != '':
-            LOCAL_PATH_REPO = local_dir_input.replace(' ', '-')
-            #LOCAL_PATH_REPO = os.path.join(local_dir_input, REPO_NAME)
-            # C:\Users\nuria-msi\gitlab\eliminar
-            print("esta ejecuandose en ", local_dir_input)
-            break
-        elif local_dir_input == '':
-            LOCAL_PATH_REPO = REPO_NAME
-            break
+
+    local_dir_input = input(Fore.CYAN + 'Enter the local path: ')
+    if local_dir_input != '':
+        LOCAL_PATH_REPO = local_dir_input
+        LOCAL_PATH_REPO = LOCAL_PATH_REPO + "\\" + REPO_NAME
+    else:
+        LOCAL_PATH_REPO = ""
+
+############ LOCAL FUNCTIONS ############
+#########################################
+
+def remove_local_directory():
+    try:
+        if os.path.exists(LOCAL_PATH_REPO):
+            shutil.rmtree(LOCAL_PATH_REPO)
+            print(f'Directory "{LOCAL_PATH_REPO}" has been deleted')
+    except Exception as e:
+        print(Fore.RED + '[ERROR]' + f'Directory "{LOCAL_PATH_REPO}" does not exist')
+        print("Error:", str(e))
+
+def create_local_directory():
+    if LOCAL_PATH_REPO == "":
+        LOCAL_PATH_REPO = os.path.dirname(os.path.abspath(__file__))
+    
+    try:
+        os.mkdir(LOCAL_PATH_REPO)
+        print(Fore.GREEN + '[SUCCESS]' + f'Local folder "{LOCAL_PATH_REPO}" created successfully')
+    except FileExistsError:
+        print(Fore.RED + '[ERROR]' + f'Directory "{LOCAL_PATH_REPO}" already exists')
+
+def create_README():
+    global README_PATH
+    try:
+        README_PATH = LOCAL_PATH_REPO + "\\" + "README.md"
+        add_data_config('README_PATH', README_PATH, CONFIG_PATH)
+        # Crea el archivo en el directorio especificado
+        with open(README_PATH, "w") as file:
+            # Realiza operaciones de escritura en el archivo si es necesario
+            file.write("# " + REPO_NAME)
+        # Verificación de la creación exitosa
+        print("[SUCCESS]" + f'File "{README_PATH}" created successfully')
+    except IOError as e:
+        print(Fore.RED + '[ERROR]' + f'Error creating file "{README_PATH}"')
+        print(e)
+
+############ GITLAB REMOTE FUNCTIONS ############
+#################################################
 
 def create_repo():
     global PROJECT_URL
@@ -87,22 +180,56 @@ def remove_repo():
     else:
         print(Fore.RED + '[ERROR]' + 'The repo ' + REPO_NAME + ' has not been deleted')
 
-def remove_local_directory():
-    print("Directorio de trabajo actual:", os.getcwd())
-    print("Directorio LOCAL de trabajo actual:", LOCAL_PATH_REPO)
-    if os.path.exists(LOCAL_PATH_REPO):
-        shutil.rmtree(LOCAL_PATH_REPO)
-        print(f'Directory "{LOCAL_PATH_REPO}" has been deleted')
-    else:
-        print(Fore.RED + '[ERROR]' + f'Directory "{LOCAL_PATH_REPO}" does not exist')
+def git_add_commit_push():
+    commit_message = "[COMMIT GENERATED BY GITREPOS ON " + str(datetime.datetime.now()) + "]"
+    repo_branch = "origin"
+    try:
+        repo = git.Repo("LOCAL_PATH_REPO")  # Inicializa el repositorio en el directorio actual
 
-def create_local_directory():
-    os.mkdir(LOCAL_PATH_REPO)
-    print(f'Local folder "{LOCAL_PATH_REPO}" created successfully')
+        repo.index.add(README_PATH)  # Agrega el archivo al área de preparación (staging)
+
+        repo.index.commit("commit_message")  # Realiza el commit con el mensaje especificado
+
+        origin = repo.remote(name=repo_branch)  # Obtiene la referencia al repositorio remoto
+
+        origin.push()  # Realiza el push al repositorio remoto
+        
+        print(Fore.GREEN + f"[SUCCESS] Changes pushed to remote repository successfully")
+
+    except Exception as e:
+        # Manejar errores en caso de fallo en las operaciones de Git
+        print("[ERROR] Failed to perform Git operation")
+        print("Error:", str(e))
 
 def clone_repo():
-    git.Repo.clone_from(PROJECT_URL, LOCAL_PATH_REPO)
-    print(f'Repository cloned to local folder "{LOCAL_PATH_REPO}" successfully')
+    try:
+        git.Repo.clone_from(PROJECT_URL, LOCAL_PATH_REPO)
+        create_README()
+        git_add_commit_push()
+        print(f'Repository cloned to local folder "{LOCAL_PATH_REPO}" successfully')
+    except Exception as e:
+        print("Fore.RED + '[ERROR]' + Failed to perform Git operation")
+        print("Error:", str(e))
+
+############ GITHUB REMOTE FUNCTIONS ############
+#################################################
+
+def configure_mirror(gitlab_url, gitlab_token, github_url):
+    try:
+        # Clonar el repositorio de GitLab
+        gitlab_repo = git.Repo.clone_from(gitlab_url, "gitlab_repo")
+        
+        # Configurar el mirror del repositorio de GitLab al repositorio de GitHub
+        gitlab_repo.create_remote("mirror", url=github_url)
+        gitlab_repo.remotes.mirror.push(mirror=True)
+        
+        print("Mirror configured successfully")
+    except Exception as e:
+        print("Failed to configure mirror")
+        print("Error:", str(e))
+
+############ MAIN FUNCTION ###############
+##########################################
 
 if __name__ == '__main__':
 
@@ -120,7 +247,7 @@ if __name__ == '__main__':
 
     print(LOCAL_PATH_REPO)
 
-    if main_prompt == 'r':
+    if main_prompt.lower() == 'r':
         print('\u26A0\ufe0f YOU HAVE CHOSEN TO REMOVE THE REPO AND DIRECTORY. ¡¡¡¡THIS ACTION CANNOT BE UNDONE \u26A0\ufe0f !!!!')
         confirm_prompt = input('Are you sure? (y/n)')
         if confirm_prompt == 'y':
