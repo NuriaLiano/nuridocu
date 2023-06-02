@@ -143,18 +143,18 @@ def create_README():
 ############ GITLAB REMOTE FUNCTIONS ############
 #################################################
 
-def create_repo():
-    global PROJECT_URL
+def create_gitlab_repo():
+    global GL_PROJECT_URL
     #create object with token
     gl = INSTANCE_GL
     #create new repo
     project = gl.projects.create({'name': REPO_NAME})
     #print url
-    PROJECT_URL = project.http_url_to_repo
+    GL_PROJECT_URL = project.http_url_to_repo
     print(Fore.YELLOW + '[CHECK]' + 'Check the new repo: ', project.web_url)
     return project
 
-def search_repo():
+def search_gitlab_repo():
     global ID_REPO_GL
     ID_REPO_GL = None
     #search project by name
@@ -166,10 +166,10 @@ def search_repo():
     except gitlab.exceptions.GitlabError as e:
         print("GitLab API returned an error:", e)
 
-def remove_repo():
+def remove_gitlab_repo():
     remove_prompt = input ('Are you sure you want to delete the repository? (y/n)')
     if remove_prompt.lower() == 'y':
-        search_repo()
+        search_gitlab_repo()
         if ID_REPO_GL is None:
             print(Fore.RED + '[ERROR]' + f'No project found with name "{REPO_NAME}"')
             return
@@ -203,7 +203,7 @@ def git_add_commit_push():
 
 def clone_repo():
     try:
-        git.Repo.clone_from(PROJECT_URL, LOCAL_PATH_REPO)
+        git.Repo.clone_from(GL_PROJECT_URL, LOCAL_PATH_REPO)
         create_README()
         git_add_commit_push()
         print(f'Repository cloned to local folder "{LOCAL_PATH_REPO}" successfully')
@@ -213,11 +213,27 @@ def clone_repo():
 
 ############ GITHUB REMOTE FUNCTIONS ############
 #################################################
+def create_github_repo():
+    global GH_TK, URL_GH
+    data = open_config_data(CONFIG_PATH)
+    URL_GH = data['DEFAULT']['URL_GH']
+    GH_TK = data['DEFAULT']['GH_TOKEN']
 
+    headers = {"Authorization": f"Bearer {GH_TK}"}
+    data = {
+        "name": REPO_NAME,
+        "private": False
+    }
+    response = git.requests.post(url, headers=headers, json=data)
+    if response.status_code == 201:
+        print("GitHub repository created successfully")
+    else:
+        print("Failed to create GitHub repository")
+        print("Response:", response.json())
 def configure_mirror(gitlab_url, gitlab_token, github_url):
     try:
         # Clonar el repositorio de GitLab
-        gitlab_repo = git.Repo.clone_from(gitlab_url, "gitlab_repo")
+        gitlab_repo = git.Repo.clone_from(GL_PROJECT_URL, "gitlab_repo")
         
         # Configurar el mirror del repositorio de GitLab al repositorio de GitHub
         gitlab_repo.create_remote("mirror", url=github_url)
@@ -251,15 +267,16 @@ if __name__ == '__main__':
         print('\u26A0\ufe0f YOU HAVE CHOSEN TO REMOVE THE REPO AND DIRECTORY. ¡¡¡¡THIS ACTION CANNOT BE UNDONE \u26A0\ufe0f !!!!')
         confirm_prompt = input('Are you sure? (y/n)')
         if confirm_prompt == 'y':
-            remove_repo()
+            remove_gitlab_repo()
             remove_local_directory()
         else:
             print('Oh my god you almost messed up')
     else:
         print('YOU HAVE CHOSEN TO CREATE NEW REPO.')
-        project = create_repo()
+        project = create_gitlab_repo()
         create_local_directory()
         clone_repo()
+        configure_mirror(GL_PROJECT_URL, GL_TK, GH_PROJECT_URL)
     
 
     
