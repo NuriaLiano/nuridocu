@@ -35,7 +35,6 @@ Nota: Asegúrate de que todos los archivos necesarios estén en la misma ubicaci
 ~~~sql
 -- Crear la base de datos
 CREATE DATABASE series_tv;
-
 -- Conectarse a la base de datos
 USE series_tv;
 

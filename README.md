@@ -1,6 +1,6 @@
 # NURIDOCU
 
-:green_heart: Si te gusta el contenido de este repositorio o te resulta últil, déjanos una estrellita :star:, es gratis ¡y esto nos motiva a seguir compartiendo contenido!
+:green_heart: Si te gusta el contenido de este repositorio o te resulta últil, déjanos una estrellita :star:, es gratis ¡y esto nos motiva a seguir compartiendo contenido!:green_heart:
 
 ![Progress](https://img.shields.io/badge/progress-15%25-brightgreen.svg?style=flat-square)
 ![Pipeline status](https://img.shields.io/gitlab/pipeline/Nuria_Liano/nuridocu/$CI_PIPELINE_ID?style=flat-square)
@@ -12,14 +12,14 @@
 
 NURIDOCU es un repositorio donde vas a encontrar diferentes cursos que puedes realizar para aumentar tus skills y encontrar el trabajo que siempre has querido.
 
-Este repositorio nace con el único fín de compartir conocimientos sobre ciertas técnologias y servir de apoyo tanto a alumnos de FP como Grado Universitario como autodidactas o curiosos. La idea que persigue NURIDOCU es una enseñanza abierta y gratuita donde se prioricen los ejercicios practicos y olvidarnos de las pesadas clases con powerpoints o de los PDFs interminables con teoría.
+Este repositorio nace con el único fín de compartir conocimientos sobre ciertas técnologias y servir de apoyo tanto a alumnos de FP como Grado Universitario como autodidactas o curiosos. La idea que persigue NURIDOCU es una enseñanza abierta y gratuita donde se prioricen los ejercicios practicos y olvidarnos de las pesadas clases con powerpoints o de los PDFs interminables de teoría.
 
 Buscamos que toda persona que comience un curso pueda sentirse cómodo desde el primer momento, sin requisitos minimos ya que todos los cursos están orientados a empezar desde 0.
-Si en algún curso es necesario una base previa no explicada en ese mismo, se indicará al alumno cual recomendamos iniciar primero pero siempre teniendo en cuenta que es una recomendacion ya que nuestros cursos, por avanzados que puedan ser, van a tener ciertas pinceladas necesarias sobre el contenido básico para poder comprender el curso en su totalidad.
+Si en algún curso es necesario una base previa no explicada en ese mismo, se indicará cual recomendamos iniciar primero pero siempre teniendo en cuenta que es una recomendacion ya que nuestros cursos, por avanzados que puedan ser, van a tener ciertas pinceladas necesarias sobre el contenido básico para poder comprender el curso en su totalidad.
 
 Facilitamos a nuestros alumnos unos ejercicios con soluciones y a la vez una teoría necesaria para entender que se está haciendo y por que.
-Por encima de todo intentamos que los alumnos aprendan a razona en vez de aprender a mecanizar procedimientos (que para eso ya está la IA :wink:)
-Por eso ofrecemos un buzón de correo (**corrijeme@nuridocu.es**) donde puedes enviar tus dudas o los ejercicios resueltos para que los echemos un ojo, los corrijamos y te demos feedback.
+Por encima de todo intentamos que los alumnos aprendan a razonar en vez de aprender a mecanizar procedimientos (que para eso ya está la IA :wink:)
+Por eso ofrecemos un buzón de correo (<corrijeme@nuridocu.es>) donde puedes enviar tus dudas o los ejercicios resueltos para que los echemos un ojo, los corrijamos y te demos feedback.
 
 Creemos firmemente que el conocimiento debería ser público y de calidad por eso, en la medida de lo posible, ofrecemos tanto nuestro conocimiento como nuestra experiencia laboral para crear los cursos, corregir los ejercicios y guiar al alumno durante el curso.
 
