@@ -1,9 +1,0 @@
-{
-    "DEFAULT": {
-        "GL_TOKEN": "glpat-4rB9LznauneY1SPhWsZh",
-        "GH_TOKEN": "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",
-        "URL_GL": "https://gitlab.com",
-        "URL_GH": "https://api.github.com/user/repos",
-        "CONFIG_PATH": "C:\\Users\\nuria-msi\\gitlab\\nuridocu\\scripts\\create-repos\\.config.json"
-    }
-}

@@ -3,6 +3,12 @@ session_start();
 
 $resultados = isset($_SESSION['resultados']) ? $_SESSION['resultados'] : array();
 
+// if (isset($_SESSION['resultados'])) {
+//     $resultados = $_SESSION['resultados'];
+// } else {
+//     $resultados = array();
+// }
+
 if (empty($resultados)) {
     echo "<p>No se encontraron series.</p>";
 } else {
