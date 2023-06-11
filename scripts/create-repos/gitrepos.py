@@ -1,11 +1,9 @@
-import sys, gitlab, os, git, shutil, json, datetime, requests
+import sys, gitlab, os, git, shutil, json, datetime, requests, subprocess
 
 ############ TODO ############
 ###############################
 
-#TODO: - solo falta que funcione el mirror desde gitlab
-#TODO: - falla el add comit push
-
+#TODO: - hace mirror pero no aplica los cambios una vez hecho el primer mirror.
 
 ############ COMMON FUNCTIONS ############
 ##########################################
@@ -117,7 +115,7 @@ def remove_local_directory():
 def create_local_directory(LOCAL_PATH_REPO):
     if LOCAL_PATH_REPO == "":
         LOCAL_PATH_REPO = os.path.dirname(os.path.abspath(__file__))
-    
+        add_data_config("LOCAL_PATH_REPO", LOCAL_PATH_REPO, CONFIG_PATH)
     try:
         os.mkdir(LOCAL_PATH_REPO)
         print(Fore.GREEN + '[SUCCESS]' + f'Local folder "{LOCAL_PATH_REPO}" created successfully')
@@ -134,7 +132,7 @@ def create_README():
             # Realiza operaciones de escritura en el archivo si es necesario
             file.write("# " + REPO_NAME)
         # Verificación de la creación exitosa
-        print("[SUCCESS]" + f'File"'+{README_PATH}+"created successfully")
+        print("[SUCCESS]" + f'File created successfully')
     except IOError as e:
         print(Fore.RED + '[ERROR]' + f'Error creating file "{README_PATH}"')
         print(e)
@@ -147,9 +145,10 @@ def create_gitlab_repo():
     #create object with token
     gl = INSTANCE_GL
     #create new repo
-    project = gl.projects.create({'name': REPO_NAME})
+    project = gl.projects.create({'name': REPO_NAME, 'visibility': 'public'})
     #print url
     GL_PROJECT_URL = project.http_url_to_repo
+    add_data_config('GL_PROJECT_URL', GL_PROJECT_URL, CONFIG_PATH)
     print(Fore.YELLOW + '[CHECK]' + 'Check the new repo: ', project.web_url)
     return project
 
@@ -175,7 +174,7 @@ def remove_gitlab_repo():
         else:
             gl = INSTANCE_GL
             gl.projects.delete(ID_REPO_GL)
-            print(Fore.GREEN + '[DONE]' + 'The repo ' + REPO_NAME + ' has been deleted')
+            print(Fore.GREEN + '[SUCCESS]' + 'The repo ' + REPO_NAME + ' has been deleted')
     else:
         print(Fore.RED + '[ERROR]' + 'The repo ' + REPO_NAME + ' has not been deleted')
 
@@ -185,7 +184,7 @@ def git_add_commit_push():
     try:
         repo = git.Repo(LOCAL_PATH_REPO)  # Inicializa el repositorio en el directorio actual
         repo.index.add(README_PATH)  # Agrega el archivo al área de preparación (staging)
-        repo.index.commit(str(commit_message))  # Realiza el commit con el mensaje especificado
+        repo.index.commit("probando")  # Realiza el commit con el mensaje especificado
         origin = repo.remote(name=repo_branch)  # Obtiene la referencia al repositorio remoto
         origin.push()  # Realiza el push al repositorio remoto
         
@@ -193,27 +192,32 @@ def git_add_commit_push():
 
     except Exception as e:
         # Manejar errores en caso de fallo en las operaciones de Git
-        print(Fore.RED + '[ERROR]' + "Failed to perform Git operation")
-        print(Fore.RED + '[ERROR]' + ":", str(e))
+        print('[ERROR] GIT ADD COMMIT PUSH Failed to perform Git operation')
+        print(str(e))
 
 def clone_repo():
     try:
-        git.Repo.clone_from(GL_PROJECT_URL, LOCAL_PATH_REPO)
+        gitlab_repo = git.Repo.clone_from(GL_PROJECT_URL, LOCAL_PATH_REPO)
         create_README()
         git_add_commit_push()
         print(f'Repository cloned to local folder "{LOCAL_PATH_REPO}" successfully')
+        return gitlab_repo
     except Exception as e:
-        print(Fore.RED + '[ERROR]' + "Failed to perform Git operation")
-        print(Fore.RED + '[ERROR]' + ":", str(e))
+        print('[ERROR] CLONE REPO Failed to perform Git operation')
+        print(str(e))
 
 ############ GITHUB REMOTE FUNCTIONS ############
 #################################################
 def create_github_repo():
-    global GH_TK, URL_GH
+    global GH_TK, URL_GH, GH_PROJECT_URL, URL_REMOVE_GH, GH_USERNAME
 
     data = open_config_data(CONFIG_PATH)
     URL_GH = data['DEFAULT']['URL_GH']
     GH_TK = data['DEFAULT']['GH_TOKEN']
+    URL_REMOVE_GH =data['DEFAULT']['URL_REMOVE_GH']
+    GH_USERNAME = data['DEFAULT']['GH_USERNAME']  
+    # Build the API URL to remove the repository
+    GH_PROJECT_URL = URL_REMOVE_GH+GH_USERNAME+"/"+REPO_NAME
 
     headers = {
         "Authorization": f"Bearer {GH_TK}",
@@ -225,115 +229,107 @@ def create_github_repo():
     }
     response = requests.post(URL_GH, headers=headers, json=data)
     if response.status_code == 201:
-        print("GitHub repository created successfully")
+        add_data_config('GH_PROJECT_URL', GH_PROJECT_URL, CONFIG_PATH)
+        print(Fore.GREEN + '[SUCCESS]' + "GitHub repository created successfully")
     else:
         print(Fore.RED + '[ERROR]' + f"Failed to create GitHub repository")
         print(Fore.RED + '[ERROR]' + f"Response:", response.json())
 
 def remove_github_repo():
-    global GH_TOKEN, GH_USERNAME, GH_PROJECT_URL
+    global GH_TOKEN,GH_PROJECT_URL, URL_REMOVE_GH, GH_USERNAME
 
     data = open_config_data(CONFIG_PATH)
     GH_TOKEN = data['DEFAULT']['GH_TOKEN']
     URL_REMOVE_GH =data['DEFAULT']['URL_REMOVE_GH']
     GH_USERNAME = data['DEFAULT']['GH_USERNAME']
-
-    # Build the API URL to remove the repository
-    GH_PROJECT_URL = URL_REMOVE_GH+GH_USERNAME+"/"+REPO_NAME
-    
-
+    GH_PROJECT_URL = ""    
     # Set authentication headers
     headers = {
         "Authorization": f"Token " + GH_TOKEN
     }
-
+    print(GH_PROJECT_URL)
+    if GH_PROJECT_URL == "":
+        # Build the API URL to remove the repository
+        GH_PROJECT_URL = URL_REMOVE_GH+GH_USERNAME+"/"+REPO_NAME
     # Send the DELETE request to remove the repository
     response = requests.delete(GH_PROJECT_URL, headers=headers)
 
     # Check the response
     if response.status_code == 204:
-        print(Fore.GREEN + '[DONE]' + 'The repo ' + REPO_NAME + ' has been deleted')
+        print(Fore.GREEN + '[SUCCESS]' + 'The repo ' + REPO_NAME + ' has been deleted')
     else:
         print(Fore.RED + '[ERROR]' +":", response.json())
 
-# def configure_mirror(gitlab_url, gitlab_token, github_url):
-    # try:
-    #     # Clonar el repositorio de GitLab
-    #     gitlab_repo = git.Repo.clone_from(GL_PROJECT_URL, "gitlab_repo")
-        
-    #     # Configurar el mirror del repositorio de GitLab al repositorio de GitHub
-    #     gitlab_repo.create_remote("mirror", url=github_url)
-    #     gitlab_repo.remotes.mirror.push(mirror=True)
-        
-    #     print("Mirror configured successfully")
-    # except Exception as e:
-    #     print("Failed to configure mirror")
-    #     print("Error:", str(e))
+def configure_mirror():
+    # gl = INSTANCE_GL
+    # search_gitlab_repo() #return id GL repo
+    # print(ID_REPO_GL)
+    # project = gl.projects.get(ID_REPO_GL)
+    
+# Clonar el repositorio de GitLab
+    repo_url = 'https://gitlab.com/Nuria_Liano/gitrepos.git'
+    # subprocess.run(['git', 'clone', '--mirror', repo_url])
 
-def create_gitlab_mirror():
-    api_url = INSTANCE_GL.url
-    access_token = GL_TK
+    # Cambiar al directorio clonado
+    # repo_name = repo_url.split('/')[-1].split('.')[0]
+    # print(repo_name)
+    os.chdir("C:\\Users\\nuria-msi\\gitlab\\gitrepos")
+    # subprocess.run(['cwd', "C:\\Users\\nuria-msi\\gitlab\\nuridocu\\scripts\\create-repos"])
 
-   # Obtener el ID del proyecto en GitLab
-    url = f"{api_url}/projects"
-    headers = {
-        "Private-Token": access_token
-    }
-    params = {
-        "search": REPO_NAME
-    }
+    # Agregar el repositorio de GitHub como remoto
+    github_repo_url = 'https://github.com/NuriaLiano/gitrepos.git'  # URL del repositorio de GitHub
+    subprocess.run(['git', 'remote', 'add', 'github', github_repo_url])
 
-    response = requests.get(url, headers=headers, params=params)
+    # Sincronizar los cambios de GitLab a GitHub
+    subprocess.run(['git', 'fetch', '--all'])
+    subprocess.run(['git', 'push', '--mirror', 'github'])
 
-    if response.status_code == 200:
-        try:
-            projects = response.json()
-        except ValueError:
-            print("Error al decodificar la respuesta JSON de GitLab")
-            print("Respuesta completa:", response.text)
-            return
+    print(f"El espejo del repositorio {repo_url} ha sido creado en {github_repo_url}")
 
-        if projects:
-            # Tomar el primer proyecto encontrado
-            project = projects[0]
-            project_id = project["id"]
+    # repo_url = "https://gitlab.com/Nuria_Liano/gitrepos.git"
+    # username = "NuriaLiano"
+    # reponame = "gitrepos"
+    # # Crea una instancia de Github
+    # github = Github("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")
 
-            # Configurar el repositorio como espejo
-            url = f"{api_url}/projects/{project_id}/mirror"
-            headers = {
-                "Private-Token": access_token,
-                "Content-Type": "application/json"
-            }
-            data = {
-                "enabled": True,
-                "url": github_repo_url,
-                "only_mirror_protected_branches": True
-            }
+    # # Obtén el nombre de usuario y el nombre del repositorio desde la URL
+    # # parts = repo_url.split('/')
+    # # username = parts[-2]
+    # # reponame = parts[-1].split('.')[0]
 
-            response = requests.put(url, headers=headers, json=data)
+    # # Obtiene el repositorio de origen de GitLab
+    # gitlab_repo = github.get_repo(f'{username}/{reponame}')
 
-            if response.status_code == 200:
-                print("El repositorio de GitLab se configuró como espejo con éxito")
-            else:
-                print("Error al configurar el repositorio de GitLab como espejo")
-                try:
-                    print("Mensaje de error:", response.json()["message"])
-                except ValueError:
-                    print("Error al decodificar la respuesta JSON de GitLab")
-        else:
-            print("No se encontró un proyecto con el nombre especificado en GitLab")
-    else:
-        print("Error al obtener la lista de proyectos en GitLab")
-        try:
-            print("Mensaje de error:", response.json()["message"])
-        except ValueError:
-            print("Error al decodificar la respuesta JSON de GitLab")
+    # # Crea un nuevo repositorio en GitHub
+    # github_user = github.get_user()
+    # new_repo = github_user.create_fork(gitlab_repo)
 
-    # Nombre del proyecto en GitLab
-    project_name = REPO_NAME
-    # URL del repositorio en GitHub
-    #github_repo_url = "https://github.com/usuario/nombre-repo"
-    github_repo_url = GH_PROJECT_URL
+    # print(f"El espejo del repositorio {repo_url} ha sido creado en {new_repo.html_url}")
+
+    # GITHUB_REPO_URL = "https://nurialiano@github.com/NuriaLiano/gitrepos.git"  # URL del repositorio de GitHub
+
+    # headers = {
+    #     "PRIVATE-TOKEN": GL_TK,
+    #     "Content-Type": "application/json"
+    # }
+
+    # data = {
+    #     "id": ID_REPO_GL,
+    #     "enabled": True,
+    #     "url": GITHUB_REPO_URL,
+    #     "mirror_trigger_builds": True,
+    #     "mirror_overwrites_diverged_branches": True
+    # }
+
+    # # Realizar la solicitud a la API de GitLab para configurar el push mirror
+    # response = requests.put(f"https://gitlab.com/api/v4/projects/{ID_REPO_GL}", headers=headers, json=data)
+
+    # if response.status_code == 200:
+    #     print("El proyecto se ha configurado correctamente como un push mirror en GitLab.")
+    # else:
+    #     print(f"Error al configurar el push mirror: {response.text}")
+
+    
 
 ############ MAIN FUNCTION ###############
 ##########################################
@@ -363,11 +359,12 @@ if __name__ == '__main__':
             print('Oh my god you almost messed up')
     elif main_prompt.lower() == 'c':
         print('YOU HAVE CHOSEN TO CREATE NEW REPO.')
-        #project = create_gitlab_repo()
+        
         create_gitlab_repo()
         create_local_directory(LOCAL_PATH_REPO)
         clone_repo()
         create_github_repo()
+        configure_mirror()
         # create_gitlab_mirror()
     else:
         print(Fore.RED + '[NOT ALLOWED]' + 'Invalid option')
