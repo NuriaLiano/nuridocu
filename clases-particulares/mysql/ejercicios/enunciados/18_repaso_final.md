@@ -104,10 +104,10 @@ Maggie Simpson | femenino
 SELECT nombre, ocupacion
 FROM personajes
 WHERE lugar_id = (
-  SELECT lugar_id
+  SELECT id
   FROM lugares
-  WHERE tipo = 'Casa de los Simpson'
-  LIMIT 1
+  WHERE direccion = 'Casa de los Simpson'
+  LIMIT 2
 );
 ~~~
 
