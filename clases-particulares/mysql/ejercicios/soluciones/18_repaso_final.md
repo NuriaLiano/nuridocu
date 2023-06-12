@@ -268,8 +268,6 @@ El problema con esta modificación es que ahora estamos comparando la columna lu
 
 También hay un error en cuanto al SELECT id FROM lugares ya que debería ser lugar_id y con direccion = "Casa de los simpson" deberia ser tipo en vez de direccion
 
-
-
 ## 12. Elimina la ocupación de 'Homer'
 
 ~~~sql
