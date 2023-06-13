@@ -128,6 +128,9 @@ ORDER BY nombre ASC;
 ## 4. Asegurate que la edad de los personajes siempre es mayor que 0
 
 ~~~sql
+--mostrar si existe
+show create table personajes;
+
 ALTER TABLE personajes
 ADD CONSTRAINT check_edad_nonnegative CHECK (edad >= 0);
 ~~~
@@ -136,7 +139,7 @@ ADD CONSTRAINT check_edad_nonnegative CHECK (edad >= 0);
 
 nombre         | genero
 ---------------|----------
-Homer Simpson  | masculino
+Homero Simpson  | masculino
 Marge Simpson  | femenino
 Bart Simpson   | masculino
 Lisa Simpson   | femenino
@@ -171,6 +174,7 @@ WHERE nombre = 'Maggie Simpson';
 
 ## 6. Crea una tabla 'Episodios' donde el id sea auto incrementado y agrega la siguiente información
 
+| titulo | temporada | duracion|
 ('El primer día de colegio', 1, 30),
 ('La boda de Apu', 3, 25),
 ('Homer en el espacio profundo', 5, 22),
@@ -193,7 +197,7 @@ INSERT INTO episodios (titulo, temporada, duracion) VALUES
   ('La casita del horror XXIX', 30, 18);
 ~~~
 
-## 7. Agrega una columna 'fecha_emision', después modifica el tipo de datos a INT y valor NULL. Acto seguido elimina la columna 'fecha_salida'
+## 7. Agrega una columna 'fecha_emision', después modifica el tipo de datos a INT y valor NULL. Acto seguido elimina la columna 'fecha_emision'
 
 ~~~sql
 --crea la columna
@@ -262,7 +266,7 @@ WHERE lugar_id = (
 );
 ~~~
 
-En esta consulta modificada, se ha cambiado el valor de LIMIT en la subconsulta a 2 en lugar de 1. Esto significa que la subconsulta puede devolver hasta dos filas en lugar de una.
+En esta consulta modificada, se ha cambiado el valor de LIMIT en la subconsulta a 2 en lugar de 1. Esto significa que la subconsulta puede devolver hasta dos filas en lugar de una y puede causar un error si hay más de una fila en la tabla "lugares" que cumple con la condición especificada.
 
 El problema con esta modificación es que ahora estamos comparando la columna lugar_id en la tabla personajes con una subconsulta que puede devolver múltiples valores. Esto generará un error porque la comparación "=" solo puede utilizarse cuando se compara una columna con un único valor.
 

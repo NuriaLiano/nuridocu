@@ -90,7 +90,7 @@ Maggie Simpson | femenino
 ('El especial de Noche de Brujas', 10, 20),
 ('La casita del horror XXIX', 30, 18)
 
-## 7. Agrega una columna 'fecha_emision', después modifica el tipo de datos a INT y valor NULL. Acto seguido elimina la columna 'fecha_salida'
+## 7. Agrega una columna 'fecha_emision', después modifica el tipo de datos a INT y valor NULL. Acto seguido elimina la columna 'fecha_emision'
 
 ## 8. Obtener la cantidad de personajes por ocupación y el promedio de edad de los personajes en cada ocupación
 
