@@ -1,5 +1,7 @@
 # Ejercicios de subconsultas y joins
 
+## Base de datos, tablas y datos
+
 ~~~sql
 -- Creación de la base de datos
 CREATE DATABASE ejercicio_subconsultas;
@@ -43,116 +45,20 @@ INSERT INTO pedidos (id, cliente_id, producto, cantidad) VALUES
 
 ## 1: Obtener los nombres de los clientes que han realizado pedidos
 
-~~~sql
-SELECT nombre
-FROM clientes
-WHERE id IN (
-  SELECT DISTINCT cliente_id
-  FROM pedidos
-);
-~~~
-
 ## 2: Obtener los productos y las cantidades de los pedidos realizados por clientes de Madrid
-
-~~~sql
-SELECT producto, cantidad
-FROM pedidos
-WHERE cliente_id IN (
-  SELECT id
-  FROM clientes
-  WHERE ciudad = 'Madrid'
-);
-~~~
 
 ## 3: Obtener los nombres de los clientes que han realizado al menos 2 pedidos
 
-~~~sql
-SELECT nombre
-FROM clientes
-WHERE id IN (
-  SELECT cliente_id
-  FROM pedidos
-  GROUP BY cliente_id
-  HAVING COUNT(*) >= 2
-);
-~~~
-
 ## 4: Obtener el total de pedidos realizados por cada cliente
-
-~~~sql
-SELECT c.nombre, COUNT(*) AS total_pedidos
-FROM clientes c
-JOIN pedidos p ON c.id = p.cliente_id
-GROUP BY c.nombre;
-~~~
 
 ## 5: Obtener los nombres de los clientes que han realizado pedidos de productos diferentes al cliente con ID 1
 
-~~~sql
-SELECT nombre
-FROM clientes
-WHERE id <> 1 AND id IN (
-  SELECT DISTINCT cliente_id
-  FROM pedidos);
-~~~
-
 ## 5: Obtener los productos y las cantidades de los pedidos realizados por clientes de Madrid, excluyendo los pedidos de productos que contengan la palabra "Zapatos"
-
-~~~sql
-SELECT producto, cantidad
-FROM pedidos
-WHERE cliente_id IN (
-  SELECT id
-  FROM clientes
-  WHERE ciudad = 'Madrid'
-) AND producto NOT LIKE '%Zapatos%';
-~~~
 
 ## Obtener los nombres de los clientes que han realizado al menos un pedido y su ciudad no coincide con la ciudad de ningún otro cliente
 
-~~~sql
-SELECT nombre
-FROM clientes
-WHERE id IN (
-  SELECT DISTINCT cliente_id
-  FROM pedidos
-) AND ciudad NOT IN (
-  SELECT DISTINCT ciudad
-  FROM clientes
-  WHERE id <> clientes.id
-);
-~~~
-
 ## Obtener el producto con la cantidad más alta entre todos los pedidos realizados
-
-~~~sql
-SELECT producto
-FROM pedidos
-WHERE cantidad = (
-  SELECT MAX(cantidad)
-  FROM pedidos
-);
-~~~
 
 ## Obtener los nombres de los clientes que han realizado pedidos de todos los productos disponibles
 
-~~~sql
-SELECT nombre
-FROM clientes
-WHERE (SELECT COUNT(DISTINCT producto)
-       FROM pedidos) = (SELECT COUNT(DISTINCT producto)
-                        FROM pedidos
-                        WHERE cliente_id = clientes.id);
-~~~
-
 ## Obtener el nombre del cliente que ha realizado el pedido con la cantidad más alta entre todos los pedidos realizados
-
-~~~sql
-SELECT c.nombre
-FROM clientes c
-JOIN pedidos p ON c.id = p.cliente_id
-WHERE p.cantidad = (
-  SELECT MAX(cantidad)
-  FROM pedidos
-);
-~~~
