@@ -17,14 +17,14 @@
 - Path de los discos duros
   - SATA: ``/dev/sda``
   - NVME: ``/dev/nvme1``
-- Path de las particiones 
+- Path de las particiones
   - SATA: ``/dev/sda1``
   - NVME: ``/dev/nvme0p1``
 - Tablas de particiones:
   - MBR: bastante obsoleta
   - GPT: es la que se usa ahora, no tiene limitaciones
 - Pasos a la hora de montar y particionar un disco
-  - Introducir el disco 
+  - Introducir el disco
   - Establecer la tabla de particiones GPT: ``fdisk /dev/sdb``
   - Particionar el disco
 Estos pasos los podemos realizar con la herramienta **gparted** o bien de forma independiente. 
