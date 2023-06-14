@@ -364,7 +364,7 @@ if __name__ == '__main__':
         create_local_directory(LOCAL_PATH_REPO)
         clone_repo()
         create_github_repo()
-        configure_mirror()
+        # configure_mirror()
         # create_gitlab_mirror()
     else:
         print(Fore.RED + '[NOT ALLOWED]' + 'Invalid option')
