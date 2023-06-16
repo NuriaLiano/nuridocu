@@ -248,7 +248,7 @@ for (Map.Entry<String, Integer> entry : map.entrySet()) {
 }
 ~~~
 
-#### LINKEDHADMAP
+#### LINKEDHASHMAP
 
 Es una implementación de la interfaz Map que mantiene el orden de inserción de los elementos. Combina un hash table con una lista doblemente enlazada para mantener el orden. Proporciona un acceso rápido y mantiene el orden de inserción
 
@@ -280,5 +280,3 @@ for (Map.Entry<String, Integer> entry : map.entrySet()) {
     System.out.println("Clave: " + entry.getKey() + ", Valor: " + entry.getValue());
 } 
 ~~~
-
-## STREAM
