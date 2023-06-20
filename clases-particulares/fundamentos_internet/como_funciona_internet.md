@@ -180,4 +180,3 @@ Conocer cómo funciona una URL es útil porque permite comprender cómo acceder 
 - **Ruta**: Es la ubicación específica del recurso dentro del sitio web. Por ejemplo, "/blog/articulo" en "https://www.example.com/blog/articulo".
 - **Parámetros**: Son información adicional que se puede incluir en la URL para personalizar la solicitud. Se indican después del símbolo de interrogación (?).
 - **Fragmento**: Es una referencia a una sección específica de una página web. Se indica después del símbolo de almohadilla (#).
-
