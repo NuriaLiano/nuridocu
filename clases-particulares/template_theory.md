@@ -32,3 +32,7 @@ code
 > :back: **PARA ENTRAR EN CONTEXTO**
 >
 > :woman_teacher: **EXPLICACIÓN**
+>
+> :white_check_mark: **RECOMENDADO**
+>
+> :gift_heart: **CONSEJO**
