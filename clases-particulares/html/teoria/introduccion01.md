@@ -17,7 +17,7 @@ HTML es el lenguaje de marcado utilizado para crear la estructura y el contenido
 <body>
   Contenido de la página
 </body>
-</html>
+</html>obs
 ~~~
 
 **!DOCTYPE html**: Declaración del tipo de documento HTML.

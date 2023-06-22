@@ -162,5 +162,3 @@
 - `<blink>`: Hace parpadear el contenido.
 - `<center>`: Alínea el contenido al centro.
 - `<marquee>`: Crea un texto o contenido en movimiento.
-
-
