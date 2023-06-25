@@ -19,7 +19,7 @@ CREATE TABLE productos (
 );
 CREATE TABLE categoria (
   id INT PRIMARY KEY,
-  nombre varchar NOT NULL,
+  nombre varchar() NOT NULL,
 );
 
 -- Insertar datos de ejemplo
