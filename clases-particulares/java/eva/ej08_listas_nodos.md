@@ -35,7 +35,7 @@ public class Libro{
     public void setTitulo(String titulo){
         this.titulo = titulo;
     }
-    public getAutor(){
+    public String getAutor(){
         return autor;
     }
     public void setAutor(String autor){
@@ -169,8 +169,8 @@ public class Lista{
                     contador++;
                 }
                 Nodo temporal = puntero.siguiente;
-                puntero.siguiente = temp.siguiente;
-                temp.siguiente = null;
+                puntero.siguiente = temporal.siguiente;
+                temporal.siguiente = null;
                 longitud--;
             }
             
