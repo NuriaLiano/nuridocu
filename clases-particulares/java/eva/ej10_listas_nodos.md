@@ -1,244 +1,293 @@
+# Ejercicio 08 - clases, listas y nodos
 
-# Ejercicio 10 - Listas y nodos
+Crear una lista simple enlazada y realizar un menú donde se pueda hacer lo siguiente:
 
-https://www.discoduroderoer.es/ejercicios-propuestos-y-resueltos-basicos-listas-enlazadas-en-java/
-
-## Clase `MiListaEnlazadaAvanzada`
-
-La clase `MiListaEnlazadaAvanzada` extiende a `MiListaEnlazadaBasica` y proporciona funcionalidades adicionales para la manipulación de una lista enlazada.
-
-### Métodos
-
-- `insertar(E info, int posicion)`: inserta un elemento en la posición especificada de la lista enlazada.
-- `extraer(int posicion)`: extrae el elemento en la posición especificada de la lista enlazada.
-- `insertarUltimo(E info)`: inserta un elemento al final de la lista enlazada.
-- `extraerUltimo()`: extrae el último elemento de la lista enlazada.
-- `imprimir(int posicion)`: imprime los elementos de la lista enlazada a partir de la posición especificada.
-
-#### Clase Node`<E>`
+- Agregar
+- Mostrar
+- Ingresar al final
+- Ingresar al inicio
+- Encontrar el mayor número
+- Encontrar el menor número
+- Calcular el promedio
+- Ordenar
+- Eliminar por posición
 
 ~~~java
+import java.util.Scanner;
 
-~~~
+//nodo.java
+public class Nodo {
 
-~~~java
-public class MyBasicLinkedList<E> {
-    
-    protected Node<E> primero;
+    private int valor;
+    private Nodo siguiente;
 
-    public MyBasicLinkedList() {
-        this.primero = null;
+    public Nodo(int valor) {
+        this.valor = valor;
+        this.siguiente = null;
     }
 
-    public Node<E> getPrimero() {
-        return this.primero;
+    public int getValor() {
+        return valor;
     }
 
-    public void setPrimero(Node<E> primero) {
-        this.primero = primero;
+    public void setValor(int valor) {
+        this.valor = valor;
+    }
+
+    public Nodo getSiguiente() {
+        return siguiente;
+    }
+
+    public void setSiguiente(Nodo siguiente) {
+        this.siguiente = siguiente;
+    }
+}
+
+//listaenlazada.java
+public class ListaEnlazada {
+
+    private Nodo cabeza;
+
+    public ListaEnlazada() {
+        cabeza = null;
     }
 
     public boolean estaVacia() {
-        return (this.primero == null);
+        return cabeza == null;
     }
 
-    public void insertar(E info) {
-        Node<E> nuevoNodo = new Node<E>(info);
-        nuevoNodo.setSiguiente(this.primero);
-        primero = nuevoNodo;
-    }
-
-    public E extraer() {
-        E dato = null;
-        if (this.primero != null) {
-            dato = this.primero.getInfo();
-            this.primero = this.primero.getSiguiente();
-        }
-        return dato;
-    }
-
-    public void insertar(E info, Node<E> anterior) {
-        if(anterior != null) {
-            Node<E> nuevoNodo = new Node<E>(info);
-            nuevoNodo.setSiguiente(anterior.getSiguiente());
-            anterior.setSiguiente(nuevoNodo);
-        }
-    }
-
-    public E extraer(Node<E> anterior) {
-        E dato = null;
-        if(anterior != null && anterior.getSiguiente() != null) {
-            dato = anterior.getSiguiente().getInfo();
-            anterior.setSiguiente(anterior.getSiguiente().getSiguiente());
-        }
-        return dato;
-    }
-
-    public int tamano() {
-        int tamano = 0;
-        Node<E> actual = this.primero;
-        
-        while(actual != null) {
-            tamano++;
-            actual = actual.getSiguiente();
-        }
-        return tamano;
-    }
-
-    public String toString() {
-        String textoLista = "";
-        Node<E> actual = this.primero;
-        
-        while(actual != null) {
-            textoLista = textoLista + actual.getInfo().toString();
-            if(actual.getSiguiente() != null) {
-                textoLista = textoLista + " -> ";
+    public void agregar(int valor) {
+        Nodo nuevoNodo = new Nodo(valor);
+        if (estaVacia()) {
+            cabeza = nuevoNodo;
+        } else {
+            Nodo actual = cabeza;
+            while (actual.getSiguiente() != null) {
+                actual = actual.getSiguiente();
             }
-            actual = actual.getSiguiente();
+            actual.setSiguiente(nuevoNodo);
         }
-        return textoLista;
     }
 
-    public void imprimir() {
-        System.out.println(this);
+    public void mostrar() {
+        if (estaVacia()) {
+            System.out.println("La lista está vacía");
+        } else {
+            Nodo actual = cabeza;
+            while (actual != null) {
+                System.out.print(actual.getValor() + " ");
+                actual = actual.getSiguiente();
+            }
+            System.out.println();
+        }
     }
 
-    public Node<E> buscarNodo(E info) {
-        Node<E> nodoObjetivo = null;
-        Node<E> nodoActual = this.primero;
-
-        while(nodoActual != null && !nodoActual.getInfo().equals(info)) {
-            nodoActual = nodoActual.getSiguiente();
+    public void ingresarAlFinal(int valor) {
+        Nodo nuevoNodo = new Nodo(valor);
+        if (estaVacia()) {
+            cabeza = nuevoNodo;
+        } else {
+            Nodo actual = cabeza;
+            while (actual.getSiguiente() != null) {
+                actual = actual.getSiguiente();
+            }
+            actual.setSiguiente(nuevoNodo);
         }
-        if(nodoActual != null) {
-            nodoObjetivo = nodoActual;
-        }
-        return nodoObjetivo;
     }
 
-    public Node<E> buscarNodo(int n) {
-        Node<E> nodoObjetivo = null;
-        Node<E> nodoActual = this.primero;
-        int contador = 0;
-
-        while(nodoActual != null && contador < n) {
-            nodoActual = nodoActual.getSiguiente();
-        contador++;
+    public void ingresarAlInicio(int valor) {
+        Nodo nuevoNodo = new Nodo(valor);
+        if (estaVacia()) {
+            cabeza = nuevoNodo;
+        } else {
+            nuevoNodo.setSiguiente(cabeza);
+            cabeza = nuevoNodo;
         }
-        if(nodoActual != null) {
-            nodoObjetivo = nodoActual;
-        }
-        return nodoObjetivo;
     }
 
-    public Node<E> buscarUltimoNodo() {
-        Node<E> actual = this.primero;
-        
-        while(actual != null && actual.getSiguiente() != null) {
-            actual = actual.getSiguiente();
+    public int encontrarMayor() {
+        if (estaVacia()) {
+            System.out.println("La lista está vacía");
+            return Integer.MIN_VALUE;
+        } else {
+            int mayor = cabeza.getValor();
+            Nodo actual = cabeza.getSiguiente();
+            while (actual != null) {
+                if (actual.getValor() > mayor) {
+                    mayor = actual.getValor();
+                }
+                actual = actual.getSiguiente();
+            }
+            return mayor;
         }
-        return actual;
     }
 
-    public int buscar(E info) {
-        Node<E> actual = this.primero;
-        int posicionInfo = -1;
-        
-        if(!estaVacia()) {
-            posicionInfo = 0;
-            while(actual != null && !actual.getInfo().equals(info)) {
-                posicionInfo++;
+    public int encontrarMenor() {
+        if (estaVacia()) {
+            System.out.println("La lista está vacía");
+            return Integer.MAX_VALUE;
+        } else {
+            int menor = cabeza.getValor();
+            Nodo actual = cabeza.getSiguiente();
+            while (actual != null) {
+                if (actual.getValor() < menor) {
+                    menor = actual.getValor();
+                }
+                actual = actual.getSiguiente();
+            }
+            return menor;
+        }
+    }
+
+    public double calcularPromedio() {
+        if (estaVacia()) {
+            System.out.println("La lista está vacía");
+            return 0.0;
+        } else {
+            int sumatoria = 0;
+            int contador = 0;
+            Nodo actual = cabeza;
+            while (actual != null) {
+                sumatoria += actual.getValor();
+                contador++;
+                actual = actual.getSiguiente();
+            }
+            return (double) sumatoria / contador;
+        }
+    }
+
+    public void ordenar() {
+        if (estaVacia()) {
+            System.out.println("La lista está vacía");
+        } else {
+            Nodo actual = cabeza;
+            while (actual != null) {
+                Nodo siguiente = actual.getSiguiente();
+                while (siguiente != null) {
+                    if (actual.getValor() > siguiente.getValor()) {
+                        int temp = actual.getValor();
+                        actual.setValor(siguiente.getValor());
+                        siguiente.setValor(temp);
+                    }
+                    siguiente = siguiente.getSiguiente();
+                }
                 actual = actual.getSiguiente();
             }
         }
-        return posicionInfo;
     }
 
-    public int numeroDeOcurrencias(E info) {
-        int contador = 0;
-        Node<E> actual = this.primero;
-        
-        while(actual != null) {
-            if(actual.getInfo().equals(info)){
+    public void eliminarPorPosicion(int posicion) {
+        if (estaVacia()) {
+            System.out.println("La lista está vacía");
+        } else if (posicion < 0 || posicion >= size()) {
+            System.out.println("Posición inválida");
+        } else if (posicion == 0) {
+            cabeza = cabeza.getSiguiente();
+        } else {
+            int contador = 0;
+            Nodo actual = cabeza;
+            while (contador < posicion - 1) {
+                actual = actual.getSiguiente();
                 contador++;
             }
+            actual.setSiguiente(actual.getSiguiente().getSiguiente());
+        }
+    }
+
+    private int size() {
+        int contador = 0;
+        Nodo actual = cabeza;
+        while (actual != null) {
+            contador++;
             actual = actual.getSiguiente();
         }
         return contador;
     }
 }
 
-public class MyAdvancedLinkedList<E> extends MyBasicLinkedList<E> {
-    
-    public MyAdvancedLinkedList() {
-        super();
-    }
-    
-    public void insertar(E info, int posicion) {
-        Node<E> nodoAnterior = buscarNodo(posicion-1);
+//main.java
+public class Main {
 
-        if(nodoAnterior != null) {
-            insertar(info, nodoAnterior);
-        }
-    }
-    
-    public E extraer(int posicion) {
-        Node<E> nodoAnterior = buscarNodo(posicion-1);
-        E info = null;
-        
-        if(nodoAnterior != null) {
-            info = extraer(nodoAnterior);
-        }
-        return info;
-    }
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        ListaEnlazada lista = new ListaEnlazada();
+        int opcion;
 
-    public void insertarUltimo(E info) {
-        Node<E> ultimoNodo = buscarUltimoNodo();
-        
-        if(ultimoNodo != null) {
-            insertar(info, ultimoNodo);
-        } else {
-            this.primero = new Node<E>(info);;
-        }
-    }
-    
-    public E extraerUltimo() {
-        E info = null;
-        Node<E> actual = this.primero;
-        int tamanoLista = tamano();
+        do {
+            System.out.println("----- MENÚ -----");
+            System.out.println("1. Agregar");
+            System.out.println("2. Mostrar");
+            System.out.println("3. Ingresar al final");
+            System.out.println("4. Ingresar al inicio");
+            System.out.println("5. Encontrar el mayor número");
+            System.out.println("6. Encontrar el menor número");
+            System.out.println("7. Calcular el promedio");
+            System.out.println("8. Ordenar");
+            System.out.println("9. Eliminar por posición");
+            System.out.println("0. Salir");
+            System.out.print("Ingrese una opción: ");
+            opcion = sc.nextInt();
 
-        if(!estaVacia()) {
-            if(tamanoLista == 1) {
-                info = actual.getInfo();
-                this.primero = null;
-            } else {
-                Node<E> nodoAnteriorUltimo = buscarNodo(tamanoLista-2);
-                info = extraer(nodoAnteriorUltimo);
+            switch (opcion) {
+                case 1:
+                    System.out.print("Ingrese el valor a agregar: ");
+                    int valor = sc.nextInt();
+                    lista.agregar(valor);
+                    System.out.println("Elemento agregado correctamente");
+                    break;
+                case 2:
+                    System.out.println("La lista es:");
+                    lista.mostrar();
+                    break;
+                case 3:
+                    System.out.print("Ingrese el valor a ingresar al final: ");
+                    int valorFinal = sc.nextInt();
+                    lista.ingresarAlFinal(valorFinal);
+                    System.out.println("Elemento ingresado al final correctamente");
+                    break;
+                case 4:
+                    System.out.print("Ingrese el valor a ingresar al inicio: ");
+                    int valorInicio = sc.nextInt();
+                    lista.ingresarAlInicio(valorInicio);
+                    System.out.println("Elemento ingresado al inicio correctamente");
+                    break;
+                case 5:
+                    int mayor = lista.encontrarMayor();
+                    if (mayor != Integer.MIN_VALUE) {
+                        System.out.println("El mayor número es: " + mayor);
+                    }
+                    break;
+                case 6:
+                    int menor = lista.encontrarMenor();
+                    if (menor != Integer.MAX_VALUE) {
+                        System.out.println("El menor número es: " + menor);
+                    }
+                    break;
+                case 7:
+                    double promedio = lista.calcularPromedio();
+                    System.out.println("El promedio es: " + promedio);
+                    break;
+                case 8:
+                    lista.ordenar();
+                    System.out.println("Lista ordenada correctamente");
+                    break;
+                case 9:
+                    System.out.print("Ingrese la posición a eliminar: ");
+                    int posicion = sc.nextInt();
+                    lista.eliminarPorPosicion(posicion);
+                    break;
+                case 0:
+                    System.out.println("Saliendo del programa...");
+                    break;
+                default:
+                    System.out.println("Opción inválida");
+                    break;
             }
-        }
-        return info;
+
+            System.out.println();
+        } while (opcion != 0);
+
+        sc.close();
     }
-
-    public void imprimir(int posicion) {
-        Node<E> actual = this.primero;
-        int contador = 0;
-        String textoLista = "";
-
-        if(!estaVacia()) {
-            while(actual != null && contador < posicion ) {
-                actual = actual.getSiguiente();
-                contador++;
-            }
-            while(actual != null) {
-                textoLista = textoLista + actual.getInfo().toString();
-                if(actual.getSiguiente() != null) {
-                    textoLista = textoLista + " -> ";
-                }
-                actual = actual.getSiguiente();
-            }
-        }
-        System.out.println(textoLista);
-    }    
 }
-
 ~~~
