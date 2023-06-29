@@ -37,6 +37,21 @@ public class Nodo<E> {
         this.elemento = elemento;
         this.siguiente = siguiente;
     }
+    public E getElemento() {
+        return this.elemento;
+    }
+
+    public void setElemento(E elemento) {
+        this.elemento = elemento ;
+    }
+
+    public Nodo getSiguiente() {
+        return siguiente;
+    }
+
+    public void setSiguiente(Nodo siguiente) {
+        this.siguiente = siguiente;
+    }
 }
 
 //listacolores.java
@@ -60,7 +75,7 @@ public class ListaColores {
     public void agregarAlFinal(String color) {
         Nodo<String> nuevoNodo = new Nodo<>(color, null);
 
-        if (cabeza == null) {
+        if (estaVacia()) {
             cabeza = nuevoNodo;
         } else {
             Nodo<String> puntero = cabeza;
@@ -109,7 +124,7 @@ public class ListaColores {
     }
 
     public void eliminarAlFinal() {
-        if (cabeza == null) {
+        if (estaVacia()) {
             return;
         }
 

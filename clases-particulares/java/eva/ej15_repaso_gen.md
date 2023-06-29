@@ -36,7 +36,7 @@ Debes implementar las siguientes clases:
 En el método principal (`main()`), debes crear instancias de canciones y podcasts, agregarlos a un arreglo de tipo `Reproducible` y luego crear una instancia de `Playlist` con ese arreglo. Finalmente, llama al método `reproducirTodo()` de la playlist para reproducir todos los elementos.
 
 ~~~java
-/ Interfaz reproducible
+// Interfaz reproducible
 interface Reproducible {
     void reproducir();
 }

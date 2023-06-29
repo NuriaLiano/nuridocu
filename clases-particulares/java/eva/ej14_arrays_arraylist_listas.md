@@ -11,11 +11,9 @@ public class ListaEjercicio {
     public static void main(String[] args) {
         // Usando Arrays
         int[] array = new int[5];
-        array[0] = 10;
-        array[1] = 20;
-        array[2] = 30;
-        array[3] = 40;
-        array[4] = 50;
+        for (int i = 0; i < array.length; i++) {
+            array[i] = (i + 1) * 10;
+        }
 
         System.out.println("Array:");
         for (int i = 0; i < array.length; i++) {
@@ -24,11 +22,9 @@ public class ListaEjercicio {
 
         // Usando ArrayList
         ArrayList<Integer> arrayList = new ArrayList<>();
-        arrayList.add(10);
-        arrayList.add(20);
-        arrayList.add(30);
-        arrayList.add(40);
-        arrayList.add(50);
+        for (int i = 1; i <= 5; i++) {
+            arrayList.add(i * 10);
+        }
 
         System.out.println("ArrayList:");
         for (int i = 0; i < arrayList.size(); i++) {
@@ -37,11 +33,9 @@ public class ListaEjercicio {
 
         // Usando lista enlazada con nodos y cabeceras
         ListaEnlazada listaEnlazada = new ListaEnlazada();
-        listaEnlazada.agregarAlFinal(10);
-        listaEnlazada.agregarAlFinal(20);
-        listaEnlazada.agregarAlFinal(30);
-        listaEnlazada.agregarAlFinal(40);
-        listaEnlazada.agregarAlFinal(50);
+        for (int i = 1; i <= 5; i++) {
+            listaEnlazada.agregarAlFinal(i * 10);
+        }
 
         System.out.println("Lista enlazada:");
         listaEnlazada.mostrar();
