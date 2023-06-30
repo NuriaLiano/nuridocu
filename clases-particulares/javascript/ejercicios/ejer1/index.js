@@ -1,3 +1,4 @@
+addEventListener('load', main, false);
 function sumar(a, b) {
     return a + b;
   }
