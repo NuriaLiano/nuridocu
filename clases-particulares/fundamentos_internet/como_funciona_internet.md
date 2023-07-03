@@ -85,7 +85,7 @@ La arquitectura cliente-servidor se utiliza en una amplia variedad de aplicacion
 - **Centralización**: Los servidores actúan como puntos centrales para la administración y el suministro de recursos o servicios. Esto facilita el control y la gestión de los datos y servicios en un solo lugar.
 - **Separación de responsabilidades**: En esta arquitectura, el cliente y el servidor tienen roles y responsabilidades claras. El cliente se encarga de la presentación de datos y la interacción con el usuario, mientras que el servidor se encarga del procesamiento y la gestión de los recursos.
 
-![img-arq-cliente-servidor]()
+![img-arq-cliente-servidor](../img/estructura-cliente-servidor.png)
 
 ### Otras aquitecturas
 
