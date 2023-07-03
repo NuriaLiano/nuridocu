@@ -1,5 +1,5 @@
 
-addEventListener('load', main, false);
+//addEventListener('load', main, false);
 // Ejercicio: Calculadora básica
 
 // Pedir al usuario que ingrese dos números
@@ -17,23 +17,51 @@ console.log("4. División");
 var opcion = parseInt(prompt("Ingresa el número de la operación que deseas realizar:"));
 
 // Realizar la operación según la opción seleccionada
-if (opcion === 1) {
-  var suma = numero1 + numero2;
-  console.log("El resultado de la suma es: " + suma);
-} else if (opcion === 2) {
-  var resta = numero1 - numero2;
-  console.log("El resultado de la resta es: " + resta);
-} else if (opcion === 3) {
-  var multiplicacion = numero1 * numero2;
-  console.log("El resultado de la multiplicación es: " + multiplicacion);
-} else if (opcion === 4) {
-  // Verificar si el segundo número es cero para evitar división entre cero
-  if (numero2 === 0) {
-    console.log("Error: No se puede dividir entre cero.");
-  } else {
-    var division = numero1 / numero2;
-    console.log("El resultado de la división es: " + division);
-  }
-} else {
-  console.log("Opción inválida. Por favor, selecciona una opción válida.");
+//OPCION MALA
+// if (opcion === 1) {
+//   var suma = numero1 + numero2;
+//   console.log("El resultado de la suma es: " + suma);
+// } else if (opcion === 2) {
+//   var resta = numero1 - numero2;
+//   console.log("El resultado de la resta es: " + resta);
+// } else if (opcion === 3) {
+//   var multiplicacion = numero1 * numero2;
+//   console.log("El resultado de la multiplicación es: " + multiplicacion);
+// } else if (opcion === 4) {
+//   // Verificar si el segundo número es cero para evitar división entre cero
+//   if (numero2 === 0) {
+//     console.log("Error: No se puede dividir entre cero.");
+//   } else {
+//     var division = numero1 / numero2;
+//     console.log("El resultado de la división es: " + division);
+//   }
+// } else {
+//   console.log("Opción inválida. Por favor, selecciona una opción válida.");
+// }
+
+switch (opcion) {
+  case 1:
+    var suma = numero1 + numero2;
+    console.log("El resultado de la suma es: " + suma);
+    break;
+  case 2:
+    var resta = numero1 - numero2;
+    console.log("El resultado de la resta es: " + resta);
+    break;
+  case 3:
+    var multiplicacion = numero1 * numero2;
+    console.log("El resultado de la multiplicación es: " + multiplicacion);
+    break;
+  case 4:
+    // Verificar si el segundo número es cero para evitar división entre cero
+    if (numero2 === 0) {
+      console.log("Error: No se puede dividir entre cero.");
+    } else {
+      var division = numero1 / numero2;
+      console.log("El resultado de la división es: " + division);
+    }
+    break;
+  default:
+    console.log("Opción inválida. Por favor, selecciona una opción válida.");
+    break;
 }
