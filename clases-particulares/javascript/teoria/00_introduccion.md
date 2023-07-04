@@ -3,15 +3,33 @@ author: "@nurialiano"
 license: "Creative Commons Attribution-NonCommercial 4.0 International"
 ---
 
-# Introducción a Javascript
+# Introducción a Javascript I
 
 <div align="center">
   <img src="../img/../../img/meme-js.jpg" alt="meme js" width="300">
 </div>
 
+En esta sección vamos a comenzar con unos primeros pasos teóricos sobre la historia, tipos de lenguajes de programación y paradigmas, veremos que es javascript y como funciona, resolveremos algunas preguntas típicas y veremos que aplicaciones podemos utilizar para empezar a desarrollar Javascript.
+
 Todas las páginas web están formadas por HTML, utilizado para construir la estructura de la página web (lenguaje de marcado) y CSS, que permite dar estilo a la página y construir una interfaz visual y agradable para los usuarios.
 
 El uso exclusivo de HTML y CSS en una web nos limita considerablemente ya que, aunque podemos hacer un amplio abanico de cosas, la realización de algunas funciones de la web serían imposibles de hacer o mucho más complejas que si utilizamos el lenguaje de programación Javascript
+
+- [Introducción a Javascript I](#introducción-a-javascript-i)
+  - [Lenguajes de programación](#lenguajes-de-programación)
+    - [Breve historia de los lenguajes de programación](#breve-historia-de-los-lenguajes-de-programación)
+    - [Uso histórico de los lenguajes de programación](#uso-histórico-de-los-lenguajes-de-programación)
+    - [Tipos de lenguajes de programación](#tipos-de-lenguajes-de-programación)
+    - [Paradigma de programación](#paradigma-de-programación)
+    - [Frontend vs Backend](#frontend-vs-backend)
+    - [Ejecución de lenguajes de programación: Máquina virtual, compilación y ejecución directa](#ejecución-de-lenguajes-de-programación-máquina-virtual-compilación-y-ejecución-directa)
+      - [Lenguajes más comunes para Backend o Frontend](#lenguajes-más-comunes-para-backend-o-frontend)
+  - [¿Qué es Javascript?](#qué-es-javascript)
+    - [¿Cómo funciona Javascript?](#cómo-funciona-javascript)
+    - [¿Javascript es lo mismo que Java?](#javascript-es-lo-mismo-que-java)
+    - [¿Es difícil aprender Javascript?](#es-difícil-aprender-javascript)
+  - [Frameworks y librerias](#frameworks-y-librerias)
+  - [Ecosistema de desarrollo](#ecosistema-de-desarrollo)
 
 ## Lenguajes de programación
 
@@ -125,6 +143,21 @@ JavaScript ha evolucionado mucho desde sus primeros días, y actualmente existen
 
 >:books: **PARA SABER MÁS** Javascript en un inicio (años 90) se llamó 'Mocha' pero debido a que su desarrollador Brendran Eich aprovechó la popularidad del lenguaje 'Java' decidió cambiarle el nombre al actual 'Javascript' para que la gente lo asociase a 'Java'. Pero... [¿Javascript es lo mismo que Java?](#javascript-es-lo-mismo-que-java)
 
+### ¿Cómo funciona Javascript?
+
+El objetivo principal de Javascript es agregar interactividad y dinamismo a las páginas web. A diferencia de HTML y CSS, que se centran en la estructura y el estilo de una página web.
+
+Cuando visitas una página web que utiliza JavaScript, el navegador web descarga el código JavaScript junto con el HTML y el CSS. A medida que el navegador encuentra código JavaScript, lo ejecuta y realiza las acciones correspondientes.
+JavaScript puede realizar una amplia variedad de tareas, como:
+
+- **Manipulación del contenido HTML**: JavaScript puede modificar y manipular elementos HTML existentes en una página web. Por ejemplo, cambiar el texto de un elemento, agregar o eliminar elementos, cambiar el estilo de un elemento, etc.
+- **Interacciones del usuario**: JavaScript permite responder a las acciones del usuario, como hacer clic en un botón, pasar el mouse sobre un elemento o enviar un formulario. Puedes definir funciones en JavaScript que se activan cuando ocurren estos eventos.
+- **Obtener y modificar datos**: JavaScript puede interactuar con servidores y bases de datos, enviar solicitudes para obtener datos actualizados y actualizar la página web en consecuencia. Esto permite crear aplicaciones web dinámicas que muestran información actualizada.
+- **Validación de formularios**: Puedes utilizar JavaScript para verificar y validar los datos ingresados por los usuarios en formularios web antes de enviarlos al servidor.
+- **Animaciones y efectos visuales**: JavaScript permite crear animaciones y efectos visuales llamativos en una página web. Esto se logra manipulando propiedades CSS y utilizando funciones y bibliotecas especializadas.
+
+> :soon: **EN EL HORNO** curso sobre "Como funciona Javascript. Behind the scenes" en el que trataremos el funcionamiento real de Javascript desde una vista más técnica y más compleja.
+
 ### ¿Javascript es lo mismo que Java?
 
 Aunque los nombres son similares, JavaScript y Java son dos lenguajes de programación distintos con características y aplicaciones diferentes. Aquí tienes una breve explicación y una tabla comparativa de algunas de las principales diferencias:
@@ -190,3 +223,4 @@ Algunos de los componentes clave del ecosistema de desarrollo de Javascript:
 >:pencil:**NOTA** Además, las herramientas de depuración como las consolas de desarrollador de los navegadores, el debugger de Node.js y las extensiones de Chrome DevTools, ayudan a identificar y corregir errores en el código.
 
 - **Comunidades y recursos de aprendizaje**: La comunidad de JavaScript es muy activa y cuenta con numerosos recursos de aprendizaje en línea, como documentación oficial, tutoriales, blogs, foros y comunidades en redes sociales.
+
