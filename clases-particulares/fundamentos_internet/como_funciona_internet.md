@@ -172,11 +172,13 @@ Los navegadores web son aplicaciones diseñadas para acceder y visualizar págin
 Una URL (Uniform Resource Locator) es la dirección única que identifica una página web específica en Internet.
 Conocer cómo funciona una URL es útil porque permite comprender cómo acceder a los recursos en Internet, cómo enlazar y compartir páginas web, y cómo solucionar problemas relacionados con la navegación y la dirección de los sitios web. Además, entender las diferentes partes de una URL ayuda a interpretar los resultados de búsqueda, analizar el tráfico del sitio web y realizar optimizaciones de SEO.
 
-![img-url-partes]()
+<div align="center">
+  <img src="../img/partes-url.png" alt="partes de una url">
+</div>
 
-- **Protocolo**: Especifica cómo se va a acceder al recurso. Los protocolos más comunes son HTTP (Hypertext Transfer Protocol) y HTTPS (HTTP Secure), que utiliza cifrado para mayor seguridad.
-- **Dominio**: Es el nombre único que identifica un sitio web. Por ejemplo, en la URL "https://www.example.com", "example.com" es el dominio.
-- **Subdominio**: Es una parte opcional de la URL que precede al dominio principal. Por ejemplo, "www" en "www.example.com".
-- **Ruta**: Es la ubicación específica del recurso dentro del sitio web. Por ejemplo, "/blog/articulo" en "https://www.example.com/blog/articulo".
-- **Parámetros**: Son información adicional que se puede incluir en la URL para personalizar la solicitud. Se indican después del símbolo de interrogación (?).
-- **Fragmento**: Es una referencia a una sección específica de una página web. Se indica después del símbolo de almohadilla (#).
+- **Protocolo**: "**https**" - Es el esquema de protocolo utilizado para acceder al sitio web. En este caso, "https" indica que se está utilizando una conexión segura y encriptada (HTTP seguro).
+- **Dominio**: **"www.skilly.es"** - Es el nombre del sitio web al que se está accediendo. El dominio generalmente consiste en dos partes: el subdominio (opcional) que es "www" en este caso, y el dominio principal que es "skilly.es".
+- **Ruta del recurso**: "**/login.php**" - Es la ruta que especifica la ubicación del recurso que se solicita dentro del servidor. En este caso, está solicitando el archivo "login.php" ubicado en el servidor.
+- **Parámetros de consulta**: "**?usuario_id=066&usuario_nombre="nurialiano**"" - Son datos adicionales que se envían al servidor como parte de la solicitud. Estos parámetros son utilizados por el servidor para procesar la solicitud. En este caso, hay dos parámetros separados por el símbolo "&":
+  - "**usuario_id=066**": Es un parámetro que lleva el nombre "usuario_id" y el valor "066". Es probable que este valor se use para identificar al usuario en el sistema.
+  - "**usuario_nombre="nurialiano**"": Es otro parámetro que lleva el nombre "usuario_nombre" y el valor "nurialiano". Este valor probablemente se utilice para almacenar el nombre del usuario que se está autenticando.
