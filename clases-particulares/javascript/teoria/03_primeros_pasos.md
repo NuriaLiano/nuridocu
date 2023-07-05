@@ -7,6 +7,15 @@ license: "Creative Commons Attribution-NonCommercial 4.0 International"
 
 En las dos secciones anteriores, [Introducción a Javascript I](00_introduccion.md),  [Introducción a Javascript II](01_introduccion.md) y [Estructuras de control](02_estructuras_control.md) hemos visto la teoría básica sobre Javascript y la sintaxis e implementación de las distintas estructuras de control pero... ¡YA BASTA DE TEORÍA! VAMOS A CODEAR
 
+- [Uso de Javascript](#uso-de-javascript)
+  - [Como ejecutar Javascript](#como-ejecutar-javascript)
+    - [Ejecutando en consola](#ejecutando-en-consola)
+    - [Ejecutando en navegador](#ejecutando-en-navegador)
+    - [Otras formas de ejecutar Javascript](#otras-formas-de-ejecutar-javascript)
+  - [Cómo enlazar o agregar código Javascript](#cómo-enlazar-o-agregar-código-javascript)
+    - [Vincular un archivo externo](#vincular-un-archivo-externo)
+    - [Insertar código directamente en HTML](#insertar-código-directamente-en-html)
+
 ## Como ejecutar Javascript
 
 El primer paso para poder codear es ver las distintas formas que tenemos de ejecutar el código Javascript.

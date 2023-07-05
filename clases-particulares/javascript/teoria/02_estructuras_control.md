@@ -4,6 +4,17 @@ license: "Creative Commons Attribution-NonCommercial 4.0 International"
 ---
 # Estructuras de control
 
+- [Estructuras de control](#estructuras-de-control)
+  - [1. Estructura if-else](#1-estructura-if-else)
+  - [2. Estructura switch](#2-estructura-switch)
+  - [3. Estructura while](#3-estructura-while)
+  - [4. Estructura do-while](#4-estructura-do-while)
+  - [5. Estructura for](#5-estructura-for)
+  - [6. Estructura for...in](#6-estructura-forin)
+  - [7. Estructura for...of](#7-estructura-forof)
+  - [8. Estructura try-catch](#8-estructura-try-catch)
+  - [9. Estructura try-catch-finally](#9-estructura-try-catch-finally)
+
 ## 1. Estructura if-else
 
 La estructura if-else se utiliza para tomar decisiones basadas en una condición. Si la condición es verdadera, se ejecuta un bloque de código. De lo contrario, se ejecuta otro bloque de código.
