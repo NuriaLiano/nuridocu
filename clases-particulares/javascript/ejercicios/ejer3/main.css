@@ -1,0 +1,33 @@
+body {
+    text-align: center;
+    font-family: Arial, sans-serif;
+  }
+
+  h1 {
+    color: #333;
+  }
+
+  #mensaje, #intentos, #inputNumer{
+    margin-top: 20px;
+  }
+
+  #mensaje {
+    font-weight: bold;
+  }
+
+  #botonReiniciar, #botonAdivinar {
+    margin-top: 10px;
+    padding: 10px 20px;
+    font-size: 16px;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+
+  #botonAdivinar {
+    background-color: #4CAF50;
+  }
+
+  #botonReiniciar {
+    background-color: #f44336;
+  }
