@@ -35,6 +35,8 @@ code
 >
 > :white_check_mark: **RECOMENDADO**
 >
+> :heavy_exclamation_mark: **NO RECOMENDADO**
+>
 > :gift_heart: **CONSEJO**
 >
 > :soon: **EN EL HORNO**

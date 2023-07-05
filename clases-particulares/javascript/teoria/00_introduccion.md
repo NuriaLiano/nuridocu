@@ -6,7 +6,7 @@ license: "Creative Commons Attribution-NonCommercial 4.0 International"
 # Introducción a Javascript I
 
 <div align="center">
-  <img src="../img/../../img/meme-js.jpg" alt="meme js" width="300">
+  <img src="../../img/meme-js.jpg" alt="meme js" width="300">
 </div>
 
 En esta sección vamos a comenzar con unos primeros pasos teóricos sobre la historia, tipos de lenguajes de programación y paradigmas, veremos que es javascript y como funciona, resolveremos algunas preguntas típicas y veremos que aplicaciones podemos utilizar para empezar a desarrollar Javascript.
@@ -51,7 +51,7 @@ Esto es importante ya que permite que los lenguajes se adapten a las necesidades
 Como ya hemos visto en el apartado de [breve historia de los lenguajes de programación](#breve-historia-de-los-lenguajes-de-programación) hay lenguajes que, aunque aún se usan, han perdido popularidad por dististas razones, por ejemplo PHP ha perdido popularidad debido a que nació NodeJS, que permite ejecutar Javascript del lado del servidor y tiene una sintaxis más sencilla con un mayor número de integraciones, librerías y frameworks
 
 <div align="center">
-  <img src="../img/../../img/grafico-lenguajes-de-programacion.png" alt="grafico-lenguajes-de-programacion.png">
+  <img src="../../img/grafico-lenguajes-de-programacion.png" alt="grafico-lenguajes-de-programacion.png">
 </div>
 
 >:book:**PARA SABER MAS** la web de Tiobe genera anualmente una lista con los lenguajes más utilizados, puedes echarle un vistazo en esta web [Enlace a la página de Tiobe](https://www.tiobe.com/tiobe-index/)
@@ -99,7 +99,7 @@ En el desarrollo web, se distinguen dos áreas principales: frontend y backend.
 El frontend y el backend trabajan juntos para ofrecer una experiencia completa al usuario. Mientras que el frontend se encarga de la interfaz de usuario y la interacción, el backend se encarga de los aspectos subyacentes que permiten que la aplicación funcione de manera eficiente y segura. Ambas áreas son esenciales para el desarrollo web exitoso.
 
 <div align="center">
-  <img src="../img/../../img/meme-programador-frontend-vs-backend.png" alt="meme-programador-frontend-vs-backend.png" width=600>
+  <img src="../../img/meme-programador-frontend-vs-backend.png" alt="meme-programador-frontend-vs-backend.png" width=600>
 </div>
 
 ### Ejecución de lenguajes de programación: Máquina virtual, compilación y ejecución directa
@@ -126,7 +126,7 @@ La elección de utilizar una máquina virtual, compilación o ejecución directa
 ## ¿Qué es Javascript?
 
 <div align="center">
-  <img src="../img/../../img/meme-skelleton-css-html-js.png" alt="meme-skelleton-css-html-js" width=600>
+  <img src="../../img/meme-skelleton-css-html-js.png" alt="meme-skelleton-css-html-js" width=600>
 </div>
 
 Una vez explicado los conceptos básicos ya podemos responder a la pregunta ¿Qué es Javascript?
