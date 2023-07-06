@@ -27,7 +27,7 @@ El primer paso para poder codear es ver las distintas formas que tenemos de ejec
 Es probable que nunca te hayas fijado, o hayas entrado accidentalmente, en esta herramienta que poseen los navegadores ya que no es notable en el uso diario de un navegador, me refiero a **inspeccionar(F12)**
 Puedes acceder abriendo una ventana de tu navegador y pulsando la tecla ``F12`` o ``click der + inspeccionar``
 
-> :soon: **EN EL HORNO** una sección donde veremos en profundidad esta herramienta en los principales navegadores
+> :books: **PARA SABER MÁS** ya está disponible una sección donde vemos en profundidad esta poderosísima herramienta de Inspeccionar [Ver sección Inspeccionar(F12) en profundidad]()
 
 Por el momento nos vamos a centrar únicamente en la opción de **consola** que ofrece esta herramienta. Gracias a consola podemos ejercutar y probar nuestro código y ver los resultados para depurarlos y todo directamente desde el navegador.
 
