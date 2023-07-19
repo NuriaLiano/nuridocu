@@ -1,1 +1,0 @@
-https://www.w3schools.com/php/php_string.asp
