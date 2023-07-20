@@ -61,6 +61,12 @@ Básicamente quiere decir que tienes libertad de guardar y compartir el contenid
 </div>
 
 Me llamo Nuria pero tu puedes llamarme al 6.. :wink:
-No, no me llames, si eso manda un mail a <hola@nuridocu.es> y me cuentas
+No, mejor no me llames, si eso manda un mail a <hola@nuridocu.es> y me cuentas
 
 > :warning: esta cuenta de correo está habilitada para recibir invitaciones a unas cerves (aun que sea por Discord) :beer:
+
+---
+
+<div>
+    <p align="center">Desarrollado en <a href="https://turismodecantabria.com/inicio"></a> <img src="./icons/cantabria.png" height="30" alt="bandera de cantabria">  con mucho <img src="./icons/metal.png" height="30" alt="icono manos metal"> y <img src="./icons/beer.png" height="30" alt="icono cerveza"></p>
+</div>
