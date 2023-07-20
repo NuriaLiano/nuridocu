@@ -19,6 +19,10 @@ Bueno tranqui, te voy a dejar un índice con el contenido de este repo.
 - [iniciacion powershell](./windows/powershell/iniciacion-powershell.md)
 - [apuntes powershell](./windows/powershell/apuntes-powershell.md)
 
+<p align="center">
+    <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=nurialiano&amp;theme=chartreuse-dark&amp;layout=compact&amp;langs_count=10&amp;theme=transparent&amp;show_icons=true" alt="nuria liano github stats" data-canonical-src="https://github-readme-stats.vercel.app/api/top-langs/?username=nurialiano&amp;theme=dark&amp;layout=compact&amp;langs_count=10" style="width:100%; max-width: 400px;">
+</p>
+
 ## :warning: INFORMACIÓN SUPER RELEVANTE :warning:
 
 ### :pencil2: Erratas o actualizaciones
@@ -32,8 +36,31 @@ Mira, esto es un poco aburrido, a mi tampoco me hace gracia pero hay que pasar p
 
 Todo el contenido de este repo esta bajo la licencia [Creative Commons Attribution-NonCommercial 4.0 International Public License](./LICENSE).
 
-Básicamente quiere decir que tienes libertad de guardar y compartir el contenido del repo siempre y cuando hagas referencia a los autores o autor.
+Básicamente quiere decir que tienes libertad de guardar y compartir el contenido del repo siempre y cuando hagas referencia a los autores o autor y no lo uses con fines comerciales.
 
 ### :gem: Buena peñita colaboradora
 
+<div>
+    <p align="center">
+        <a href="https://github.com/altaskur"></a><img src="https://avatars.githubusercontent.com/u/105789412?v=4" alt="altaskur" height="100">
+        <a href="#"></a><img src="https://thenounproject.com/api/private/icons/5045805/edit/?backgroundShape=SQUARE&backgroundShapeColor=%23000000&backgroundShapeOpacity=0&exportSize=752&flipX=false&flipY=false&foregroundColor=%23000000&foregroundOpacity=1&imageFormat=png&rotation=0" alt="davicin" height="100">
+        <a href="#"></a><img src="https://thenounproject.com/api/private/icons/4484937/edit/?backgroundShape=SQUARE&backgroundShapeColor=%23000000&backgroundShapeOpacity=0&exportSize=752&flipX=false&flipY=false&foregroundColor=%23000000&foregroundOpacity=1&imageFormat=png&rotation=0" alt="marco" height="100">
+    </p>
+</div>
+
 ### :phone: Contacto
+
+<div>
+    <p align="center">
+        <a href="https://www.twitch.tv/nurialiano" target="_blank"><img height="50" src="./icons/twitch.svg" /></a>
+        <a href="https://gitlab.com/nuria_liano" target="_blank"><img height="50" src="./icons/gitlab.svg" /></a>
+        <a href="https://github.com/nurialiano" target="_blank"><img height="50" src="./icons/github.svg" /></a>
+        <a href="https://twitter.com/nuria_liano" target="_blank"><img height="50" src="./icons/twitter.svg"  /></a>
+        <a href="https://www.buymeacoffee.com/nurialiano" target="_blank"><img height="50" src="./icons/by-me-a-coffee.png" /></a>
+    </p>
+</div>
+
+Me llamo Nuria pero tu puedes llamarme al 6.. :wink:
+No, no me llames, si eso manda un mail a <hola@nuridocu.es> y me cuentas
+
+> :warning: esta cuenta de correo está habilitada para recibir invitaciones a unas cerves (aun que sea por Discord) :beer:
