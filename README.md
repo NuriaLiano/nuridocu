@@ -48,7 +48,7 @@ Básicamente quiere decir que tienes libertad de guardar y compartir el contenid
     </p>
 </div>
 
-### :phone: Contacto
+### :telephone: Contacto
 
 <div>
     <p align="center">
